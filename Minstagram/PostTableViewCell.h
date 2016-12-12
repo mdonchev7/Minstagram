@@ -1,0 +1,19 @@
+//
+//  PostTableViewCell.h
+//  Minstagram
+//
+//  Created by Mincho Dzhagalov on 11/9/16.
+//  Copyright © 2016 Mincho Dzhagalov. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface PostTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
+@property (weak, nonatomic) IBOutlet UIButton *usernameButton;
+@property (weak, nonatomic) IBOutlet UILabel *timeSincePostedLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
+
+@end
