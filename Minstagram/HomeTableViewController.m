@@ -10,7 +10,6 @@
 #import "NSString+FontAwesome.h"
 #import "UIImage+FontAwesome.h"
 #import "PostTableViewCell.h"
-#import "UIImage+Helpers.h"
 #import "Relation.h"
 #import "Post.h"
 #import "BackendServices.h"
@@ -78,10 +77,14 @@
              }];
     
     cell.photoImageView.image = nil;
-    [UIImage loadWithPostId:self.postIds[indexPath.row]
-                   callback:^(UIImage *image, NSArray *likers) {
-                       cell.photoImageView.image = image;
-                   }];
+    
+    [self.services postById:self.postIds[indexPath.row]
+            completionBlock:^(Post *post) {
+                [self.services photoById:post.photoId
+                         completionBlock:^(UIImage *image) {
+                             [cell.photoImageView setImage:image];
+                         }];
+            }];
     
     return cell;
 }

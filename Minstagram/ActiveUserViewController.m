@@ -10,7 +10,6 @@
 #import "NSString+FontAwesome.h"
 #import "ActiveUserProfileCollectionViewCell.h"
 #import "Post.h"
-#import "UIImage+Helpers.h"
 #import "Relation.h"
 #import "DetailedPhotoViewController.h"
 #import "FollowersTableViewController.h"
@@ -112,12 +111,13 @@
     return size;
 }
 
+
 - (IBAction)editProfile:(UIButton *)sender {
     [self performSegueWithIdentifier:@"Present Edit Profile View Controller" sender:self];
 }
 
 - (void)updateProfilePhotoImageView {
-    [[KCSUser activeUser] refreshFromServer:^(NSArray *objectsOrNil, NSError *errorOrNil) {
+    [[KCSUser activeUser] refreshFromServer:^(NSArray *objects, NSError *errorOrNil) {
         NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
         if ([photoId isEqualToString:@""]) {
             NSLog(@"no profile photo");

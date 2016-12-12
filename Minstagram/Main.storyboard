@@ -840,28 +840,27 @@
                                 <rect key="frame" x="0.0" y="184" width="375" height="434"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="RnE-Bc-xzT">
-                                    <size key="itemSize" width="106" height="106"/>
+                                    <size key="itemSize" width="138" height="138"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reusable cell" id="yRS-Wx-5Bz" customClass="ActiveUserProfileCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="138" height="138"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Myw-Rb-UjV">
-                                                    <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="137" height="137"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
                                             </subviews>
                                         </view>
-                                        <size key="customSize" width="106" height="106"/>
                                         <connections>
                                             <outlet property="imageView" destination="Myw-Rb-UjV" id="pxC-3G-EJU"/>
                                             <segue destination="w33-GC-XRF" kind="show" identifier="Navigate To Detailed Photo View Controller From Active User View Controller" id="ujp-5J-Q24"/>
@@ -912,7 +911,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4001" y="1719"/>
+            <point key="canvasLocation" x="4000.8000000000002" y="1718.5907046476764"/>
         </scene>
         <!--Photo-->
         <scene sceneID="yaT-Go-k23">
@@ -1646,6 +1645,7 @@
                     <tabBarItem key="tabBarItem" tag="2" title="" id="gNs-ja-prn"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="61E-KS-9pl" id="kMZ-4G-QXx"/>
                         <outlet property="filtersContainerView" destination="Xi2-iA-4w7" id="x7O-jF-Xju"/>
                         <outlet property="headerView" destination="HFy-jO-iCR" id="XuY-dt-9UL"/>
                         <outlet property="hefeButton" destination="owc-oK-aKZ" id="YyA-ZD-HAX"/>
@@ -1656,7 +1656,6 @@
                         <outlet property="normalButton" destination="WSh-vt-WEe" id="Buy-i2-pmE"/>
                         <outlet property="riseButton" destination="VxN-rV-xpE" id="J00-V7-rJF"/>
                         <outlet property="shareButton" destination="JHr-Fi-RUD" id="SDA-4N-ZGt"/>
-                        <outlet property="spinner" destination="61E-KS-9pl" id="Vva-C5-hb2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6e-My-CtF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1891,8 +1890,8 @@
         <image name="user-default" width="462" height="462"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oI5-P2-dFb"/>
         <segue reference="dXM-aL-QK9"/>
-        <segue reference="yTC-ZN-5ke"/>
+        <segue reference="oI5-P2-dFb"/>
+        <segue reference="ujp-5J-Q24"/>
     </inferredMetricsTieBreakers>
 </document>

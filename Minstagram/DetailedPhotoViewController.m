@@ -9,7 +9,6 @@
 #import <KinveyKit/KinveyKit.h>
 
 #import "DetailedPhotoViewController.h"
-#import "UIImage+Helpers.h"
 #import "Post.h"
 #import "NSString+FontAwesome.h"
 #import "LikersTableViewController.h"

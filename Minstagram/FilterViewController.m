@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *larkButton;
 @property (weak, nonatomic) IBOutlet UIButton *junoButton;
 
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
 
 @property (nonatomic) UIImage *mediumQualityImage;
@@ -47,12 +47,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.spinner setHidden:YES];
+    [self.activityIndicator setHidden:YES];
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+    [self.activityIndicator setHidden:YES];
+    [self.shareButton setHidden:NO];
     
     [self hideTabBar];
     
@@ -75,7 +77,6 @@
     [super viewWillDisappear:animated];
     
     [self hideAllViews];
-    
     [self showTabBar];
 }
 
@@ -94,8 +95,8 @@
     }
     
     [self.shareButton setHidden:YES];
-    [self.spinner startAnimating];
-    [self.spinner setHidden:NO];
+    [self.activityIndicator startAnimating];
+    [self.activityIndicator setHidden:NO];
     
     KCSMetadata *metaData = [[KCSMetadata alloc] init];
     [metaData setGloballyReadable:YES];

@@ -68,7 +68,6 @@
 		49DE12B51DABC1AA007EEF94 /* ActiveUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DE12B41DABC1AA007EEF94 /* ActiveUserViewController.m */; };
 		49E749EA1DCDF87800D42D7A /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E749E91DCDF87800D42D7A /* Post.m */; };
 		49F728211DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */; };
-		49FA63EF1DD0E2E700B82E39 /* UIImage+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FA63EE1DD0E2E700B82E39 /* UIImage+Helpers.m */; };
 		49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FD7E191DEF2A0A00194103 /* FilterViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -168,8 +167,6 @@
 		49E749E91DCDF87800D42D7A /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		49F7281F1DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveUserProfileCollectionViewCell.h; sourceTree = "<group>"; };
 		49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveUserProfileCollectionViewCell.m; sourceTree = "<group>"; };
-		49FA63ED1DD0E2E700B82E39 /* UIImage+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helpers.h"; sourceTree = "<group>"; };
-		49FA63EE1DD0E2E700B82E39 /* UIImage+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helpers.m"; sourceTree = "<group>"; };
 		49FD7E181DEF2A0A00194103 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		49FD7E191DEF2A0A00194103 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,8 +197,6 @@
 			children = (
 				4904403C1DAD352F00D54588 /* NSString+FontAwesome.h */,
 				4904403D1DAD352F00D54588 /* NSString+FontAwesome.m */,
-				49FA63ED1DD0E2E700B82E39 /* UIImage+Helpers.h */,
-				49FA63EE1DD0E2E700B82E39 /* UIImage+Helpers.m */,
 				49203AAB1DD209FB00BF02B8 /* UIImage+FontAwesome.h */,
 				49203AAC1DD209FB00BF02B8 /* UIImage+FontAwesome.m */,
 				49B84D111DF1F9B500091C59 /* UIImage+Resize.h */,
@@ -507,7 +502,6 @@
 				4997FE531DEF6A5F009A5C26 /* FSAlbumView.swift in Sources */,
 				4941AE971DFD9EBB003051FB /* FollowingTableViewController.m in Sources */,
 				49203AAD1DD209FB00BF02B8 /* UIImage+FontAwesome.m in Sources */,
-				49FA63EF1DD0E2E700B82E39 /* UIImage+Helpers.m in Sources */,
 				49977C421DE4D29C001B678E /* LikerTableViewCell.m in Sources */,
 				491127711DF31D8C009D0324 /* BackendServices.m in Sources */,
 				4986C1B51DE5D7F3000A2796 /* SearchTableViewController.m in Sources */,

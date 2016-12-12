@@ -9,7 +9,6 @@
 #import "UserViewController.h"
 #import "Relation.h"
 #import "UserProfileCollectionViewCell.h"
-#import "UIImage+Helpers.h"
 #import "DetailedPhotoViewController.h"
 #import "FollowersTableViewController.h"
 #import "FollowingTableViewController.h"
@@ -57,7 +56,7 @@
         [self.services photoById:[user getValueForAttribute:@"profile photo"]
                  completionBlock:^(UIImage *image) {
                      [self.profilePhotoImageView setImage:image];
-        }];
+                 }];
     }];
 }
 
@@ -75,28 +74,26 @@
 }
 
 - (IBAction)followUnfollowUser:(UIButton *)sender {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"beingFollowed = %@", self.username];
-    NSArray *arr = [self.following filteredArrayUsingPredicate:predicate];
-    Relation *relationToDelete = [arr firstObject];
-    
-    if (relationToDelete == nil) {
-        Relation *relationToSave = [[Relation alloc] init];
-        relationToSave.follower = [KCSUser activeUser].username;
-        relationToSave.beingFollowed = self.username;
-        
-        [self.services saveRelation:relationToSave completionBlock:^(Relation *savedRelation) {
-            [self.following addObject:savedRelation];
-            [self.followFollowingButton setTitle:@"Following" forState:UIControlStateNormal];
-            [self updateFollowersCount];
-        }];
-    } else {
-        [self.services deleteRelation:relationToDelete
-                      completionBlock:^{
-                          [self.following removeObject:relationToDelete];
-                          [self.followFollowingButton setTitle:@"Follow" forState:UIControlStateNormal];
-                          [self updateFollowersCount];
-                      }];
-    }
+    [self.services relationByFollowerUsername:[KCSUser activeUser].username beingFollowedUsername:self.username completionBlock:^(Relation *relation) {
+        if (relation == nil) {
+            Relation *relationToSave = [[Relation alloc] init];
+            relationToSave.follower = [KCSUser activeUser].username;
+            relationToSave.beingFollowed = self.username;
+            
+            [self.services saveRelation:relationToSave completionBlock:^(Relation *savedRelation) {
+                [self.following addObject:savedRelation];
+                [self.followFollowingButton setTitle:@"Following" forState:UIControlStateNormal];
+                [self updateFollowersCount];
+            }];
+        } else {
+            [self.services deleteRelation:relation
+                          completionBlock:^{
+                              [self.following removeObject:relation];
+                              [self.followFollowingButton setTitle:@"Follow" forState:UIControlStateNormal];
+                              [self updateFollowersCount];
+                          }];
+        }
+    }];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
