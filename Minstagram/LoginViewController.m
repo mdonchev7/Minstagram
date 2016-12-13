@@ -24,9 +24,7 @@
     
     [self.services loginWithUsername:@"prelogin"
                             password:@"prelogin"
-                     completionBlock:^(KCSUser *user, KCSUserActionResult result) {
-                         NSLog(@"prelogin was successful");
-                     }];
+                     completionBlock:nil];
 }
 
 - (IBAction)login:(UIButton *)sender {
@@ -34,8 +32,6 @@
     NSString *password = self.passwordField.text;
     
     [self.services loginWithUsername:username password:password completionBlock:^(KCSUser *user, KCSUserActionResult result) {
-        NSLog(@"%@", [KCSUser activeUser]);
-        NSLog(@"Logedd in successfully.");
         
         [self performSegueWithIdentifier:@"Present Tab Bar Controller From Login" sender:self];
     }];

@@ -121,7 +121,7 @@
     [[KCSUser activeUser] refreshFromServer:^(NSArray *objects, NSError *errorOrNil) {
         NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
         if ([photoId isEqualToString:@""]) {
-            NSLog(@"no profile photo");
+            [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
         } else {
             [self.services photoById:photoId
                      completionBlock:^(UIImage *image) {

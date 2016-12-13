@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *postsCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followersCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *followingCountLabel;
-@property (weak, nonatomic) IBOutlet UIButton *followFollowingButton;
+@property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -66,14 +66,14 @@
     [self fetchAllFollowing];
     
     if ([[[KCSUser activeUser] username] isEqualToString:self.username]) {
-        [self.followFollowingButton setTitle:@"Edit Profile" forState:UIControlStateNormal];
+        [self.actionButton setTitle:@"Edit Profile" forState:UIControlStateNormal];
     }
     
     [self updateFollowersCount];
     [self updateFollowingCount];
 }
 
-- (IBAction)followUnfollowUser:(UIButton *)sender {
+- (IBAction)handleActionButtonTap:(UIButton *)sender {
     [self.services relationByFollowerUsername:[KCSUser activeUser].username beingFollowedUsername:self.username completionBlock:^(Relation *relation) {
         if (relation == nil) {
             Relation *relationToSave = [[Relation alloc] init];
@@ -82,14 +82,14 @@
             
             [self.services saveRelation:relationToSave completionBlock:^(Relation *savedRelation) {
                 [self.following addObject:savedRelation];
-                [self.followFollowingButton setTitle:@"Following" forState:UIControlStateNormal];
+                [self.actionButton setTitle:@"Following" forState:UIControlStateNormal];
                 [self updateFollowersCount];
             }];
         } else {
             [self.services deleteRelation:relation
                           completionBlock:^{
                               [self.following removeObject:relation];
-                              [self.followFollowingButton setTitle:@"Follow" forState:UIControlStateNormal];
+                              [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
                               [self updateFollowersCount];
                           }];
         }
@@ -134,15 +134,15 @@
         for (Relation *relation in following) {
             [self.following addObject:relation];
             
-            if (![self.followFollowingButton isEnabled] && [relation.beingFollowed isEqualToString:self.username]) {
-                [self.followFollowingButton setTitle:@"Following" forState:UIControlStateNormal];
-                [self.followFollowingButton setEnabled:YES];
+            if (![self.actionButton isEnabled] && [relation.beingFollowed isEqualToString:self.username]) {
+                [self.actionButton setTitle:@"Following" forState:UIControlStateNormal];
+                [self.actionButton setEnabled:YES];
             }
         }
         
-        if (![self.followFollowingButton isEnabled]) {
-            [self.followFollowingButton setTitle:@"Follow" forState:UIControlStateNormal];
-            [self.followFollowingButton setEnabled:YES];
+        if (![self.actionButton isEnabled]) {
+            [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
+            [self.actionButton setEnabled:YES];
         }
     }];
 }

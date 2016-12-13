@@ -648,8 +648,6 @@ typedef NS_ENUM(NSInteger, FAIcon) {
     FAyCombinator
 };
 
-
-
 @interface NSString (FontAwesome)
 
 /**

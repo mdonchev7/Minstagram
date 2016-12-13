@@ -42,11 +42,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.likeButton.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:21.0f]];
+    [self.likeButton.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:25.0f]];
     [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart-o"] forState:UIControlStateNormal];
-    [self.commentButton.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:22.0f]];
+    [self.commentButton.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:26.0f]];
     [self.commentButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-comment-o"] forState:UIControlStateNormal];
-    [self.heartLabel setFont:[UIFont fontWithName:@"FontAwesome" size:10.0f]];
+    [self.heartLabel setFont:[UIFont fontWithName:@"FontAwesome" size:12.0f]];
     [self.heartLabel setText:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"]];
     
     [self.usernameLabel setText:self.username];

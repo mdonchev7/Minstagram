@@ -61,7 +61,7 @@
     
     [self.services userByUsername:username completionBlock:^(KCSUser *user) {
         if (user != nil) {
-            [self.users addObject:user];
+            self.users = [NSMutableArray arrayWithObject:user];
         }
         
         [self.tableView reloadData];
