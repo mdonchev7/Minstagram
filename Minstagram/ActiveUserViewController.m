@@ -93,10 +93,11 @@
     
     [self.services postById:self.postIds[indexPath.row]
             completionBlock:^(Post *post) {
-                NSString *photoId = post.photoId;
-                [self.services photoById:photoId completionBlock:^(UIImage *image) {
-                    [cell.imageView setImage:image];
-                }];
+                NSString *thumbnailId = post.thumbnailId;
+                [self.services photoById:thumbnailId
+                         completionBlock:^(UIImage *image) {
+                             [cell.imageView setImage:image];
+                         }];
             }];
     
     return cell;
@@ -167,7 +168,6 @@
                                                       }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"cancel");
     }]];
     
     [self presentViewController:alertController animated:YES completion:nil];

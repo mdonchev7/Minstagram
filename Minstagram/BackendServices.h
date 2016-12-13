@@ -51,21 +51,23 @@
         withOptions:(NSDictionary *)options
     completionBlock:(void (^)(KCSFile *uploadInfo))completionBlock;
 
+
 - (void)uploadPostWithUploadInfo:(KCSFile *)uploadInfo
+             thumbnailUploadInfo:(KCSFile *)thumbnailInfo
                  completionBlock:(void (^)(void))completionBlock;
 
 - (void)savePost:(Post *)postToSave
-    completionBlock:(void (^)(Post *savedPost))completionBlock;
+ completionBlock:(void (^)(Post *savedPost))completionBlock;
 
 - (void)relationByFollowerUsername:(NSString *)followerUsername
-                 beingFollowedUsername:(NSString *)beingFollowedUsername
- completionBlock:(void (^)(Relation *relation))completionBlock;
+             beingFollowedUsername:(NSString *)beingFollowedUsername
+                   completionBlock:(void (^)(Relation *relation))completionBlock;
 
 - (void)saveRelation:(Relation *)relationToSave
      completionBlock:(void (^)(Relation *savedRelation))completionBlock;
 
 - (void)deleteRelation:(Relation *)relationToDelete
-     completionBlock:(void (^)(void))completionBlock;
+       completionBlock:(void (^)(void))completionBlock;
 
 @end
 

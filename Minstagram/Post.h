@@ -13,6 +13,7 @@
 
 @property (nonatomic) NSString *entityId;
 @property (nonatomic) NSString *photoId;
+@property (nonatomic) NSString *thumbnailId;
 @property (nonatomic) NSDate *postedOn;
 @property (nonatomic) NSArray *likers;
 

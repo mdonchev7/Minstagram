@@ -207,7 +207,7 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		495446191DE0903B005F54B7 /* Models */ = {
+		495446191DE0903B005F54B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				49E749E81DCDF87800D42D7A /* Post.h */,
@@ -215,7 +215,7 @@
 				4954461A1DE09053005F54B7 /* Relation.h */,
 				4954461B1DE09053005F54B7 /* Relation.m */,
 			);
-			name = Models;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		499435231DA507630086DDC8 /* Frameworks */ = {
@@ -257,8 +257,8 @@
 		4994353E1DA509DE0086DDC8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				495446191DE0903B005F54B7 /* Models */,
-				49F7281E1DCF7BE700F89B5E /* Views */,
+				495446191DE0903B005F54B7 /* Model */,
+				49F7281E1DCF7BE700F89B5E /* View */,
 				49993FCE1D70981A00033616 /* AppDelegate.h */,
 				49993FCF1D70981A00033616 /* AppDelegate.m */,
 				499435421DA5309F0086DDC8 /* SignUpEmailViewController.h */,
@@ -368,7 +368,7 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		49F7281E1DCF7BE700F89B5E /* Views */ = {
+		49F7281E1DCF7BE700F89B5E /* View */ = {
 			isa = PBXGroup;
 			children = (
 				49F7281F1DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.h */,
@@ -388,7 +388,7 @@
 				4941AE9B1DFDA738003051FB /* FollowingTableViewCell.h */,
 				4941AE9C1DFDA738003051FB /* FollowingTableViewCell.m */,
 			);
-			name = Views;
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

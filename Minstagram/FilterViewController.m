@@ -58,6 +58,8 @@
     
     [self hideTabBar];
     
+    self.filter = @"Normal";
+    
     CGSize lowQualitySize = CGSizeMake(70.0f, 70.0f);
     CGSize mediumQualitySize = CGSizeMake(375.0f, 375.0f);
     
@@ -88,10 +90,13 @@
 
 - (IBAction)didTapShare:(UIButton *)sender {
     CGSize uploadSize = CGSizeMake(640.0f, 640.0f);
-    UIImage *imageToUpload = [UIImage imageWithImage:self.image scaledToSize:uploadSize];
+    CGSize thumbnailSize = CGSizeMake(140.0f, 140.0f);
     
-    if (self.filter != nil) {
-        imageToUpload = [UIImage applyFilterOnImage:imageToUpload withFilterName:self.filter];
+    UIImage *image = [UIImage imageWithImage:self.image scaledToSize:uploadSize];
+    UIImage *thumbnail = [UIImage imageWithImage:self.image scaledToSize:thumbnailSize];
+    
+    if (![self.filter isEqualToString:@"Normal"]){
+        image = [UIImage applyFilterOnImage:image withFilterName:self.filter];
     }
     
     [self.shareButton setHidden:YES];
@@ -100,13 +105,17 @@
     
     KCSMetadata *metaData = [[KCSMetadata alloc] init];
     [metaData setGloballyReadable:YES];
-    [self.services uploadPhoto:imageToUpload
+    
+    [self.services uploadPhoto:image
                    withOptions:@{KCSFileACL: metaData}
                completionBlock:^(KCSFile *uploadInfo) {
-                   [self.services uploadPostWithUploadInfo:uploadInfo
-                                           completionBlock:^() {
-                                               [self.tabBarController setSelectedIndex:3];
-                                           }];
+                   [self.services uploadPhoto:thumbnail
+                                  withOptions:@{KCSFileACL: metaData}
+                              completionBlock:^(KCSFile *thumbnailUploadInfo) {
+                                  [self.services uploadPostWithUploadInfo:uploadInfo thumbnailUploadInfo:thumbnailUploadInfo completionBlock:^{
+                                      [self.tabBarController setSelectedIndex:3];
+                                  }];
+                              }];
                }];
 }
 
@@ -183,7 +192,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if ([filterName isEqualToString:@"Normal"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [button setBackgroundImage:self.mediumQualityImage forState:UIControlStateNormal];
+                [button setBackgroundImage:self.lowQualityImage forState:UIControlStateNormal];
             });
         } else {
             UIImage *image = [UIImage applyFilterOnImage:self.lowQualityImage withFilterName:filterName];

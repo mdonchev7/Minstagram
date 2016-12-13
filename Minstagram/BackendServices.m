@@ -188,6 +188,7 @@
 }
 
 - (void)uploadPostWithUploadInfo:(KCSFile *)uploadInfo
+             thumbnailUploadInfo:(KCSFile *)thumbnailInfo
                  completionBlock:(void (^)(void))completionBlock {
     KCSAppdataStore *postsStore =
     [KCSAppdataStore storeWithCollection:[KCSCollection collectionFromString:@"Posts"
@@ -196,6 +197,7 @@
     
     Post *postToUpload = [[Post alloc] init];
     postToUpload.photoId = [uploadInfo fileId];
+    postToUpload.thumbnailId = [thumbnailInfo fileId];
     postToUpload.postedOn = [NSDate date];
     postToUpload.likers = [[NSArray alloc] init];
     

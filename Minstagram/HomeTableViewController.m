@@ -98,18 +98,18 @@
 -(NSString *)formattedTimeSincePostedFromDate:(NSDate *)fromDate ToDate:(NSDate *)toDate {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    NSInteger seconds = [calendar components:NSCalendarUnitSecond fromDate:fromDate toDate:toDate options:0].second;
+    float seconds = [calendar components:NSCalendarUnitSecond fromDate:fromDate toDate:toDate options:0].second;
     
     if (seconds > 604799) { // >= a week
-        return [NSString stringWithFormat:@"%liw", seconds / 60 / 60 / 24 / 7];
+        return [NSString stringWithFormat:@"%.0fw", floorf(seconds / 60 / 60 / 24 / 7)];
     } else if (seconds > 86399) { // >= a day
-        return [NSString stringWithFormat:@"%lid", seconds / 60 / 60 / 24];
+        return [NSString stringWithFormat:@"%.0fd", floorf(seconds / 60 / 60 / 24)];
     } else if (seconds > 3599) { // >= an hour
-        return [NSString stringWithFormat:@"%lih", seconds / 60 / 60];
+        return [NSString stringWithFormat:@"%.0fh", floorf(seconds / 60 / 60)];
     } else if (seconds > 59) { // >= a minute
-        return [NSString stringWithFormat:@"%lim", seconds / 60];
+        return [NSString stringWithFormat:@"%.0fm", floorf(seconds / 60)];
     } else { // >= a second
-        return [NSString stringWithFormat:@"%lis", (long)seconds];
+        return [NSString stringWithFormat:@"%.0lis", (long)seconds];
     }
 }
 

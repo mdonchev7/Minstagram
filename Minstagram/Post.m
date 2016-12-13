@@ -14,6 +14,7 @@
 {
     return @{@"entityId" : KCSEntityKeyId,
              @"photoId" : @"photo id",
+             @"thumbnailId" : @"thumbnail id",
              @"postedOn" : @"posted on",
              @"likers" : @"likers"
              };
