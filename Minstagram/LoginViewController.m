@@ -24,17 +24,19 @@
     
     [self.services loginWithUsername:@"prelogin"
                             password:@"prelogin"
-                     completionBlock:nil];
+                     completionBlock:^(KCSUser *user, KCSUserActionResult result) {
+                     }];
 }
 
 - (IBAction)login:(UIButton *)sender {
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
     
-    [self.services loginWithUsername:username password:password completionBlock:^(KCSUser *user, KCSUserActionResult result) {
-        
-        [self performSegueWithIdentifier:@"Present Tab Bar Controller From Login" sender:self];
-    }];
+    [self.services loginWithUsername:username
+                            password:password
+                     completionBlock:^(KCSUser *user, KCSUserActionResult result) {
+                         [self performSegueWithIdentifier:@"Present Tab Bar Controller From Login" sender:self];
+                     }];
 }
 
 #pragma Mark - Lazy Instantiation

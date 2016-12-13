@@ -97,6 +97,7 @@
     
     if (![self.filter isEqualToString:@"Normal"]){
         image = [UIImage applyFilterOnImage:image withFilterName:self.filter];
+        thumbnail = [UIImage applyFilterOnImage:thumbnail withFilterName:self.filter];
     }
     
     [self.shareButton setHidden:YES];
