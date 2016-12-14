@@ -42,11 +42,11 @@
                            for (Relation *relation in following) {
                                [self.services userByUsername:relation.beingFollowed
                                              completionBlock:^(KCSUser *user) {
-                                   for (NSString *postId in [user getValueForAttribute:@"posts"]) {
-                                       [self.postIds addObject:postId];
-                                       [self.tableView reloadData];
-                                   }
-                               }];
+                                                 for (NSString *postId in [user getValueForAttribute:@"posts"]) {
+                                                     [self.postIds addObject:postId];
+                                                     [self.tableView reloadData];
+                                                 }
+                                             }];
                            }
                        }
      ];
@@ -70,16 +70,13 @@
     cell.profilePhotoImageView.layer.masksToBounds = YES;
     cell.profilePhotoImageView.layer.borderWidth = 0;
     
-    [self.services postById:self.postIds[indexPath.row]
-             completionBlock:^(Post *post) {
-                     NSString *timeSincePosted = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
-                     [cell.timeSincePostedLabel setText:timeSincePosted];
-             }];
-    
     cell.photoImageView.image = nil;
     
     [self.services postById:self.postIds[indexPath.row]
             completionBlock:^(Post *post) {
+                NSString *timeSincePosted = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
+                [cell.timeSincePostedLabel setText:timeSincePosted];
+                
                 [self.services photoById:post.photoId
                          completionBlock:^(UIImage *image) {
                              [cell.photoImageView setImage:image];

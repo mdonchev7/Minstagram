@@ -53,10 +53,15 @@
         [self.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
         [self.collectionView reloadData];
         
-        [self.services photoById:[user getValueForAttribute:@"profile photo"]
-                 completionBlock:^(UIImage *image) {
-                     [self.profilePhotoImageView setImage:image];
-                 }];
+        NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
+        if ([photoId isEqualToString:@""]) {
+            [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+        } else {
+            [self.services photoById:photoId
+                     completionBlock:^(UIImage *image) {
+                         [self.profilePhotoImageView setImage:image];
+                     }];
+        }
     }];
 }
 

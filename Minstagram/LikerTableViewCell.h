@@ -11,7 +11,7 @@
 @interface LikerTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *usernameButton;
 @property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followUnfollowButton;
 

@@ -122,6 +122,7 @@
 
 - (IBAction)didTapNormalFilter:(UIButton *)sender {
     [self.imageView setImage:self.mediumQualityImage];
+    self.filter = @"Normal";
 }
 
 - (IBAction)didTapHefeFilter:(UIButton *)sender {

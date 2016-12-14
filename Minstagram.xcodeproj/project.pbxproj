@@ -17,6 +17,7 @@
 		4941AE971DFD9EBB003051FB /* FollowingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4941AE961DFD9EBB003051FB /* FollowingTableViewController.m */; };
 		4941AE9A1DFDA730003051FB /* FollowerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4941AE991DFDA730003051FB /* FollowerTableViewCell.m */; };
 		4941AE9D1DFDA738003051FB /* FollowingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4941AE9C1DFDA738003051FB /* FollowingTableViewCell.m */; };
+		4945FC901E01ABE000446E32 /* CALayer+XibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4945FC8F1E01ABE000446E32 /* CALayer+XibConfiguration.m */; };
 		4954461C1DE09053005F54B7 /* Relation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4954461B1DE09053005F54B7 /* Relation.m */; };
 		495C839D1DA8F52F0095B25A /* SignUpUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495C839C1DA8F52F0095B25A /* SignUpUsernameViewController.m */; };
 		495C83A01DA8F5430095B25A /* SignUpFullNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495C839F1DA8F5430095B25A /* SignUpFullNameViewController.m */; };
@@ -91,6 +92,8 @@
 		4941AE991DFDA730003051FB /* FollowerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowerTableViewCell.m; sourceTree = "<group>"; };
 		4941AE9B1DFDA738003051FB /* FollowingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingTableViewCell.h; sourceTree = "<group>"; };
 		4941AE9C1DFDA738003051FB /* FollowingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingTableViewCell.m; sourceTree = "<group>"; };
+		4945FC8E1E01ABE000446E32 /* CALayer+XibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+XibConfiguration.h"; sourceTree = "<group>"; };
+		4945FC8F1E01ABE000446E32 /* CALayer+XibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+XibConfiguration.m"; sourceTree = "<group>"; };
 		495090171DA902990001A15F /* Minstagram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Minstagram.entitlements; sourceTree = "<group>"; };
 		4954461A1DE09053005F54B7 /* Relation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Relation.h; sourceTree = "<group>"; };
 		4954461B1DE09053005F54B7 /* Relation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Relation.m; sourceTree = "<group>"; };
@@ -203,6 +206,8 @@
 				49B84D121DF1F9B500091C59 /* UIImage+Resize.m */,
 				496014AA1DF2080600A6C449 /* UIImage+Filter.h */,
 				496014AB1DF2080600A6C449 /* UIImage+Filter.m */,
+				4945FC8E1E01ABE000446E32 /* CALayer+XibConfiguration.h */,
+				4945FC8F1E01ABE000446E32 /* CALayer+XibConfiguration.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49D846BA1DA66AB300E1BDBC /* LoginViewController.m in Sources */,
+				4945FC901E01ABE000446E32 /* CALayer+XibConfiguration.m in Sources */,
 				496014AC1DF2080600A6C449 /* UIImage+Filter.m in Sources */,
 				49D735BF1DD372600056A082 /* PostTableViewCell.m in Sources */,
 				49977C3F1DE4CEFB001B678E /* LikersTableViewController.m in Sources */,

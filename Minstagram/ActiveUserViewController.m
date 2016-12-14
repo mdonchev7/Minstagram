@@ -118,7 +118,7 @@
 }
 
 - (void)updateProfilePhotoImageView {
-    [[KCSUser activeUser] refreshFromServer:^(NSArray *objects, NSError *errorOrNil) {
+    [[KCSUser activeUser] refreshFromServer:^(NSArray *objects, NSError *error) {
         NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
         if ([photoId isEqualToString:@""]) {
             [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];

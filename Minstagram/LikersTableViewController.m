@@ -48,14 +48,14 @@
     if ([action isEqualToString:@"Follow"]) {
         Relation *relationToSave = [[Relation alloc] init];
         relationToSave.follower = [KCSUser activeUser].username;
-        relationToSave.beingFollowed = ((LikerTableViewCell *)[[sender superview] superview]).usernameLabel.text;
+        relationToSave.beingFollowed = ((LikerTableViewCell *)[[sender superview] superview]).usernameButton.titleLabel.text;
         
         [self.services saveRelation:relationToSave completionBlock:^(Relation *savedRelation) {
             [self.following addObject:relationToSave];
             [self.tableView reloadData];
         }];
     } else if ([action isEqualToString:@"Following"]) {
-        NSString *userToUnfollow = ((LikerTableViewCell *)[[sender superview] superview]).usernameLabel.text;
+        NSString *userToUnfollow = ((LikerTableViewCell *)[[sender superview] superview]).usernameButton.titleLabel.text;
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"follower = %@ AND beingFollowed = %@", [KCSUser activeUser].username, userToUnfollow];
         Relation *relationToDelete = [[self.following filteredArrayUsingPredicate:predicate] firstObject];
@@ -81,7 +81,7 @@
     LikerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reusable cell" forIndexPath:indexPath];
     
     KCSUser *user = self.likers[indexPath.row];
-    [cell.usernameLabel setText:user.username];
+    [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
     [cell.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
     [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
     cell.profilePhotoImageView.image = [UIImage imageNamed:@"user-default"];
@@ -89,10 +89,7 @@
     cell.profilePhotoImageView.layer.masksToBounds = YES;
     cell.profilePhotoImageView.layer.borderWidth = 0;
     
-    cell.usernameLabel.userInteractionEnabled = YES;
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(navigateToUserViewController:)];
-    recognizer.numberOfTapsRequired = 1;
-    [cell.usernameLabel addGestureRecognizer:recognizer];
+    cell.usernameButton.userInteractionEnabled = YES;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"beingFollowed = %@", user.username];
     NSArray *arr = [self.following filteredArrayUsingPredicate:predicate];
@@ -151,12 +148,10 @@
 }
 
 #pragma mark - Navigation
-
-- (void)navigateToUserViewController:(UITapGestureRecognizer *)sender {
-    UILabel *usernameLabel = (UILabel *)sender.view;
+- (IBAction)navigateToUserViewController:(UIButton *)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
-    uvc.username = usernameLabel.text;
+    uvc.username = sender.titleLabel.text;
     
     [self.navigationController pushViewController:uvc animated:YES];
 }

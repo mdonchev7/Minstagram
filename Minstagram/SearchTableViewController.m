@@ -72,9 +72,12 @@
     SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reusable cell" forIndexPath:indexPath];
     
     KCSUser *user = self.users[indexPath.row];
-    [cell.usernameLabel setText:user.username];
+    [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
     [cell.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
     [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+    cell.profilePhotoImageView.layer.cornerRadius = cell.profilePhotoImageView.frame.size.height / 2;
+    cell.profilePhotoImageView.layer.masksToBounds = YES;
+    cell.profilePhotoImageView.layer.borderWidth = 0;
     
     return cell;
 }
@@ -87,7 +90,7 @@
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
-    uvc.username = cell.usernameLabel.text;
+    uvc.username = cell.usernameButton.titleLabel.text;
     
     [self.navigationController pushViewController:uvc animated:YES];
 }
