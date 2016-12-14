@@ -573,6 +573,7 @@
                             <constraint firstItem="t1G-zt-ufD" firstAttribute="top" secondItem="fQN-B3-KvO" secondAttribute="bottom" id="tf1-sJ-S20"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="6Q5-GB-SR4"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="actionButton" destination="PcI-yc-D6O" id="9w3-V5-y41"/>
@@ -596,7 +597,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3168.8000000000002" y="2520.9895052473767"/>
+            <point key="canvasLocation" x="4001" y="1719"/>
         </scene>
         <!--minstagram-->
         <scene sceneID="eyH-dM-f9X">
@@ -641,8 +642,14 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Htf-G5-odR">
-                                            <rect key="frame" x="56" y="13" width="51" height="30"/>
-                                            <state key="normal" title="loading"/>
+                                            <rect key="frame" x="56" y="13" width="52" height="30"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                            <state key="normal" title="loading">
+                                                <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="0.84843214897260277" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="navigateToUserViewController:" destination="7G5-dw-w9j" eventType="touchUpInside" id="Z4n-Kl-qZ7"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2q-qQ-aRG">
                                             <rect key="frame" x="367" y="28" width="0.0" height="0.0"/>
@@ -698,7 +705,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="33"/>
+                            <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="29"/>
                             <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
                         </textAttributes>
                     </navigationBar>
@@ -969,7 +976,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2548" y="2521"/>
+            <point key="canvasLocation" x="5604" y="983"/>
         </scene>
         <!--Photo-->
         <scene sceneID="yaT-Go-k23">
@@ -1130,7 +1137,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4001" y="2521"/>
+            <point key="canvasLocation" x="4001" y="2517"/>
         </scene>
         <!--Options Table View Controller-->
         <scene sceneID="faZ-tp-VQr">
@@ -1852,9 +1859,9 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="full name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQg-Eg-lAN">
-                                            <rect key="frame" x="56" y="26" width="69" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <rect key="frame" x="56" y="26" width="65" height="19"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6Z-8L-C8F">
@@ -1995,8 +2002,8 @@
         <image name="user-default" width="247" height="247"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dXM-aL-QK9"/>
         <segue reference="oI5-P2-dFb"/>
+        <segue reference="dXM-aL-QK9"/>
         <segue reference="yTC-ZN-5ke"/>
     </inferredMetricsTieBreakers>
 </document>

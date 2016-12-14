@@ -41,28 +41,30 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
+
     [self.navigationItem setTitle:self.username];
+
     self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.height / 2;
     self.profilePhotoImageView.layer.masksToBounds = YES;
     self.profilePhotoImageView.layer.borderWidth = 0;
     
-    [self.services userByUsername:self.username completionBlock:^(KCSUser *user) {
-        self.user = user;
-        self.postIds = [user getValueForAttribute:@"posts"];
-        [self.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
-        [self.collectionView reloadData];
-        
-        NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
-        if ([photoId isEqualToString:@""]) {
-            [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-        } else {
-            [self.services photoById:photoId
-                     completionBlock:^(UIImage *image) {
-                         [self.profilePhotoImageView setImage:image];
-                     }];
-        }
-    }];
+    [self.services userByUsername:self.username
+                  completionBlock:^(KCSUser *user) {
+                      self.user = user;
+                      self.postIds = [user getValueForAttribute:@"posts"];
+                      [self.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
+                      [self.collectionView reloadData];
+                      
+                      NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
+                      if ([photoId isEqualToString:@""]) {
+                          [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+                      } else {
+                          [self.services photoById:photoId
+                                   completionBlock:^(UIImage *image) {
+                                       [self.profilePhotoImageView setImage:image];
+                                   }];
+                      }
+                  }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

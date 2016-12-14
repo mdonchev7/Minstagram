@@ -13,6 +13,7 @@
 #import "Relation.h"
 #import "Post.h"
 #import "BackendServices.h"
+#import "UserViewController.h"
 
 @interface HomeTableViewController ()
 
@@ -21,6 +22,7 @@
 @property (nonatomic) KCSAppdataStore *postsStore;
 
 @property (nonatomic) BackendServices *services;
+@property (nonatomic) NSMutableDictionary *userByPostId;
 
 @end
 
@@ -30,6 +32,12 @@
     [super viewDidLoad];
     
     [self setTabBarItemIcons];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont fontWithName:@"billabong" size:31], NSFontAttributeName,nil]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -45,6 +53,8 @@
                                                  for (NSString *postId in [user getValueForAttribute:@"posts"]) {
                                                      [self.postIds addObject:postId];
                                                      [self.tableView reloadData];
+                                                     
+                                                     [self.userByPostId setValue:user forKey:postId];
                                                  }
                                              }];
                            }
@@ -76,6 +86,12 @@
             completionBlock:^(Post *post) {
                 NSString *timeSincePosted = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
                 [cell.timeSincePostedLabel setText:timeSincePosted];
+                
+                KCSUser *user = [self.userByPostId valueForKey:post.entityId];
+                [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
+                [self.services photoById:[user getValueForAttribute:@"profile photo"] completionBlock:^(UIImage *image) {
+                    [cell.profilePhotoImageView setImage:image];
+                }];
                 
                 [self.services photoById:post.photoId
                          completionBlock:^(UIImage *image) {
@@ -160,6 +176,18 @@
     }];
 }
 
+#pragma mark - Navigation
+
+- (IBAction)navigateToUserViewController:(UIButton *)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
+    uvc.username = ((UIButton *)sender).titleLabel.text;
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold], NSFontAttributeName,nil]];
+    
+    [self.navigationController pushViewController:uvc animated:YES];
+}
+
 #pragma mark - Lazy Instantiation
 
 - (NSMutableArray *)postIds {
@@ -184,6 +212,14 @@
     }
     
     return _services;
+}
+
+- (NSMutableDictionary *)userByPostId {
+    if (!_userByPostId) {
+        _userByPostId = [[NSMutableDictionary alloc] init];
+    }
+    
+    return _userByPostId;
 }
 
 @end
