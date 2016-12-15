@@ -14,6 +14,8 @@
 #import "Post.h"
 #import "BackendServices.h"
 #import "UserViewController.h"
+#import "PostHeaderTableViewCell.h"
+#import "TopPostHeaderTableViewCell.h"
 
 @interface HomeTableViewController ()
 
@@ -65,34 +67,20 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [self.postIds count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.postIds count];
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"reusable cell" forIndexPath:indexPath];
     
-    [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-    cell.profilePhotoImageView.layer.cornerRadius = cell.profilePhotoImageView.frame.size.height / 2;
-    cell.profilePhotoImageView.layer.masksToBounds = YES;
-    cell.profilePhotoImageView.layer.borderWidth = 0;
-    
     cell.photoImageView.image = nil;
     
-    [self.services postById:self.postIds[indexPath.row]
+    [self.services postById:self.postIds[indexPath.section]
             completionBlock:^(Post *post) {
-                NSString *timeSincePosted = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
-                [cell.timeSincePostedLabel setText:timeSincePosted];
-                
-                KCSUser *user = [self.userByPostId valueForKey:post.entityId];
-                [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
-                [self.services photoById:[user getValueForAttribute:@"profile photo"] completionBlock:^(UIImage *image) {
-                    [cell.profilePhotoImageView setImage:image];
-                }];
-                
                 [self.services photoById:post.photoId
                          completionBlock:^(UIImage *image) {
                              [cell.photoImageView setImage:image];
@@ -100,6 +88,65 @@
             }];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 96.0f;
+    }
+    
+    return 49.0f;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        TopPostHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"top header"];
+        
+        [self.services postById:self.postIds[section]
+                completionBlock:^(Post *post) {
+                    NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
+                    
+                    [cell.postedTimeAgoLabel setText:postedTimeAgo];
+                    
+                    KCSUser *user = [self.userByPostId valueForKey:post.entityId];
+                    [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
+                    
+                    NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
+                    if ([profilePhotoId isEqualToString:@""]) {
+                        [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+                    } else {
+                        [self.services photoById:profilePhotoId
+                                 completionBlock:^(UIImage *image) {
+                                     [cell.profilePhotoImageView setImage:image];
+                                 }];
+                    }
+                }];
+        
+        return cell;
+    } else {
+        PostHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"post header"];
+        
+        [self.services postById:self.postIds[section]
+                completionBlock:^(Post *post) {
+                    NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
+                    [cell.postedTimeAgoLabel setText:postedTimeAgo];
+                    
+                    KCSUser *user = [self.userByPostId valueForKey:post.entityId];
+                    [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
+                    
+                    NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
+                    if ([profilePhotoId isEqualToString:@""]) {
+                        [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+                    } else {
+                        [self.services photoById:profilePhotoId
+                                 completionBlock:^(UIImage *image) {
+                                     [cell.profilePhotoImageView setImage:image];
+                                 }];
+                    }
+                }];
+        
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

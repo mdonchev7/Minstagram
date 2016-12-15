@@ -55,7 +55,7 @@
                       [self.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
                       [self.collectionView reloadData];
                       
-                      NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
+                      NSString *photoId = [user getValueForAttribute:@"profile photo"];
                       if ([photoId isEqualToString:@""]) {
                           [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
                       } else {

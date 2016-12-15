@@ -22,6 +22,8 @@
 		495C839D1DA8F52F0095B25A /* SignUpUsernameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495C839C1DA8F52F0095B25A /* SignUpUsernameViewController.m */; };
 		495C83A01DA8F5430095B25A /* SignUpFullNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495C839F1DA8F5430095B25A /* SignUpFullNameViewController.m */; };
 		496014AC1DF2080600A6C449 /* UIImage+Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 496014AB1DF2080600A6C449 /* UIImage+Filter.m */; };
+		4982A5B81E02FA7800C09557 /* PostHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4982A5B71E02FA7800C09557 /* PostHeaderTableViewCell.m */; };
+		4982A5BB1E02FA8300C09557 /* TopPostHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4982A5BA1E02FA8300C09557 /* TopPostHeaderTableViewCell.m */; };
 		4986C1B51DE5D7F3000A2796 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4986C1B41DE5D7F3000A2796 /* SearchTableViewController.m */; };
 		4986C1B81DE5E2EF000A2796 /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4986C1B71DE5E2EF000A2796 /* SearchTableViewCell.m */; };
 		4986C1BB1DE601CC000A2796 /* UserProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4986C1BA1DE601CC000A2796 /* UserProfileCollectionViewCell.m */; };
@@ -103,6 +105,10 @@
 		495C839F1DA8F5430095B25A /* SignUpFullNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpFullNameViewController.m; sourceTree = "<group>"; };
 		496014AA1DF2080600A6C449 /* UIImage+Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Filter.h"; sourceTree = "<group>"; };
 		496014AB1DF2080600A6C449 /* UIImage+Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Filter.m"; sourceTree = "<group>"; };
+		4982A5B61E02FA7800C09557 /* PostHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHeaderTableViewCell.h; sourceTree = "<group>"; };
+		4982A5B71E02FA7800C09557 /* PostHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHeaderTableViewCell.m; sourceTree = "<group>"; };
+		4982A5B91E02FA8300C09557 /* TopPostHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopPostHeaderTableViewCell.h; sourceTree = "<group>"; };
+		4982A5BA1E02FA8300C09557 /* TopPostHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopPostHeaderTableViewCell.m; sourceTree = "<group>"; };
 		4986C1B31DE5D7F3000A2796 /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		4986C1B41DE5D7F3000A2796 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		4986C1B61DE5E2EF000A2796 /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
@@ -215,12 +221,155 @@
 		495446191DE0903B005F54B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4911276F1DF31D8C009D0324 /* BackendServices.h */,
+				491127701DF31D8C009D0324 /* BackendServices.m */,
 				49E749E81DCDF87800D42D7A /* Post.h */,
 				49E749E91DCDF87800D42D7A /* Post.m */,
 				4954461A1DE09053005F54B7 /* Relation.h */,
 				4954461B1DE09053005F54B7 /* Relation.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		4982A5BC1E02FB7200C09557 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4982A5C21E02FBE500C09557 /* Register */,
+				4982A5C11E02FBE100C09557 /* Login */,
+				4982A5BD1E02FBBC00C09557 /* Home */,
+				4982A5BE1E02FBC600C09557 /* Search */,
+				4982A5BF1E02FBCB00C09557 /* Upload */,
+				4982A5C01E02FBD600C09557 /* Profile */,
+				4982A5C31E02FC4300C09557 /* Post */,
+				49399B291DF077BF0086BD34 /* MinstagramViewController.h */,
+				49399B2A1DF077BF0086BD34 /* MinstagramViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		4982A5BD1E02FBBC00C09557 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				49DE12AB1DABA79B007EEF94 /* HomeTableViewController.h */,
+				49DE12AC1DABA79B007EEF94 /* HomeTableViewController.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		4982A5BE1E02FBC600C09557 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				4986C1B31DE5D7F3000A2796 /* SearchTableViewController.h */,
+				4986C1B41DE5D7F3000A2796 /* SearchTableViewController.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		4982A5BF1E02FBCB00C09557 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				49FD7E181DEF2A0A00194103 /* FilterViewController.h */,
+				49FD7E191DEF2A0A00194103 /* FilterViewController.m */,
+			);
+			name = Upload;
+			sourceTree = "<group>";
+		};
+		4982A5C01E02FBD600C09557 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				49DE12B31DABC1AA007EEF94 /* ActiveUserViewController.h */,
+				49DE12B41DABC1AA007EEF94 /* ActiveUserViewController.m */,
+				4904403F1DAD3EF400D54588 /* OptionsTableViewController.h */,
+				490440401DAD3EF400D54588 /* OptionsTableViewController.m */,
+				4986C1BC1DE60213000A2796 /* UserViewController.h */,
+				4986C1BD1DE60213000A2796 /* UserViewController.m */,
+				4941AE921DFD9EA8003051FB /* FollowersTableViewController.h */,
+				4941AE931DFD9EA8003051FB /* FollowersTableViewController.m */,
+				4941AE951DFD9EBB003051FB /* FollowingTableViewController.h */,
+				4941AE961DFD9EBB003051FB /* FollowingTableViewController.m */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		4982A5C11E02FBE100C09557 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				49D846B81DA66AB300E1BDBC /* LoginViewController.h */,
+				49D846B91DA66AB300E1BDBC /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		4982A5C21E02FBE500C09557 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				499435421DA5309F0086DDC8 /* SignUpEmailViewController.h */,
+				499435431DA5309F0086DDC8 /* SignUpEmailViewController.m */,
+				495C839B1DA8F52F0095B25A /* SignUpUsernameViewController.h */,
+				495C839C1DA8F52F0095B25A /* SignUpUsernameViewController.m */,
+				495C839E1DA8F5430095B25A /* SignUpFullNameViewController.h */,
+				495C839F1DA8F5430095B25A /* SignUpFullNameViewController.m */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		4982A5C31E02FC4300C09557 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				4994B81F1DE31EAA004D5B73 /* DetailedPhotoViewController.h */,
+				4994B8201DE31EAA004D5B73 /* DetailedPhotoViewController.m */,
+				49977C3D1DE4CEFB001B678E /* LikersTableViewController.h */,
+				49977C3E1DE4CEFB001B678E /* LikersTableViewController.m */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
+		4982A5C41E02FDC200C09557 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4982A5B61E02FA7800C09557 /* PostHeaderTableViewCell.h */,
+				4982A5B71E02FA7800C09557 /* PostHeaderTableViewCell.m */,
+				4982A5B91E02FA8300C09557 /* TopPostHeaderTableViewCell.h */,
+				4982A5BA1E02FA8300C09557 /* TopPostHeaderTableViewCell.m */,
+				49D735BD1DD372600056A082 /* PostTableViewCell.h */,
+				49D735BE1DD372600056A082 /* PostTableViewCell.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		4982A5C51E02FDC700C09557 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				4986C1B61DE5E2EF000A2796 /* SearchTableViewCell.h */,
+				4986C1B71DE5E2EF000A2796 /* SearchTableViewCell.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		4982A5C61E02FDD100C09557 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				4994B8221DE37229004D5B73 /* LineView.h */,
+				4994B8231DE37229004D5B73 /* LineView.m */,
+				49977C401DE4D29C001B678E /* LikerTableViewCell.h */,
+				49977C411DE4D29C001B678E /* LikerTableViewCell.m */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
+		4982A5C71E02FDD900C09557 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				4986C1B91DE601CC000A2796 /* UserProfileCollectionViewCell.h */,
+				4986C1BA1DE601CC000A2796 /* UserProfileCollectionViewCell.m */,
+				4941AE981DFDA730003051FB /* FollowerTableViewCell.h */,
+				4941AE991DFDA730003051FB /* FollowerTableViewCell.m */,
+				4941AE9B1DFDA738003051FB /* FollowingTableViewCell.h */,
+				4941AE9C1DFDA738003051FB /* FollowingTableViewCell.m */,
+				49F7281F1DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.h */,
+				49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		499435231DA507630086DDC8 /* Frameworks */ = {
@@ -264,40 +413,12 @@
 			children = (
 				495446191DE0903B005F54B7 /* Model */,
 				49F7281E1DCF7BE700F89B5E /* View */,
+				4982A5BC1E02FB7200C09557 /* Controller */,
+				4904403B1DAD2A4300D54588 /* Categories */,
+				499435231DA507630086DDC8 /* Frameworks */,
 				49993FCE1D70981A00033616 /* AppDelegate.h */,
 				49993FCF1D70981A00033616 /* AppDelegate.m */,
-				499435421DA5309F0086DDC8 /* SignUpEmailViewController.h */,
-				499435431DA5309F0086DDC8 /* SignUpEmailViewController.m */,
-				49D846B81DA66AB300E1BDBC /* LoginViewController.h */,
-				49D846B91DA66AB300E1BDBC /* LoginViewController.m */,
-				495C839B1DA8F52F0095B25A /* SignUpUsernameViewController.h */,
-				495C839C1DA8F52F0095B25A /* SignUpUsernameViewController.m */,
-				495C839E1DA8F5430095B25A /* SignUpFullNameViewController.h */,
-				495C839F1DA8F5430095B25A /* SignUpFullNameViewController.m */,
-				49DE12AB1DABA79B007EEF94 /* HomeTableViewController.h */,
-				49DE12AC1DABA79B007EEF94 /* HomeTableViewController.m */,
-				49DE12B31DABC1AA007EEF94 /* ActiveUserViewController.h */,
-				49DE12B41DABC1AA007EEF94 /* ActiveUserViewController.m */,
-				4904403F1DAD3EF400D54588 /* OptionsTableViewController.h */,
-				490440401DAD3EF400D54588 /* OptionsTableViewController.m */,
-				49399B291DF077BF0086BD34 /* MinstagramViewController.h */,
-				49399B2A1DF077BF0086BD34 /* MinstagramViewController.m */,
-				49FD7E181DEF2A0A00194103 /* FilterViewController.h */,
-				49FD7E191DEF2A0A00194103 /* FilterViewController.m */,
-				4994B81F1DE31EAA004D5B73 /* DetailedPhotoViewController.h */,
-				4994B8201DE31EAA004D5B73 /* DetailedPhotoViewController.m */,
-				49977C3D1DE4CEFB001B678E /* LikersTableViewController.h */,
-				49977C3E1DE4CEFB001B678E /* LikersTableViewController.m */,
-				4986C1B31DE5D7F3000A2796 /* SearchTableViewController.h */,
-				4986C1B41DE5D7F3000A2796 /* SearchTableViewController.m */,
-				4986C1BC1DE60213000A2796 /* UserViewController.h */,
-				4986C1BD1DE60213000A2796 /* UserViewController.m */,
-				4911276F1DF31D8C009D0324 /* BackendServices.h */,
-				491127701DF31D8C009D0324 /* BackendServices.m */,
-				4941AE921DFD9EA8003051FB /* FollowersTableViewController.h */,
-				4941AE931DFD9EA8003051FB /* FollowersTableViewController.m */,
-				4941AE951DFD9EBB003051FB /* FollowingTableViewController.h */,
-				4941AE961DFD9EBB003051FB /* FollowingTableViewController.m */,
+				49993FCC1D70981A00033616 /* main.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -341,8 +462,6 @@
 		49993FCA1D70981A00033616 /* Minstagram */ = {
 			isa = PBXGroup;
 			children = (
-				4904403B1DAD2A4300D54588 /* Categories */,
-				499435231DA507630086DDC8 /* Frameworks */,
 				49993FE51D709BBD00033616 /* Fonts */,
 				4994353E1DA509DE0086DDC8 /* Classes */,
 				49993FDA1D70981A00033616 /* Assets.xcassets */,
@@ -359,7 +478,6 @@
 		49993FCB1D70981A00033616 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				49993FCC1D70981A00033616 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -376,22 +494,10 @@
 		49F7281E1DCF7BE700F89B5E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				49F7281F1DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.h */,
-				49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */,
-				49D735BD1DD372600056A082 /* PostTableViewCell.h */,
-				49D735BE1DD372600056A082 /* PostTableViewCell.m */,
-				4994B8221DE37229004D5B73 /* LineView.h */,
-				4994B8231DE37229004D5B73 /* LineView.m */,
-				49977C401DE4D29C001B678E /* LikerTableViewCell.h */,
-				49977C411DE4D29C001B678E /* LikerTableViewCell.m */,
-				4986C1B61DE5E2EF000A2796 /* SearchTableViewCell.h */,
-				4986C1B71DE5E2EF000A2796 /* SearchTableViewCell.m */,
-				4986C1B91DE601CC000A2796 /* UserProfileCollectionViewCell.h */,
-				4986C1BA1DE601CC000A2796 /* UserProfileCollectionViewCell.m */,
-				4941AE981DFDA730003051FB /* FollowerTableViewCell.h */,
-				4941AE991DFDA730003051FB /* FollowerTableViewCell.m */,
-				4941AE9B1DFDA738003051FB /* FollowingTableViewCell.h */,
-				4941AE9C1DFDA738003051FB /* FollowingTableViewCell.m */,
+				4982A5C41E02FDC200C09557 /* Home */,
+				4982A5C51E02FDC700C09557 /* Search */,
+				4982A5C71E02FDD900C09557 /* Profile */,
+				4982A5C61E02FDD100C09557 /* Post */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -505,6 +611,7 @@
 				495C83A01DA8F5430095B25A /* SignUpFullNameViewController.m in Sources */,
 				49993FCD1D70981A00033616 /* main.m in Sources */,
 				49399B2B1DF077BF0086BD34 /* MinstagramViewController.m in Sources */,
+				4982A5BB1E02FA8300C09557 /* TopPostHeaderTableViewCell.m in Sources */,
 				4997FE531DEF6A5F009A5C26 /* FSAlbumView.swift in Sources */,
 				4941AE971DFD9EBB003051FB /* FollowingTableViewController.m in Sources */,
 				49203AAD1DD209FB00BF02B8 /* UIImage+FontAwesome.m in Sources */,
@@ -512,6 +619,7 @@
 				491127711DF31D8C009D0324 /* BackendServices.m in Sources */,
 				4986C1B51DE5D7F3000A2796 /* SearchTableViewController.m in Sources */,
 				4986C1BE1DE60213000A2796 /* UserViewController.m in Sources */,
+				4982A5B81E02FA7800C09557 /* PostHeaderTableViewCell.m in Sources */,
 				4997FE571DEF6A5F009A5C26 /* FSCameraView.swift in Sources */,
 				49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */,
 				4997FE5B1DEF6A5F009A5C26 /* FSVideoCameraView.swift in Sources */,
