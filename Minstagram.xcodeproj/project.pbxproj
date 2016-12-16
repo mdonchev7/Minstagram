@@ -13,6 +13,10 @@
 		491127711DF31D8C009D0324 /* BackendServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 491127701DF31D8C009D0324 /* BackendServices.m */; };
 		49203AAD1DD209FB00BF02B8 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 49203AAC1DD209FB00BF02B8 /* UIImage+FontAwesome.m */; };
 		49399B2B1DF077BF0086BD34 /* MinstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49399B2A1DF077BF0086BD34 /* MinstagramViewController.m */; };
+		493F50011E046D350050B203 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 493F50001E046D350050B203 /* Proxima Nova Bold.otf */; };
+		493F50031E046E0A0050B203 /* Proxima Nova Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 493F50021E046E0A0050B203 /* Proxima Nova Light.otf */; };
+		493F50051E046E3B0050B203 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 493F50041E046E3B0050B203 /* Proxima Nova Regular.otf */; };
+		493F50071E046EED0050B203 /* Proxima Nova Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 493F50061E046EED0050B203 /* Proxima Nova Semibold.otf */; };
 		4941AE941DFD9EA8003051FB /* FollowersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4941AE931DFD9EA8003051FB /* FollowersTableViewController.m */; };
 		4941AE971DFD9EBB003051FB /* FollowingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4941AE961DFD9EBB003051FB /* FollowingTableViewController.m */; };
 		4941AE9A1DFDA730003051FB /* FollowerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4941AE991DFDA730003051FB /* FollowerTableViewCell.m */; };
@@ -86,6 +90,10 @@
 		49203AAC1DD209FB00BF02B8 /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 		49399B291DF077BF0086BD34 /* MinstagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinstagramViewController.h; sourceTree = "<group>"; };
 		49399B2A1DF077BF0086BD34 /* MinstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinstagramViewController.m; sourceTree = "<group>"; };
+		493F50001E046D350050B203 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Bold.otf"; sourceTree = "<group>"; };
+		493F50021E046E0A0050B203 /* Proxima Nova Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Light.otf"; sourceTree = "<group>"; };
+		493F50041E046E3B0050B203 /* Proxima Nova Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Regular.otf"; sourceTree = "<group>"; };
+		493F50061E046EED0050B203 /* Proxima Nova Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Semibold.otf"; sourceTree = "<group>"; };
 		4941AE921DFD9EA8003051FB /* FollowersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowersTableViewController.h; sourceTree = "<group>"; };
 		4941AE931DFD9EA8003051FB /* FollowersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowersTableViewController.m; sourceTree = "<group>"; };
 		4941AE951DFD9EBB003051FB /* FollowingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingTableViewController.h; sourceTree = "<group>"; };
@@ -487,6 +495,10 @@
 			children = (
 				49D846BB1DA6700800E1BDBC /* billabong.ttf */,
 				490440391DAD293000D54588 /* FontAwesome.ttf */,
+				493F50001E046D350050B203 /* Proxima Nova Bold.otf */,
+				493F50021E046E0A0050B203 /* Proxima Nova Light.otf */,
+				493F50041E046E3B0050B203 /* Proxima Nova Regular.otf */,
+				493F50061E046EED0050B203 /* Proxima Nova Semibold.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -567,8 +579,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				49993FDE1D70981A00033616 /* LaunchScreen.storyboard in Resources */,
+				493F50071E046EED0050B203 /* Proxima Nova Semibold.otf in Resources */,
 				4997FE5E1DEF6A5F009A5C26 /* FusumaViewController.xib in Resources */,
 				49993FDB1D70981A00033616 /* Assets.xcassets in Resources */,
+				493F50011E046D350050B203 /* Proxima Nova Bold.otf in Resources */,
 				4904403A1DAD293000D54588 /* FontAwesome.ttf in Resources */,
 				4997FE561DEF6A5F009A5C26 /* FSAlbumViewCell.xib in Resources */,
 				4994352A1DA507920086DDC8 /* com.kinvey.KinveyKit.docset in Resources */,
@@ -576,8 +590,10 @@
 				4997FE581DEF6A5F009A5C26 /* FSCameraView.xib in Resources */,
 				4997FE541DEF6A5F009A5C26 /* FSAlbumView.xib in Resources */,
 				4994352C1DA507920086DDC8 /* LICENSES in Resources */,
+				493F50031E046E0A0050B203 /* Proxima Nova Light.otf in Resources */,
 				4997FE5C1DEF6A5F009A5C26 /* FSVideoCameraView.xib in Resources */,
 				49D846BC1DA6700800E1BDBC /* billabong.ttf in Resources */,
+				493F50051E046E3B0050B203 /* Proxima Nova Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

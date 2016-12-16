@@ -16,8 +16,9 @@
 #import "FollowingTableViewController.h"
 #import "UIImage+Resize.h"
 #import "BackendServices.h"
+#import "Minstagram-Swift.h"
 
-@interface ActiveUserViewController ()
+@interface ActiveUserViewController () <FusumaDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *numberOfPostsLabel;
@@ -145,37 +146,27 @@
 }
 
 - (IBAction)showActionSheet:(UITapGestureRecognizer *)sender {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Change Profile Photo" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Take Photo"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                          UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-                                                          imagePickerController.delegate = self;
-                                                          imagePickerController.sourceType =  UIImagePickerControllerSourceTypeCamera;
-                                                          
-                                                          [self presentViewController:imagePickerController animated:YES completion:nil];
-                                                      }]];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Choose from Library"
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                          UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
-                                                          imagePickerController.delegate = self;
-                                                          imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
-                                                          
-                                                          [self presentViewController:imagePickerController animated:YES completion:nil];
-                                                      }]];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-    }]];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+    FusumaViewController *fvc = [[FusumaViewController alloc] init];
+    fvc.delegate = self;
+    fvc.hasVideo = NO;
+    [self presentViewController:fvc animated:YES completion:nil];
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker
-        didFinishPickingImage:(UIImage *)image
-                  editingInfo:(NSDictionary *)editingInfo {
+#pragma mark - Fusuma delegate methods
+
+- (void)fusumaCameraRollUnauthorized {
+    
+}
+
+- (void)fusumaVideoCompletedWithFileURL:(NSURL *)fileURL {
+    // video is not supported
+}
+
+- (void)fusumaClosed {
+
+}
+
+- (void)fusumaImageSelected:(UIImage *)image {
     CGSize size = CGSizeMake(70, 70);
     UIImage *resizedImage = [UIImage imageWithImage:image scaledToSize:size];
     
@@ -188,13 +179,16 @@
                    [[KCSUser activeUser] setValue:[uploadInfo fileId] forAttribute:@"profile photo"];
                    [[KCSUser activeUser] saveWithCompletionBlock:^(NSArray *objects, NSError *error) {
                        if (error == nil) {
-                           [picker dismissViewControllerAnimated:YES completion:NULL];
                            [self updateProfilePhotoImageView];
                        } else {
                            NSLog(@"error: %@", error);
                        }
                    }];
                }];
+}
+
+- (void)fusumaDismissedWithImage:(UIImage *)image {
+    
 }
 
 #pragma mark - Navigation
