@@ -18,23 +18,35 @@
 @interface FilterViewController ()
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
-@property (weak, nonatomic) IBOutlet UIView *filtersContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic) IBOutlet UIButton *normalButton;
-@property (weak, nonatomic) IBOutlet UIButton *hefeButton;
-@property (weak, nonatomic) IBOutlet UIButton *riseButton;
-@property (weak, nonatomic) IBOutlet UIButton *monoButton;
-@property (weak, nonatomic) IBOutlet UIButton *larkButton;
-@property (weak, nonatomic) IBOutlet UIButton *junoButton;
+@property (weak, nonatomic) IBOutlet UIButton *normalFilterButton;
+@property (weak, nonatomic) IBOutlet UILabel *normalFilterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *sepiaToneFilterButton;
+@property (weak, nonatomic) IBOutlet UILabel *sepiaToneLabel;
+@property (weak, nonatomic) IBOutlet UIButton *fadeFilterButton;
+@property (weak, nonatomic) IBOutlet UILabel *fadeFilterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *monoFilterButton;
+@property (weak, nonatomic) IBOutlet UILabel *monoFilterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *instantFilterButton;
+@property (weak, nonatomic) IBOutlet UILabel *instantFilterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *tonalFilterButton;
+@property (weak, nonatomic) IBOutlet UILabel *tonalFilterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *processFilterButton;
+@property (weak, nonatomic) IBOutlet UILabel *processFilterLabel;
+@property (weak, nonatomic) IBOutlet UIButton *chromeFilterButton;
+@property (weak, nonatomic) IBOutlet UILabel *chromeFilterLabel;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (nonatomic) UIImage *mediumQualityImage;
 @property (nonatomic) UIImage *lowQualityImage;
 
 @property (nonatomic) NSString *filter;
+@property (nonatomic) UILabel *previouslySelectedFilterLabel;
 
 @property (nonatomic) BackendServices *services;
 
@@ -53,12 +65,16 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.frame.size.height);
+    
     [self.activityIndicator setHidden:YES];
     [self.shareButton setHidden:NO];
     
     [self hideTabBar];
     
     self.filter = @"Normal";
+    
+    [self setLabelsInInitialState];
     
     CGSize lowQualitySize = CGSizeMake(70.0f, 70.0f);
     CGSize mediumQualitySize = CGSizeMake(375.0f, 375.0f);
@@ -123,31 +139,91 @@
 - (IBAction)didTapNormalFilter:(UIButton *)sender {
     [self.imageView setImage:self.mediumQualityImage];
     self.filter = @"Normal";
+    
+    if (self.previouslySelectedFilterLabel != self.normalFilterLabel) {
+        [self setLabelInSelectedState:self.normalFilterLabel];
+        self.previouslySelectedFilterLabel = self.normalFilterLabel;
+    }
 }
 
-- (IBAction)didTapHefeFilter:(UIButton *)sender {
-    [self setImageView:self.imageView image:self.mediumQualityImage withFilterName:@"CISepiaTone"];
+- (IBAction)didTapSepiaToneFilter:(UIButton *)sender {
+    [self setImageView:self.imageView
+                 image:self.mediumQualityImage
+        withFilterName:@"CISepiaTone"];
     self.filter = @"CISepiaTone";
+    
+    if (self.previouslySelectedFilterLabel != self.sepiaToneLabel) {
+        [self setLabelInSelectedState:self.sepiaToneLabel];
+        self.previouslySelectedFilterLabel = self.sepiaToneLabel;
+    }
 }
 
-- (IBAction)didTapRiseFilter:(UIButton *)sender {
-    [self setImageView:self.imageView image:self.mediumQualityImage withFilterName:@"CIPhotoEffectProcess"];
-    self.filter = @"CIPhotoEffectProcess";
+- (IBAction)didTapFadeFilter:(UIButton *)sender {
+    [self setImageView:self.imageView
+                 image:self.mediumQualityImage
+        withFilterName:@"CIPhotoEffectFade"];
+    self.filter = @"CIPhotoEffectFade";
+    
+    if (self.previouslySelectedFilterLabel != self.fadeFilterLabel) {
+        [self setLabelInSelectedState:self.fadeFilterLabel];
+        self.previouslySelectedFilterLabel = self.fadeFilterLabel;
+    }
 }
 
 - (IBAction)didTapMonoFilter:(UIButton *)sender {
-    [self setImageView:self.imageView image:self.mediumQualityImage withFilterName:@"CIPhotoEffectMono"];
+    [self setImageView:self.imageView
+                 image:self.mediumQualityImage
+        withFilterName:@"CIPhotoEffectMono"];
     self.filter = @"CIPhotoEffectMono";
+    
+    if (self.previouslySelectedFilterLabel != self.monoFilterLabel) {
+        [self setLabelInSelectedState:self.monoFilterLabel];
+        self.previouslySelectedFilterLabel = self.monoFilterLabel;
+    }
 }
 
-- (IBAction)didTapLarkFilter:(UIButton *)sender {
+- (IBAction)didTapInstantFilter:(UIButton *)sender {
+    [self setImageView:self.imageView
+                 image:self.mediumQualityImage
+        withFilterName:@"CIPhotoEffectInstant"];
+    self.filter = @"CIPhotoEffectInstant";
+    
+    if (self.previouslySelectedFilterLabel != self.instantFilterLabel) {
+        [self setLabelInSelectedState:self.instantFilterLabel];
+        self.previouslySelectedFilterLabel = self.instantFilterLabel;
+    }
+}
+
+- (IBAction)didTapTonalFilter:(UIButton *)sender {
+    [self setImageView:self.imageView
+                 image:self.mediumQualityImage
+        withFilterName:@"CIPhotoEffectTonal"];
+    self.filter = @"CIPhotoEffectTonal";
+    
+    if (self.previouslySelectedFilterLabel != self.tonalFilterLabel) {
+        [self setLabelInSelectedState:self.tonalFilterLabel];
+        self.previouslySelectedFilterLabel = self.tonalFilterLabel;
+    }
+}
+
+- (IBAction)didTapProcessFilter:(UIButton *)sender {
+    [self setImageView:self.imageView image:self.mediumQualityImage withFilterName:@"CIPhotoEffectProcess"];
+    self.filter = @"CIPhotoEffectProcess";
+    
+    if (self.previouslySelectedFilterLabel != self.processFilterLabel) {
+        [self setLabelInSelectedState:self.processFilterLabel];
+        self.previouslySelectedFilterLabel = self.processFilterLabel;
+    }
+}
+
+- (IBAction)didTapChromeFilter:(UIButton *)sender {
     [self setImageView:self.imageView image:self.mediumQualityImage withFilterName:@"CIPhotoEffectChrome"];
     self.filter = @"CIPhotoEffectChrome";
-}
-
-- (IBAction)didTapJunoFilter:(UIButton *)sender {
-    [self setImageView:self.imageView image:self.mediumQualityImage withFilterName:@"CIPhotoEffectInstant"];
-    self.filter = @"CIPhotoEffectInstant";
+    
+    if (self.previouslySelectedFilterLabel != self.chromeFilterLabel) {
+        [self setLabelInSelectedState:self.chromeFilterLabel];
+        self.previouslySelectedFilterLabel = self.chromeFilterLabel;
+    }
 }
 
 #pragma Mark - Helper Methods
@@ -182,15 +258,17 @@
 }
 
 - (void)setButtonImages {
-    [self setButton:self.normalButton imageWithFilterName:@"Normal"];
-    [self setButton:self.hefeButton imageWithFilterName:@"CISepiaTone"];
-    [self setButton:self.monoButton imageWithFilterName:@"CIPhotoEffectMono"];
-    [self setButton:self.larkButton imageWithFilterName:@"CIPhotoEffectChrome"];
-    [self setButton:self.junoButton imageWithFilterName:@"CIPhotoEffectInstant"];
-    [self setButton:self.riseButton imageWithFilterName:@"CIPhotoEffectProcess"];
+    [self setButton:self.normalFilterButton backgroundImageWithFilterName:@"Normal"];
+    [self setButton:self.sepiaToneFilterButton backgroundImageWithFilterName:@"CISepiaTone"];
+    [self setButton:self.fadeFilterButton backgroundImageWithFilterName:@"CIPhotoEffectFade"];
+    [self setButton:self.monoFilterButton backgroundImageWithFilterName:@"CIPhotoEffectMono"];
+    [self setButton:self.instantFilterButton backgroundImageWithFilterName:@"CIPhotoEffectInstant"];
+    [self setButton:self.tonalFilterButton backgroundImageWithFilterName:@"CIPhotoEffectTonal"];
+    [self setButton:self.processFilterButton backgroundImageWithFilterName:@"CIPhotoEffectProcess"];
+    [self setButton:self.chromeFilterButton backgroundImageWithFilterName:@"CIPhotoEffectChrome"];
 }
 
-- (void)setButton:(UIButton *)button imageWithFilterName:(NSString *)filterName {
+- (void)setButton:(UIButton *)button backgroundImageWithFilterName:(NSString *)filterName {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         if ([filterName isEqualToString:@"Normal"]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -214,16 +292,49 @@
     });
 }
 
+- (void)setLabelInSelectedState:(UILabel *)label {
+    [label setFont:[UIFont fontWithName:@"Proxima Nova-Semibold" size:13.0f]];
+    [label setFont:[label.font fontWithSize:13.0f]]; // the upper row does not affect the size for some reason
+    [label setTextColor:[UIColor blackColor]];
+    
+    [self.previouslySelectedFilterLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:13.0f]];
+    [self.previouslySelectedFilterLabel setTextColor:[UIColor grayColor]];
+}
+
+- (void)setLabelsInInitialState {
+    self.previouslySelectedFilterLabel = self.normalFilterLabel;
+    [self.normalFilterLabel setTextColor:[UIColor blackColor]];
+    [self.sepiaToneLabel setTextColor:[UIColor grayColor]];
+    [self.fadeFilterLabel setTextColor:[UIColor grayColor]];
+    [self.monoFilterLabel setTextColor:[UIColor grayColor]];
+    [self.instantFilterLabel setTextColor:[UIColor grayColor]];
+    [self.tonalFilterLabel setTextColor:[UIColor grayColor]];
+    [self.processFilterLabel setTextColor:[UIColor grayColor]];
+    [self.chromeFilterLabel setTextColor:[UIColor grayColor]];
+    
+    [self.normalFilterLabel setFont:[UIFont fontWithName:@"Proxima Nova-Semibold" size:13.0f]];
+    [self.normalFilterLabel setFont:[self.normalFilterLabel.font fontWithSize:13.0f]]; // the upper row does not affect the size for some reason
+    [self.sepiaToneLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:13.0f]];
+    [self.fadeFilterLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:13.0f]];
+    [self.monoFilterLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:13.0f]];
+    [self.instantFilterLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:13.0f]];
+    [self.tonalFilterLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:13.0f]];
+    [self.processFilterLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:13.0f]];
+    [self.chromeFilterLabel setFont:[UIFont fontWithName:@"Proxima Nova" size:13.0f]];
+}
+
 - (void)hideAllViews {
     [self.headerView setHidden:YES];
     [self.imageView setHidden:YES];
-    [self.filtersContainerView setHidden:YES];
+    [self.scrollView setHidden:YES];
+    [self.titleLabel setHidden:YES];
 }
 
 - (void)showAllViews {
     [self.headerView setHidden:NO];
-    [self.filtersContainerView setHidden:NO];
     [self.imageView setHidden:NO];
+    [self.scrollView setHidden:NO];
+    [self.titleLabel setHidden:NO];
 }
 
 #pragma Mark - Delegate Methods
