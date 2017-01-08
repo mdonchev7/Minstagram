@@ -13,6 +13,7 @@
 #import "FollowersTableViewController.h"
 #import "FollowingTableViewController.h"
 #import "BackendServices.h"
+#import "OptionsTableViewController.h"
 
 #import <KinveyKit/KinveyKit.h>
 
@@ -41,9 +42,9 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-
+    
     [self.navigationItem setTitle:self.username];
-
+    
     self.profilePhotoImageView.layer.cornerRadius = self.profilePhotoImageView.frame.size.height / 2;
     self.profilePhotoImageView.layer.masksToBounds = YES;
     self.profilePhotoImageView.layer.borderWidth = 0;
@@ -72,7 +73,9 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self fetchAllFollowing];
+    if (![[KCSUser activeUser].username isEqualToString:self.username]) {
+        [self fetchAllFollowing];
+    }
     
     if ([[[KCSUser activeUser] username] isEqualToString:self.username]) {
         [self.actionButton setTitle:@"Edit Profile" forState:UIControlStateNormal];
@@ -83,26 +86,32 @@
 }
 
 - (IBAction)handleActionButtonTap:(UIButton *)sender {
-    [self.services relationByFollowerUsername:[KCSUser activeUser].username beingFollowedUsername:self.username completionBlock:^(Relation *relation) {
-        if (relation == nil) {
-            Relation *relationToSave = [[Relation alloc] init];
-            relationToSave.follower = [KCSUser activeUser].username;
-            relationToSave.beingFollowed = self.username;
-            
-            [self.services saveRelation:relationToSave completionBlock:^(Relation *savedRelation) {
-                [self.following addObject:savedRelation];
-                [self.actionButton setTitle:@"Following" forState:UIControlStateNormal];
-                [self updateFollowersCount];
-            }];
-        } else {
-            [self.services deleteRelation:relation
-                          completionBlock:^{
-                              [self.following removeObject:relation];
-                              [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
-                              [self updateFollowersCount];
-                          }];
-        }
-    }];
+    if ([[KCSUser activeUser].username isEqualToString:self.username]) {
+        NSLog(@"present edit profile view controller");
+    } else {
+    [self.services relationByFollowerUsername:[KCSUser activeUser].username
+                        beingFollowedUsername:self.username
+                              completionBlock:^(Relation *relation) {
+                                  if (relation == nil) {
+                                      Relation *relationToSave = [[Relation alloc] init];
+                                      relationToSave.follower = [KCSUser activeUser].username;
+                                      relationToSave.beingFollowed = self.username;
+                                      
+                                      [self.services saveRelation:relationToSave completionBlock:^(Relation *savedRelation) {
+                                          [self.following addObject:savedRelation];
+                                          [self.actionButton setTitle:@"Following" forState:UIControlStateNormal];
+                                          [self updateFollowersCount];
+                                      }];
+                                  } else {
+                                      [self.services deleteRelation:relation
+                                                    completionBlock:^{
+                                                        [self.following removeObject:relation];
+                                                        [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
+                                                        [self updateFollowersCount];
+                                                    }];
+                                  }
+                              }];
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -139,21 +148,23 @@
 }
 
 - (void)fetchAllFollowing {
-    [self.services followingByUsername:[KCSUser activeUser].username completionBlock:^(NSArray *following) {
-        for (Relation *relation in following) {
-            [self.following addObject:relation];
-            
-            if (![self.actionButton isEnabled] && [relation.beingFollowed isEqualToString:self.username]) {
-                [self.actionButton setTitle:@"Following" forState:UIControlStateNormal];
-                [self.actionButton setEnabled:YES];
-            }
-        }
-        
-        if (![self.actionButton isEnabled]) {
-            [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
-            [self.actionButton setEnabled:YES];
-        }
-    }];
+    [self.services followingByUsername:[KCSUser activeUser].username
+                       completionBlock:^(NSArray *following) {
+                           for (Relation *relation in following) {
+                               [self.following addObject:relation];
+                               
+                               if (![self.actionButton isEnabled] &&
+                                   [relation.beingFollowed isEqualToString:self.username]) {
+                                   [self.actionButton setTitle:@"Following" forState:UIControlStateNormal];
+                                   [self.actionButton setEnabled:YES];
+                               }
+                           }
+                           
+                           if (![self.actionButton isEnabled]) {
+                               [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
+                               [self.actionButton setEnabled:YES];
+                           }
+                       }];
 }
 
 - (void)updateFollowersCount {

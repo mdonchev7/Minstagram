@@ -113,8 +113,11 @@
     return size;
 }
 
-
 - (IBAction)editProfile:(UIButton *)sender {
+    NSLog(@"present edit profile view controller");
+}
+
+- (void)navigateToOptionsViewController {
     [self performSegueWithIdentifier:@"Present Edit Profile View Controller" sender:self];
 }
 
@@ -137,7 +140,7 @@
                                initWithTitle:@"Cog"
                                style:UIBarButtonItemStylePlain
                                target:self
-                               action:@selector(editProfile:)];
+                               action:@selector(navigateToOptionsViewController)];
     [button setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"FontAwesome" size:26.0],
                                      NSForegroundColorAttributeName:[UIColor darkGrayColor]}
                           forState:UIControlStateNormal];
