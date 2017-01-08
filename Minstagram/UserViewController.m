@@ -51,7 +51,9 @@
     [self.services userByUsername:self.username
                   completionBlock:^(KCSUser *user) {
                       self.user = user;
+                      
                       self.postIds = [user getValueForAttribute:@"posts"];
+                      [self.postsCountLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)[self.postIds count]]];
                       [self.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
                       [self.collectionView reloadData];
                       

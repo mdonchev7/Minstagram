@@ -65,8 +65,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, self.scrollView.frame.size.height);
-    
     [self.activityIndicator setHidden:YES];
     [self.shareButton setHidden:NO];
     

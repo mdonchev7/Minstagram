@@ -13,6 +13,7 @@
 #import "NSString+FontAwesome.h"
 #import "LikersTableViewController.h"
 #import "BackendServices.h"
+#import "UserViewController.h"
 
 @interface DetailedPhotoViewController ()
 
@@ -76,7 +77,7 @@
     NSMutableArray *likers = [NSMutableArray arrayWithArray:self.post.likers];
     
     if ([likers containsObject:activeUser.username]) {
-        [likers removeObjectIdenticalTo:activeUser.username];
+        [likers removeObject:activeUser.username];
     } else {
         [likers addObject:activeUser.username];
     }
@@ -163,6 +164,13 @@
     ltvc.post = self.post;
     
     [self.navigationController pushViewController:ltvc animated:YES];
+}
+
+- (IBAction)navigateToUserViewController:(UITapGestureRecognizer *)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
+    uvc.username = self.usernameLabel.text;
+    [self.navigationController showViewController:uvc sender:self];
 }
 
 #pragma mark - Lazy Instantiation
