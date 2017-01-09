@@ -20,6 +20,8 @@
     [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart-o"] forState:UIControlStateNormal];
     self.commentButton.titleLabel.font = [UIFont fontWithName:@"FontAwesome" size:27.0f];
     [self.commentButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-comment-o"] forState:UIControlStateNormal];
+    [self.heartLabel setFont:[UIFont fontWithName:@"FontAwesome" size:12.0f]];
+    [self.heartLabel setText:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"]];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

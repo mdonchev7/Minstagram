@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PostHeaderTableViewCellContainerView.h"
 
 @interface PostHeaderTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
-@property (weak, nonatomic) IBOutlet UIButton *usernameButton;
-@property (weak, nonatomic) IBOutlet UILabel *postedTimeAgoLabel;
+@property (weak, nonatomic) IBOutlet PostHeaderTableViewCellContainerView *containerView;
 
 @end

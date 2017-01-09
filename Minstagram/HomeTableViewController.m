@@ -16,13 +16,12 @@
 #import "UserViewController.h"
 #import "PostHeaderTableViewCell.h"
 #import "TopPostHeaderTableViewCell.h"
+#import "PostHeaderTableViewCellContainerView.h"
 
 @interface HomeTableViewController ()
 
 @property (nonatomic) NSMutableArray *postIds;
 @property (nonatomic) NSMutableArray *following;
-@property (nonatomic) KCSAppdataStore *postsStore;
-
 @property (nonatomic) BackendServices *services;
 @property (nonatomic) NSMutableDictionary *userByPostId;
 
@@ -84,14 +83,41 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"reusable cell" forIndexPath:indexPath];
+    [cell awakeFromNib];
+    
+    if (cell == nil) {
+        cell = [[PostTableViewCell alloc] init];
+    }
+    
+    cell.postId = self.postIds[indexPath.section];
     
     cell.photoImageView.image = nil;
     
+    cell.photoImageView.userInteractionEnabled = NO;
+    cell.photoImageView.tag = indexPath.row;
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleImageViewDoubleTap:)];
+    tapRecognizer.numberOfTapsRequired = 2;
+    [cell.photoImageView addGestureRecognizer:tapRecognizer];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     [self.services postById:self.postIds[indexPath.section]
             completionBlock:^(Post *post) {
+                [cell.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
+
+                [cell.likeButton setHidden:NO];
+                [cell.commentButton setHidden:NO];
+                [cell.likesContainer setHidden:NO];
+                
+                if ([post.likers containsObject:[KCSUser activeUser].username]) {
+                    [cell.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
+                }
+                
                 [self.services photoById:post.photoId
                          completionBlock:^(UIImage *image) {
                              [cell.photoImageView setImage:image];
+                             cell.photoImageView.userInteractionEnabled = YES;
                          }];
             }];
     
@@ -109,23 +135,26 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         TopPostHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"top header"];
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleContainerViewTap:)];
+        tapRecognizer.numberOfTapsRequired = 1;
+        [cell.containerView addGestureRecognizer:tapRecognizer];
         
         [self.services postById:self.postIds[section]
                 completionBlock:^(Post *post) {
                     NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
                     
-                    [cell.postedTimeAgoLabel setText:postedTimeAgo];
+                    [cell.containerView.postedTimeAgoLabel setText:postedTimeAgo];
                     
                     KCSUser *user = [self.userByPostId valueForKey:post.entityId];
-                    [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
+                    [cell.containerView.usernameLabel setText:user.username];
                     
                     NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
                     if ([profilePhotoId isEqualToString:@""]) {
-                        [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+                        [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
                     } else {
                         [self.services photoById:profilePhotoId
                                  completionBlock:^(UIImage *image) {
-                                     [cell.profilePhotoImageView setImage:image];
+                                     [cell.containerView.profilePhotoImageView setImage:image];
                                  }];
                     }
                 }];
@@ -133,22 +162,25 @@
         return cell;
     } else {
         PostHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"post header"];
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleContainerViewTap:)];
+        tapRecognizer.numberOfTapsRequired = 1;
+        [cell.containerView addGestureRecognizer:tapRecognizer];
         
         [self.services postById:self.postIds[section]
                 completionBlock:^(Post *post) {
                     NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
-                    [cell.postedTimeAgoLabel setText:postedTimeAgo];
+                    [cell.containerView.postedTimeAgoLabel setText:postedTimeAgo];
                     
                     KCSUser *user = [self.userByPostId valueForKey:post.entityId];
-                    [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
+                    [cell.containerView.usernameLabel setText:user.username];
                     
                     NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
                     if ([profilePhotoId isEqualToString:@""]) {
-                        [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+                        [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
                     } else {
                         [self.services photoById:profilePhotoId
                                  completionBlock:^(UIImage *image) {
-                                     [cell.profilePhotoImageView setImage:image];
+                                     [cell.containerView.profilePhotoImageView setImage:image];
                                  }];
                     }
                 }];
@@ -158,7 +190,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - Helper Methods
@@ -233,14 +265,66 @@
 
 #pragma mark - Navigation
 
-- (IBAction)navigateToUserViewController:(UIButton *)sender {
+- (void)handleContainerViewTap:(UITapGestureRecognizer *)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
-    uvc.username = ((UIButton *)sender).titleLabel.text;
+    NSString *username = ((PostHeaderTableViewCellContainerView *)sender.view).usernameLabel.text;
+    uvc.username = username;
     
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], NSForegroundColorAttributeName, [UIFont systemFontOfSize:17 weight:UIFontWeightSemibold], NSFontAttributeName,nil]];
     
     [self.navigationController pushViewController:uvc animated:YES];
+}
+
+- (IBAction)handleLikeButtonTap:(UIButton *)sender {
+    PostTableViewCell *cell = (PostTableViewCell *)sender.superview.superview;
+    [self likeUnlikePhotoWithCell:cell];
+}
+
+- (void)handleImageViewDoubleTap:(UITapGestureRecognizer *)sender {
+    PostTableViewCell *cell = (PostTableViewCell *)sender.view.superview.superview;
+    
+    [self likeUnlikePhotoWithCell:cell];
+}
+
+- (void)likeUnlikePhotoWithCell:(PostTableViewCell *)cell {
+    KCSUser *activeUser = [KCSUser activeUser];
+    
+    [self.services postById:cell.postId completionBlock:^(Post *post) {
+        NSMutableArray *likers = [NSMutableArray arrayWithArray:post.likers];
+        
+        if ([likers containsObject:activeUser.username]) {
+            [likers removeObject:activeUser.username];
+            [cell.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart-o"] forState:UIControlStateNormal];
+        } else {
+            [likers addObject:activeUser.username];
+            [cell.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
+        }
+        
+        post.likers = likers;
+        
+        [self.services savePost:post
+                completionBlock:^(Post *savedPost) {
+                    [cell.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[savedPost.likers count]]];
+                }];
+    }];
+}
+
+- (IBAction)commentOnPhoto:(UIButton *)sender {
+    UIAlertController *alert = [UIAlertController
+                                alertControllerWithTitle:@"Oops..."
+                                message:@"Commenting is not implemented yet. We hope it will be within the next update."
+                                preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okButton = [UIAlertAction
+                               actionWithTitle:@"Ok"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                               }];
+    
+    [alert addAction:okButton];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Lazy Instantiation

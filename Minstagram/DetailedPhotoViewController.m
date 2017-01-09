@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UILabel *heartLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;
+@property (weak, nonatomic) IBOutlet UIView *likesContainer;
 @property (weak, nonatomic) IBOutlet UILabel *postedOnLabel;
 
 @property (nonatomic) Post *post;
@@ -59,8 +60,13 @@
     
     [self.services postById:self.postId completionBlock:^(Post *post) {
         [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
+        [self.likesContainer setHidden:NO];
         self.post = post;
         [self setPostedOnDate];
+        
+        if ([post.likers containsObject:[KCSUser activeUser].username]) {
+            [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
+        }
         
         [self.services photoById:post.photoId completionBlock:^(UIImage *image) {
             [self.photoImageView setImage:image];
@@ -78,8 +84,10 @@
     
     if ([likers containsObject:activeUser.username]) {
         [likers removeObject:activeUser.username];
+        [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart-o"] forState:UIControlStateNormal];
     } else {
         [likers addObject:activeUser.username];
+        [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
     }
     
     self.post.likers = likers;
@@ -90,7 +98,7 @@
             }];
 }
 
-- (IBAction)commentPhoto:(UIButton *)sender {
+- (IBAction)commentOnPhoto:(UIButton *)sender {
     UIAlertController *alert = [UIAlertController
                                 alertControllerWithTitle:@"Oops..."
                                 message:@"Commenting is not implemented yet. We hope it will be within the next update."
@@ -110,6 +118,7 @@
 - (void)setPostedOnDate {
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.post.postedOn];
     [self.postedOnLabel setText:[NSString stringWithFormat:@"%ld %@, %ld", (long)[components day], [self monthFromNumber:[components month]], (long)[components year]]];
+    [self.postedOnLabel setHidden:NO];
 }
 
 - (NSString *)monthFromNumber:(NSInteger)number {

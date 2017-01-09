@@ -75,10 +75,9 @@
     
     if (![[KCSUser activeUser].username isEqualToString:self.username]) {
         [self fetchAllFollowing];
-    }
-    
-    if ([[[KCSUser activeUser] username] isEqualToString:self.username]) {
+    } else {
         [self.actionButton setTitle:@"Edit Profile" forState:UIControlStateNormal];
+        [self.actionButton setEnabled:YES];
     }
     
     [self updateFollowersCount];

@@ -68,6 +68,7 @@
 		49993FDE1D70981A00033616 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49993FDC1D70981A00033616 /* LaunchScreen.storyboard */; };
 		49B84D131DF1F9B500091C59 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B84D121DF1F9B500091C59 /* UIImage+Resize.m */; };
 		49BE4D231DAA7410008ADFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BE4D221DAA7410008ADFF2 /* Main.storyboard */; };
+		49D2AA0F1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D2AA0E1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m */; };
 		49D735BF1DD372600056A082 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D735BE1DD372600056A082 /* PostTableViewCell.m */; };
 		49D846BA1DA66AB300E1BDBC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D846B91DA66AB300E1BDBC /* LoginViewController.m */; };
 		49D846BC1DA6700800E1BDBC /* billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49D846BB1DA6700800E1BDBC /* billabong.ttf */; };
@@ -171,6 +172,8 @@
 		49B84D111DF1F9B500091C59 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		49B84D121DF1F9B500091C59 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49BE4D221DAA7410008ADFF2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		49D2AA0D1E23E16B0075932E /* PostHeaderTableViewCellContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHeaderTableViewCellContainerView.h; sourceTree = "<group>"; };
+		49D2AA0E1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHeaderTableViewCellContainerView.m; sourceTree = "<group>"; };
 		49D735BD1DD372600056A082 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
 		49D735BE1DD372600056A082 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
 		49D846B81DA66AB300E1BDBC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -341,6 +344,8 @@
 				4982A5BA1E02FA8300C09557 /* TopPostHeaderTableViewCell.m */,
 				49D735BD1DD372600056A082 /* PostTableViewCell.h */,
 				49D735BE1DD372600056A082 /* PostTableViewCell.m */,
+				49D2AA0D1E23E16B0075932E /* PostHeaderTableViewCellContainerView.h */,
+				49D2AA0E1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -357,8 +362,6 @@
 		4982A5C61E02FDD100C09557 /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				4994B8221DE37229004D5B73 /* LineView.h */,
-				4994B8231DE37229004D5B73 /* LineView.m */,
 				49977C401DE4D29C001B678E /* LikerTableViewCell.h */,
 				49977C411DE4D29C001B678E /* LikerTableViewCell.m */,
 			);
@@ -510,6 +513,8 @@
 				4982A5C51E02FDC700C09557 /* Search */,
 				4982A5C71E02FDD900C09557 /* Profile */,
 				4982A5C61E02FDD100C09557 /* Post */,
+				4994B8221DE37229004D5B73 /* LineView.h */,
+				4994B8231DE37229004D5B73 /* LineView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49D846BA1DA66AB300E1BDBC /* LoginViewController.m in Sources */,
+				49D2AA0F1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m in Sources */,
 				4945FC901E01ABE000446E32 /* CALayer+XibConfiguration.m in Sources */,
 				496014AC1DF2080600A6C449 /* UIImage+Filter.m in Sources */,
 				49D735BF1DD372600056A082 /* PostTableViewCell.m in Sources */,

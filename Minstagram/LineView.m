@@ -15,10 +15,13 @@
     CGFloat screenWidth = screenRect.size.width;
     
     UIBezierPath *path = [UIBezierPath bezierPath];
+    
     [path moveToPoint:CGPointMake(10.f, 0.0f)];
     [path addLineToPoint:CGPointMake(screenWidth - 28.0f, 0.0f)];
+    
     path.lineWidth = 1;
     [[UIColor lightGrayColor] setStroke];
+    
     [path stroke];
 }
 
