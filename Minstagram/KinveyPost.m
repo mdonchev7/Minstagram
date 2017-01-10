@@ -10,8 +10,7 @@
 
 @implementation KinveyPost
 
-- (NSDictionary *)hostToKinveyPropertyMapping
-{
+- (NSDictionary *)hostToKinveyPropertyMapping {
     return @{@"entityId" : KCSEntityKeyId,
              @"photoId" : @"photo id",
              @"thumbnailId" : @"thumbnail id",

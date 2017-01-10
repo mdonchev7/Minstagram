@@ -11,6 +11,7 @@
 		4904403E1DAD352F00D54588 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904403D1DAD352F00D54588 /* NSString+FontAwesome.m */; };
 		490440411DAD3EF400D54588 /* OptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490440401DAD3EF400D54588 /* OptionsTableViewController.m */; };
 		491127711DF31D8C009D0324 /* BackendServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 491127701DF31D8C009D0324 /* BackendServices.m */; };
+		4911D7FB1E258A54002FC03D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4911D7F91E258A54002FC03D /* Model.xcdatamodeld */; };
 		49203AAD1DD209FB00BF02B8 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 49203AAC1DD209FB00BF02B8 /* UIImage+FontAwesome.m */; };
 		49399B2B1DF077BF0086BD34 /* MinstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49399B2A1DF077BF0086BD34 /* MinstagramViewController.m */; };
 		493F50011E046D350050B203 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 493F50001E046D350050B203 /* Proxima Nova Bold.otf */; };
@@ -86,6 +87,7 @@
 		490440401DAD3EF400D54588 /* OptionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsTableViewController.m; sourceTree = "<group>"; };
 		4911276F1DF31D8C009D0324 /* BackendServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendServices.h; sourceTree = "<group>"; };
 		491127701DF31D8C009D0324 /* BackendServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackendServices.m; sourceTree = "<group>"; };
+		4911D7FA1E258A54002FC03D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49203AAB1DD209FB00BF02B8 /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
 		49203AAC1DD209FB00BF02B8 /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 		49399B291DF077BF0086BD34 /* MinstagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinstagramViewController.h; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				491127701DF31D8C009D0324 /* BackendServices.m */,
 				49E749E81DCDF87800D42D7A /* KinveyPost.h */,
 				49E749E91DCDF87800D42D7A /* KinveyPost.m */,
+				4911D7F91E258A54002FC03D /* Model.xcdatamodeld */,
 				4954461A1DE09053005F54B7 /* Relation.h */,
 				4954461B1DE09053005F54B7 /* Relation.m */,
 			);
@@ -637,6 +640,7 @@
 				491127711DF31D8C009D0324 /* BackendServices.m in Sources */,
 				4986C1B51DE5D7F3000A2796 /* SearchTableViewController.m in Sources */,
 				4986C1BE1DE60213000A2796 /* UserViewController.m in Sources */,
+				4911D7FB1E258A54002FC03D /* Model.xcdatamodeld in Sources */,
 				4982A5B81E02FA7800C09557 /* PostHeaderTableViewCell.m in Sources */,
 				4997FE571DEF6A5F009A5C26 /* FSCameraView.swift in Sources */,
 				49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */,
@@ -823,6 +827,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4911D7F91E258A54002FC03D /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4911D7FA1E258A54002FC03D /* Model.xcdatamodel */,
+			);
+			currentVersion = 4911D7FA1E258A54002FC03D /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 49993FC01D70981A00033616 /* Project object */;
 }
