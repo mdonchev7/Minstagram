@@ -65,7 +65,6 @@
 		49993FD01D70981A00033616 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49993FCF1D70981A00033616 /* AppDelegate.m */; };
 		49993FDB1D70981A00033616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49993FDA1D70981A00033616 /* Assets.xcassets */; };
 		49993FDE1D70981A00033616 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49993FDC1D70981A00033616 /* LaunchScreen.storyboard */; };
-		49A7E44A1E25831000589608 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49A7E4481E25831000589608 /* Model.xcdatamodeld */; };
 		49B84D131DF1F9B500091C59 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B84D121DF1F9B500091C59 /* UIImage+Resize.m */; };
 		49BE4D231DAA7410008ADFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BE4D221DAA7410008ADFF2 /* Main.storyboard */; };
 		49D2AA0F1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D2AA0E1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m */; };
@@ -168,7 +167,6 @@
 		49993FDA1D70981A00033616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49993FDD1D70981A00033616 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49993FDF1D70981A00033616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49A7E4491E25831000589608 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49B84D111DF1F9B500091C59 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		49B84D121DF1F9B500091C59 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49BE4D221DAA7410008ADFF2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -236,7 +234,6 @@
 				491127701DF31D8C009D0324 /* BackendServices.m */,
 				49E749E81DCDF87800D42D7A /* KinveyPost.h */,
 				49E749E91DCDF87800D42D7A /* KinveyPost.m */,
-				49A7E4481E25831000589608 /* Model.xcdatamodeld */,
 				4954461A1DE09053005F54B7 /* Relation.h */,
 				4954461B1DE09053005F54B7 /* Relation.m */,
 			);
@@ -640,7 +637,6 @@
 				491127711DF31D8C009D0324 /* BackendServices.m in Sources */,
 				4986C1B51DE5D7F3000A2796 /* SearchTableViewController.m in Sources */,
 				4986C1BE1DE60213000A2796 /* UserViewController.m in Sources */,
-				49A7E44A1E25831000589608 /* Model.xcdatamodeld in Sources */,
 				4982A5B81E02FA7800C09557 /* PostHeaderTableViewCell.m in Sources */,
 				4997FE571DEF6A5F009A5C26 /* FSCameraView.swift in Sources */,
 				49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */,
@@ -827,19 +823,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		49A7E4481E25831000589608 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				49A7E4491E25831000589608 /* Model.xcdatamodel */,
-			);
-			currentVersion = 49A7E4491E25831000589608 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 49993FC01D70981A00033616 /* Project object */;
 }
