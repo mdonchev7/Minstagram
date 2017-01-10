@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Post.h"
+#import "KinveyPost.h"
 
 @interface LikersTableViewController : UITableViewController
 
-@property (nonatomic) Post *post;
+@property (nonatomic) KinveyPost *post;
 
 @end

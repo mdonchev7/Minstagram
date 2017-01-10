@@ -127,7 +127,7 @@
     
     cell.postId = self.postIds[indexPath.row];
     
-    [self.services postById:self.postIds[indexPath.row] completionBlock:^(Post *post) {
+    [self.services postById:self.postIds[indexPath.row] completionBlock:^(KinveyPost *post) {
         [self.services photoById:post.photoId
                  completionBlock:^(UIImage *image) {
                      [cell.imageView setImage:image];

@@ -63,9 +63,9 @@
 		4997FE5E1DEF6A5F009A5C26 /* FusumaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4997FE521DEF6A5F009A5C26 /* FusumaViewController.xib */; };
 		49993FCD1D70981A00033616 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49993FCC1D70981A00033616 /* main.m */; };
 		49993FD01D70981A00033616 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49993FCF1D70981A00033616 /* AppDelegate.m */; };
-		49993FD91D70981A00033616 /* Minstagram.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49993FD71D70981A00033616 /* Minstagram.xcdatamodeld */; };
 		49993FDB1D70981A00033616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49993FDA1D70981A00033616 /* Assets.xcassets */; };
 		49993FDE1D70981A00033616 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49993FDC1D70981A00033616 /* LaunchScreen.storyboard */; };
+		49A7E44A1E25831000589608 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49A7E4481E25831000589608 /* Model.xcdatamodeld */; };
 		49B84D131DF1F9B500091C59 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B84D121DF1F9B500091C59 /* UIImage+Resize.m */; };
 		49BE4D231DAA7410008ADFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BE4D221DAA7410008ADFF2 /* Main.storyboard */; };
 		49D2AA0F1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D2AA0E1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m */; };
@@ -74,7 +74,7 @@
 		49D846BC1DA6700800E1BDBC /* billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49D846BB1DA6700800E1BDBC /* billabong.ttf */; };
 		49DE12AD1DABA79B007EEF94 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DE12AC1DABA79B007EEF94 /* HomeTableViewController.m */; };
 		49DE12B51DABC1AA007EEF94 /* ActiveUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DE12B41DABC1AA007EEF94 /* ActiveUserViewController.m */; };
-		49E749EA1DCDF87800D42D7A /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E749E91DCDF87800D42D7A /* Post.m */; };
+		49E749EA1DCDF87800D42D7A /* KinveyPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E749E91DCDF87800D42D7A /* KinveyPost.m */; };
 		49F728211DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */; };
 		49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FD7E191DEF2A0A00194103 /* FilterViewController.m */; };
 /* End PBXBuildFile section */
@@ -165,10 +165,10 @@
 		49993FCC1D70981A00033616 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		49993FCE1D70981A00033616 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		49993FCF1D70981A00033616 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		49993FD81D70981A00033616 /* Minstagram.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Minstagram.xcdatamodel; sourceTree = "<group>"; };
 		49993FDA1D70981A00033616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49993FDD1D70981A00033616 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49993FDF1D70981A00033616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49A7E4491E25831000589608 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49B84D111DF1F9B500091C59 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		49B84D121DF1F9B500091C59 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49BE4D221DAA7410008ADFF2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -183,8 +183,8 @@
 		49DE12AC1DABA79B007EEF94 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		49DE12B31DABC1AA007EEF94 /* ActiveUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveUserViewController.h; sourceTree = "<group>"; };
 		49DE12B41DABC1AA007EEF94 /* ActiveUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveUserViewController.m; sourceTree = "<group>"; };
-		49E749E81DCDF87800D42D7A /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		49E749E91DCDF87800D42D7A /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		49E749E81DCDF87800D42D7A /* KinveyPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinveyPost.h; sourceTree = "<group>"; };
+		49E749E91DCDF87800D42D7A /* KinveyPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KinveyPost.m; sourceTree = "<group>"; };
 		49F7281F1DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveUserProfileCollectionViewCell.h; sourceTree = "<group>"; };
 		49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveUserProfileCollectionViewCell.m; sourceTree = "<group>"; };
 		49FD7E181DEF2A0A00194103 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
@@ -234,8 +234,9 @@
 			children = (
 				4911276F1DF31D8C009D0324 /* BackendServices.h */,
 				491127701DF31D8C009D0324 /* BackendServices.m */,
-				49E749E81DCDF87800D42D7A /* Post.h */,
-				49E749E91DCDF87800D42D7A /* Post.m */,
+				49E749E81DCDF87800D42D7A /* KinveyPost.h */,
+				49E749E91DCDF87800D42D7A /* KinveyPost.m */,
+				49A7E4481E25831000589608 /* Model.xcdatamodeld */,
 				4954461A1DE09053005F54B7 /* Relation.h */,
 				4954461B1DE09053005F54B7 /* Relation.m */,
 			);
@@ -480,7 +481,6 @@
 				49993FDC1D70981A00033616 /* LaunchScreen.storyboard */,
 				495090171DA902990001A15F /* Minstagram.entitlements */,
 				49993FDF1D70981A00033616 /* Info.plist */,
-				49993FD71D70981A00033616 /* Minstagram.xcdatamodeld */,
 				49993FCB1D70981A00033616 /* Supporting Files */,
 			);
 			path = Minstagram;
@@ -545,7 +545,7 @@
 		49993FC01D70981A00033616 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Mincho Dzhagalov";
 				TargetAttributes = {
 					49993FC71D70981A00033616 = {
@@ -624,7 +624,6 @@
 				4997FE551DEF6A5F009A5C26 /* FSAlbumViewCell.swift in Sources */,
 				49DE12B51DABC1AA007EEF94 /* ActiveUserViewController.m in Sources */,
 				49B84D131DF1F9B500091C59 /* UIImage+Resize.m in Sources */,
-				49993FD91D70981A00033616 /* Minstagram.xcdatamodeld in Sources */,
 				4994B8241DE37229004D5B73 /* LineView.m in Sources */,
 				4994B8211DE31EAA004D5B73 /* DetailedPhotoViewController.m in Sources */,
 				499435441DA5309F0086DDC8 /* SignUpEmailViewController.m in Sources */,
@@ -641,6 +640,7 @@
 				491127711DF31D8C009D0324 /* BackendServices.m in Sources */,
 				4986C1B51DE5D7F3000A2796 /* SearchTableViewController.m in Sources */,
 				4986C1BE1DE60213000A2796 /* UserViewController.m in Sources */,
+				49A7E44A1E25831000589608 /* Model.xcdatamodeld in Sources */,
 				4982A5B81E02FA7800C09557 /* PostHeaderTableViewCell.m in Sources */,
 				4997FE571DEF6A5F009A5C26 /* FSCameraView.swift in Sources */,
 				49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */,
@@ -651,7 +651,7 @@
 				4954461C1DE09053005F54B7 /* Relation.m in Sources */,
 				4904403E1DAD352F00D54588 /* NSString+FontAwesome.m in Sources */,
 				49F728211DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m in Sources */,
-				49E749EA1DCDF87800D42D7A /* Post.m in Sources */,
+				49E749EA1DCDF87800D42D7A /* KinveyPost.m in Sources */,
 				4997FE591DEF6A5F009A5C26 /* FSConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,7 +754,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -829,13 +829,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		49993FD71D70981A00033616 /* Minstagram.xcdatamodeld */ = {
+		49A7E4481E25831000589608 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				49993FD81D70981A00033616 /* Minstagram.xcdatamodel */,
+				49A7E4491E25831000589608 /* Model.xcdatamodel */,
 			);
-			currentVersion = 49993FD81D70981A00033616 /* Minstagram.xcdatamodel */;
-			path = Minstagram.xcdatamodeld;
+			currentVersion = 49A7E4491E25831000589608 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

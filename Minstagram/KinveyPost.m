@@ -6,9 +6,9 @@
 //  Copyright © 2016 Mincho Dzhagalov. All rights reserved.
 //
 
-#import "Post.h"
+#import "KinveyPost.h"
 
-@implementation Post
+@implementation KinveyPost
 
 - (NSDictionary *)hostToKinveyPropertyMapping
 {

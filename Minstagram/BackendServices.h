@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <KinveyKit/KinveyKit.h>
 
-#import "Post.h"
+#import "KinveyPost.h"
 #import "Relation.h"
 
 @interface BackendServices : NSObject
@@ -42,7 +42,7 @@
             completionBlock:(void (^)(NSArray *followers))completionBlock;
 
 - (void)postById:(NSString *)postId
-  completionBlock:(void (^)(Post *post))completionBlock;
+  completionBlock:(void (^)(KinveyPost *post))completionBlock;
 
 - (void)photoById:(NSString *)photoId
   completionBlock:(void (^)(UIImage *image))completionBlock;
@@ -56,8 +56,8 @@
              thumbnailUploadInfo:(KCSFile *)thumbnailInfo
                  completionBlock:(void (^)(void))completionBlock;
 
-- (void)savePost:(Post *)postToSave
- completionBlock:(void (^)(Post *savedPost))completionBlock;
+- (void)savePost:(KinveyPost *)postToSave
+ completionBlock:(void (^)(KinveyPost *savedPost))completionBlock;
 
 - (void)relationByFollowerUsername:(NSString *)followerUsername
              beingFollowedUsername:(NSString *)beingFollowedUsername

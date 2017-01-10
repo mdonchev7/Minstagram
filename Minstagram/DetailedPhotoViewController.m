@@ -9,7 +9,6 @@
 #import <KinveyKit/KinveyKit.h>
 
 #import "DetailedPhotoViewController.h"
-#import "Post.h"
 #import "NSString+FontAwesome.h"
 #import "LikersTableViewController.h"
 #import "BackendServices.h"
@@ -28,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *likesContainer;
 @property (weak, nonatomic) IBOutlet UILabel *postedOnLabel;
 
-@property (nonatomic) Post *post;
+@property (nonatomic) KinveyPost *post;
 @property (nonatomic) BackendServices *services;
 
 @end
@@ -58,7 +57,7 @@
     self.profilePhotoImageView.layer.masksToBounds = YES;
     self.profilePhotoImageView.layer.borderWidth = 0;
     
-    [self.services postById:self.postId completionBlock:^(Post *post) {
+    [self.services postById:self.postId completionBlock:^(KinveyPost *post) {
         [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
         [self.likesContainer setHidden:NO];
         self.post = post;
@@ -93,7 +92,7 @@
     self.post.likers = likers;
     
     [self.services savePost:self.post
-            completionBlock:^(Post *savedPost) {
+            completionBlock:^(KinveyPost *savedPost) {
                 [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[savedPost.likers count]]];
             }];
 }

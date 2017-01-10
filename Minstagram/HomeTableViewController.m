@@ -11,7 +11,6 @@
 #import "UIImage+FontAwesome.h"
 #import "PostTableViewCell.h"
 #import "Relation.h"
-#import "Post.h"
 #import "BackendServices.h"
 #import "UserViewController.h"
 #import "PostHeaderTableViewCell.h"
@@ -103,7 +102,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self.services postById:self.postIds[indexPath.section]
-            completionBlock:^(Post *post) {
+            completionBlock:^(KinveyPost *post) {
                 [cell.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
 
                 [cell.likeButton setHidden:NO];
@@ -140,7 +139,7 @@
         [cell.containerView addGestureRecognizer:tapRecognizer];
         
         [self.services postById:self.postIds[section]
-                completionBlock:^(Post *post) {
+                completionBlock:^(KinveyPost *post) {
                     NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
                     
                     [cell.containerView.postedTimeAgoLabel setText:postedTimeAgo];
@@ -167,7 +166,7 @@
         [cell.containerView addGestureRecognizer:tapRecognizer];
         
         [self.services postById:self.postIds[section]
-                completionBlock:^(Post *post) {
+                completionBlock:^(KinveyPost *post) {
                     NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
                     [cell.containerView.postedTimeAgoLabel setText:postedTimeAgo];
                     
@@ -290,7 +289,7 @@
 - (void)likeUnlikePhotoWithCell:(PostTableViewCell *)cell {
     KCSUser *activeUser = [KCSUser activeUser];
     
-    [self.services postById:cell.postId completionBlock:^(Post *post) {
+    [self.services postById:cell.postId completionBlock:^(KinveyPost *post) {
         NSMutableArray *likers = [NSMutableArray arrayWithArray:post.likers];
         
         if ([likers containsObject:activeUser.username]) {
@@ -304,7 +303,7 @@
         post.likers = likers;
         
         [self.services savePost:post
-                completionBlock:^(Post *savedPost) {
+                completionBlock:^(KinveyPost *savedPost) {
                     [cell.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[savedPost.likers count]]];
                 }];
     }];

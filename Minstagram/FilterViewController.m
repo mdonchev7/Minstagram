@@ -10,7 +10,6 @@
 #import "MinstagramViewController.h"
 #import "UIImage+Filter.h"
 #import "UIImage+Resize.h"
-#import "Post.h"
 #import "BackendServices.h"
 
 #import <KinveyKit/KinveyKit.h>

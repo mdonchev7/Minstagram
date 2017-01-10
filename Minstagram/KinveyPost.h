@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <KinveyKit/KinveyKit.h>
 
-@interface Post : NSObject <KCSPersistable>
+@interface KinveyPost : NSObject <KCSPersistable>
 
 @property (nonatomic) NSString *entityId;
 @property (nonatomic) NSString *photoId;

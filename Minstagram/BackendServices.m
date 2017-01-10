@@ -11,7 +11,7 @@
 #import <KinveyKit/KinveyKit.h>
 
 #import "Relation.h"
-#import "Post.h"
+#import "KinveyPost.h"
 
 @implementation BackendServices
 
@@ -136,16 +136,16 @@
 }
 
 - (void)postById:(NSString *)postId
- completionBlock:(void (^)(Post *))completionBlock {
+ completionBlock:(void (^)(KinveyPost *))completionBlock {
     KCSAppdataStore *postsStore =
     [KCSAppdataStore storeWithCollection:[KCSCollection collectionFromString:@"Posts"
-                                                                     ofClass:[Post class]]
+                                                                     ofClass:[KinveyPost class]]
                                  options:nil];
     
     [postsStore loadObjectWithID:postId
              withCompletionBlock:^(NSArray *posts, NSError *error) {
                  if (error == nil) {
-                     Post *post = [posts firstObject];
+                     KinveyPost *post = [posts firstObject];
                      completionBlock(post);
                  } else {
                      NSLog(@"post fetch error: %@", error);
@@ -195,7 +195,7 @@
                                                                      ofClass:[Relation class]]
                                  options:nil];
     
-    Post *postToUpload = [[Post alloc] init];
+    KinveyPost *postToUpload = [[KinveyPost alloc] init];
     postToUpload.photoId = [uploadInfo fileId];
     postToUpload.thumbnailId = [thumbnailInfo fileId];
     postToUpload.postedOn = [NSDate date];
@@ -222,8 +222,8 @@
        } withProgressBlock:nil];
 }
 
-- (void)savePost:(Post *)postToSave
- completionBlock:(void (^)(Post *))completionBlock {
+- (void)savePost:(KinveyPost *)postToSave
+ completionBlock:(void (^)(KinveyPost *))completionBlock {
     KCSAppdataStore *postsStore =
     [KCSAppdataStore storeWithCollection:[KCSCollection collectionFromString:@"Posts"
                                                                      ofClass:[Relation class]]

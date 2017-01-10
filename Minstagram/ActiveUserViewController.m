@@ -9,7 +9,6 @@
 #import "ActiveUserViewController.h"
 #import "NSString+FontAwesome.h"
 #import "ActiveUserProfileCollectionViewCell.h"
-#import "Post.h"
 #import "Relation.h"
 #import "DetailedPhotoViewController.h"
 #import "FollowersTableViewController.h"
@@ -93,7 +92,7 @@
     cell.imageView.image = nil;
     
     [self.services postById:self.postIds[indexPath.row]
-            completionBlock:^(Post *post) {
+            completionBlock:^(KinveyPost *post) {
                 NSString *thumbnailId = post.thumbnailId;
                 [self.services photoById:thumbnailId
                          completionBlock:^(UIImage *image) {
