@@ -16,6 +16,7 @@
 #import "UIImage+Resize.h"
 #import "BackendServices.h"
 #import "Minstagram-Swift.h"
+#import "Repository.h"
 
 @interface ActiveUserViewController () <FusumaDelegate>
 
@@ -28,9 +29,9 @@
 
 @property (weak, nonatomic) NSMutableArray *postIds;
 @property (weak, nonatomic) NSMutableArray *posts;
-@property (weak, nonatomic) NSMutableArray *fileIds;
 
 @property (nonatomic) BackendServices *services;
+@property (nonatomic) Repository *repository;
 
 @end
 
@@ -91,14 +92,10 @@
     
     cell.imageView.image = nil;
     
-    [self.services postById:self.postIds[indexPath.row]
-            completionBlock:^(KinveyPost *post) {
-                NSString *thumbnailId = post.thumbnailId;
-                [self.services photoById:thumbnailId
-                         completionBlock:^(UIImage *image) {
-                             [cell.imageView setImage:image];
-                         }];
-            }];
+    [self.repository thumbnailByPostId:self.postIds[indexPath.row]
+                       completionBlock:^(UIImage *thumbnail) {
+                           [cell.imageView setImage:thumbnail];
+    }];
     
     return cell;
 }
@@ -229,6 +226,14 @@
     }
     
     return _services;
+}
+
+- (Repository *)repository {
+    if (!_repository) {
+        _repository = [[Repository alloc] init];
+    }
+    
+    return _repository;
 }
 
 @end

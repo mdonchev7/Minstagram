@@ -10,6 +10,7 @@
 		4904403A1DAD293000D54588 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 490440391DAD293000D54588 /* FontAwesome.ttf */; };
 		4904403E1DAD352F00D54588 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 4904403D1DAD352F00D54588 /* NSString+FontAwesome.m */; };
 		490440411DAD3EF400D54588 /* OptionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490440401DAD3EF400D54588 /* OptionsTableViewController.m */; };
+		49051D3F1E2662710094EDE5 /* Model.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = 4911D7F91E258A54002FC03D /* Model.xcdatamodeld */; };
 		491127711DF31D8C009D0324 /* BackendServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 491127701DF31D8C009D0324 /* BackendServices.m */; };
 		4911D7FB1E258A54002FC03D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4911D7F91E258A54002FC03D /* Model.xcdatamodeld */; };
 		49203AAD1DD209FB00BF02B8 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 49203AAC1DD209FB00BF02B8 /* UIImage+FontAwesome.m */; };
@@ -66,6 +67,7 @@
 		49993FD01D70981A00033616 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49993FCF1D70981A00033616 /* AppDelegate.m */; };
 		49993FDB1D70981A00033616 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49993FDA1D70981A00033616 /* Assets.xcassets */; };
 		49993FDE1D70981A00033616 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49993FDC1D70981A00033616 /* LaunchScreen.storyboard */; };
+		499CDF061E26577D00C34D43 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = 499CDF051E26577D00C34D43 /* Repository.m */; };
 		49B84D131DF1F9B500091C59 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B84D121DF1F9B500091C59 /* UIImage+Resize.m */; };
 		49BE4D231DAA7410008ADFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BE4D221DAA7410008ADFF2 /* Main.storyboard */; };
 		49D2AA0F1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D2AA0E1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m */; };
@@ -169,6 +171,12 @@
 		49993FDA1D70981A00033616 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49993FDD1D70981A00033616 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49993FDF1D70981A00033616 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		499CDF041E26577D00C34D43 /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
+		499CDF051E26577D00C34D43 /* Repository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Repository.m; sourceTree = "<group>"; };
+		499CDF071E26579700C34D43 /* CoreDataPost+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreDataPost+CoreDataClass.h"; sourceTree = "<group>"; };
+		499CDF081E26579700C34D43 /* CoreDataPost+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CoreDataPost+CoreDataClass.m"; sourceTree = "<group>"; };
+		499CDF091E26579700C34D43 /* CoreDataPost+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreDataPost+CoreDataProperties.h"; sourceTree = "<group>"; };
+		499CDF0A1E26579700C34D43 /* CoreDataPost+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CoreDataPost+CoreDataProperties.m"; sourceTree = "<group>"; };
 		49B84D111DF1F9B500091C59 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		49B84D121DF1F9B500091C59 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49BE4D221DAA7410008ADFF2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -232,13 +240,19 @@
 		495446191DE0903B005F54B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4911D7F91E258A54002FC03D /* Model.xcdatamodeld */,
+				499CDF071E26579700C34D43 /* CoreDataPost+CoreDataClass.h */,
+				499CDF081E26579700C34D43 /* CoreDataPost+CoreDataClass.m */,
+				499CDF091E26579700C34D43 /* CoreDataPost+CoreDataProperties.h */,
+				499CDF0A1E26579700C34D43 /* CoreDataPost+CoreDataProperties.m */,
 				4911276F1DF31D8C009D0324 /* BackendServices.h */,
 				491127701DF31D8C009D0324 /* BackendServices.m */,
 				49E749E81DCDF87800D42D7A /* KinveyPost.h */,
 				49E749E91DCDF87800D42D7A /* KinveyPost.m */,
-				4911D7F91E258A54002FC03D /* Model.xcdatamodeld */,
 				4954461A1DE09053005F54B7 /* Relation.h */,
 				4954461B1DE09053005F54B7 /* Relation.m */,
+				499CDF041E26577D00C34D43 /* Repository.h */,
+				499CDF051E26577D00C34D43 /* Repository.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -583,6 +597,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49051D3F1E2662710094EDE5 /* Model.xcdatamodeld in Resources */,
 				49993FDE1D70981A00033616 /* LaunchScreen.storyboard in Resources */,
 				493F50071E046EED0050B203 /* Proxima Nova Semibold.otf in Resources */,
 				4997FE5E1DEF6A5F009A5C26 /* FusumaViewController.xib in Resources */,
@@ -625,6 +640,7 @@
 				49DE12B51DABC1AA007EEF94 /* ActiveUserViewController.m in Sources */,
 				49B84D131DF1F9B500091C59 /* UIImage+Resize.m in Sources */,
 				4994B8241DE37229004D5B73 /* LineView.m in Sources */,
+				499CDF061E26577D00C34D43 /* Repository.m in Sources */,
 				4994B8211DE31EAA004D5B73 /* DetailedPhotoViewController.m in Sources */,
 				499435441DA5309F0086DDC8 /* SignUpEmailViewController.m in Sources */,
 				4941AE9A1DFDA730003051FB /* FollowerTableViewCell.m in Sources */,

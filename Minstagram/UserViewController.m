@@ -14,6 +14,7 @@
 #import "FollowingTableViewController.h"
 #import "BackendServices.h"
 #import "OptionsTableViewController.h"
+#import "Repository.h"
 
 #import <KinveyKit/KinveyKit.h>
 
@@ -31,7 +32,9 @@
 @property (nonatomic) KCSUser *user;
 @property (nonatomic) NSMutableArray *postIds;
 @property (nonatomic) NSMutableArray *following;
+
 @property (nonatomic) BackendServices *services;
+@property (nonatomic) Repository *repository;
 
 @end
 
@@ -88,28 +91,28 @@
     if ([[KCSUser activeUser].username isEqualToString:self.username]) {
         NSLog(@"present edit profile view controller");
     } else {
-    [self.services relationByFollowerUsername:[KCSUser activeUser].username
-                        beingFollowedUsername:self.username
-                              completionBlock:^(Relation *relation) {
-                                  if (relation == nil) {
-                                      Relation *relationToSave = [[Relation alloc] init];
-                                      relationToSave.follower = [KCSUser activeUser].username;
-                                      relationToSave.beingFollowed = self.username;
-                                      
-                                      [self.services saveRelation:relationToSave completionBlock:^(Relation *savedRelation) {
-                                          [self.following addObject:savedRelation];
-                                          [self.actionButton setTitle:@"Following" forState:UIControlStateNormal];
-                                          [self updateFollowersCount];
-                                      }];
-                                  } else {
-                                      [self.services deleteRelation:relation
-                                                    completionBlock:^{
-                                                        [self.following removeObject:relation];
-                                                        [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
-                                                        [self updateFollowersCount];
-                                                    }];
-                                  }
-                              }];
+        [self.services relationByFollowerUsername:[KCSUser activeUser].username
+                            beingFollowedUsername:self.username
+                                  completionBlock:^(Relation *relation) {
+                                      if (relation == nil) {
+                                          Relation *relationToSave = [[Relation alloc] init];
+                                          relationToSave.follower = [KCSUser activeUser].username;
+                                          relationToSave.beingFollowed = self.username;
+                                          
+                                          [self.services saveRelation:relationToSave completionBlock:^(Relation *savedRelation) {
+                                              [self.following addObject:savedRelation];
+                                              [self.actionButton setTitle:@"Following" forState:UIControlStateNormal];
+                                              [self updateFollowersCount];
+                                          }];
+                                      } else {
+                                          [self.services deleteRelation:relation
+                                                        completionBlock:^{
+                                                            [self.following removeObject:relation];
+                                                            [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
+                                                            [self updateFollowersCount];
+                                                        }];
+                                      }
+                                  }];
     }
 }
 
@@ -127,12 +130,10 @@
     
     cell.postId = self.postIds[indexPath.row];
     
-    [self.services postById:self.postIds[indexPath.row] completionBlock:^(KinveyPost *post) {
-        [self.services photoById:post.photoId
-                 completionBlock:^(UIImage *image) {
-                     [cell.imageView setImage:image];
-                 }];
-    }];
+    [self.repository thumbnailByPostId:self.postIds[indexPath.row]
+                       completionBlock:^(UIImage *thumbnail) {
+                           [cell.imageView setImage:thumbnail];
+                       }];
     
     return cell;
 }
@@ -224,6 +225,14 @@
     }
     
     return _services;
+}
+
+- (Repository *)repository {
+    if (!_repository) {
+        _repository = [[Repository alloc] init];
+    }
+    
+    return _repository;
 }
 
 @end
