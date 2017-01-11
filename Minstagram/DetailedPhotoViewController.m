@@ -13,6 +13,7 @@
 #import "LikersTableViewController.h"
 #import "BackendServices.h"
 #import "UserViewController.h"
+#import "Repository.h"
 
 @interface DetailedPhotoViewController ()
 
@@ -29,6 +30,7 @@
 
 @property (nonatomic) KinveyPost *post;
 @property (nonatomic) BackendServices *services;
+@property (nonatomic) Repository *repository;
 
 @end
 
@@ -57,23 +59,27 @@
     self.profilePhotoImageView.layer.masksToBounds = YES;
     self.profilePhotoImageView.layer.borderWidth = 0;
     
-    [self.services postById:self.postId completionBlock:^(KinveyPost *post) {
-        [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
-        [self.likesContainer setHidden:NO];
-        self.post = post;
-        [self setPostedOnDate];
-        
-        if ([post.likers containsObject:[KCSUser activeUser].username]) {
-            [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
-        }
-        
-        [self.services photoById:post.photoId completionBlock:^(UIImage *image) {
-            [self.photoImageView setImage:image];
-            self.photoImageView.userInteractionEnabled = YES;
-            [self.activityIndicator setHidesWhenStopped:YES];
-            [self.activityIndicator stopAnimating];
-        }];
-    }];
+    [self.repository postById:self.postId
+              completionBlock:^(CoreDataPost *post) {
+                  [self.likesContainer setHidden:NO];
+                  UIImage *image = [UIImage imageWithData:post.photo];
+                  [self.photoImageView setImage:image];
+                  self.photoImageView.userInteractionEnabled = YES;
+                  [self.activityIndicator setHidesWhenStopped:YES];
+                  [self.activityIndicator stopAnimating];
+              }];
+    
+    [self.services postById:self.postId
+            completionBlock:^(KinveyPost *post) {
+                self.post = post;
+                
+                [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
+                [self setPostedOnDate];
+                
+                if ([post.likers containsObject:[KCSUser activeUser].username]) {
+                    [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
+                }
+            }];
 }
 
 - (IBAction)likeUnlikePhoto:(id)sender {
@@ -189,6 +195,14 @@
     }
     
     return _services;
+}
+
+- (Repository *)repository {
+    if (!_repository) {
+        _repository = [[Repository alloc] init];
+    }
+    
+    return _repository;
 }
 
 @end

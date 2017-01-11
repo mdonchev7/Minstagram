@@ -20,5 +20,6 @@
 @dynamic thumbnail;
 @dynamic likes;
 @dynamic postedOn;
+@dynamic photoId;
 
 @end

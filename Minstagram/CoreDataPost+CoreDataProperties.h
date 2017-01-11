@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSData *thumbnail;
 @property (nonatomic) int16_t likes;
 @property (nullable, nonatomic, copy) NSDate *postedOn;
+@property (nullable, nonatomic, copy) NSString *photoId;
 
 @end
 

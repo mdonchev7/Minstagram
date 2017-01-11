@@ -9,9 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "CoreDataPost+CoreDataClass.h"
+
 @interface Repository : NSObject
 
 - (void)thumbnailByPostId:(NSString *)postId
  completionBlock:(void (^)(UIImage *thumbnail))completionBlock;
+
+- (void)postById:(NSString *)postId
+          completionBlock:(void (^)(CoreDataPost *post))completionBlock;
 
 @end
