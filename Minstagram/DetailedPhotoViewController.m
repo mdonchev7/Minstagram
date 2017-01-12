@@ -61,7 +61,6 @@
     
     [self.repository postById:self.postId
               completionBlock:^(CoreDataPost *post) {
-                  [self.likesContainer setHidden:NO];
                   UIImage *image = [UIImage imageWithData:post.photo];
                   [self.photoImageView setImage:image];
                   self.photoImageView.userInteractionEnabled = YES;
@@ -73,6 +72,7 @@
             completionBlock:^(KinveyPost *post) {
                 self.post = post;
                 
+                [self.likesContainer setHidden:NO];
                 [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
                 [self setPostedOnDate];
                 
