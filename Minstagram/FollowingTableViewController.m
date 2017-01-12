@@ -25,6 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipe:)];
+    [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:gestureRecognizer];
+    
     [self.services followingByUsername:self.username
                        completionBlock:^(NSArray *following) {
                            for (Relation *relation in following) {
@@ -120,6 +124,12 @@
     }
     
     return cell;
+}
+
+#pragma mark - Navigation
+
+- (void)handleRightSwipe:(UISwipeGestureRecognizer *)recognizer {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Lazy Instantiation

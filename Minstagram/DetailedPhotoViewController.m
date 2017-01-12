@@ -39,6 +39,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipe:)];
+    [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:gestureRecognizer];
+    
     [self.activityIndicator startAnimating];
 }
 
@@ -185,6 +189,10 @@
     UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
     uvc.username = self.usernameLabel.text;
     [self.navigationController showViewController:uvc sender:self];
+}
+
+- (void)handleRightSwipe:(UISwipeGestureRecognizer *)recognizer {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Lazy Instantiation
