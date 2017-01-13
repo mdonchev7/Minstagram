@@ -2,12 +2,13 @@
 //  CoreDataPost+CoreDataProperties.h
 //  Minstagram
 //
-//  Created by Mincho Dzhagalov on 1/11/17.
+//  Created by Mincho Dzhagalov on 1/13/17.
 //  Copyright © 2017 Mincho Dzhagalov. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
 
 #import "CoreDataPost+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,10 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSString *identifier;
 @property (nullable, nonatomic, retain) NSData *photo;
-@property (nullable, nonatomic, retain) NSData *thumbnail;
-@property (nonatomic) int16_t likes;
-@property (nullable, nonatomic, copy) NSDate *postedOn;
 @property (nullable, nonatomic, copy) NSString *photoId;
+@property (nullable, nonatomic, retain) NSData *thumbnail;
 
 @end
 

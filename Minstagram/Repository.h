@@ -13,10 +13,7 @@
 
 @interface Repository : NSObject
 
-- (void)thumbnailByPostId:(NSString *)postId
- completionBlock:(void (^)(UIImage *thumbnail))completionBlock;
-
-- (void)postById:(NSString *)postId
-          completionBlock:(void (^)(CoreDataPost *post))completionBlock;
+- (void)thumbnailByPostId:(NSString *)postId completionBlock:(void (^)(UIImage *thumbnail))completionBlock;
+- (void)imageByPostId:(NSString *)postId completionBlock:(void (^)(UIImage *image))completionBlock;
 
 @end

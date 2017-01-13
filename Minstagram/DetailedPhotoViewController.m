@@ -50,7 +50,8 @@
     [super viewWillAppear:animated];
     
     [self.likeButton.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:25.0f]];
-    [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart-o"] forState:UIControlStateNormal];
+    [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart-o"]
+                     forState:UIControlStateNormal];
     [self.commentButton.titleLabel setFont:[UIFont fontWithName:@"FontAwesome" size:26.0f]];
     [self.commentButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-comment-o"] forState:UIControlStateNormal];
     [self.heartLabel setFont:[UIFont fontWithName:@"FontAwesome" size:12.0f]];
@@ -63,27 +64,25 @@
     self.profilePhotoImageView.layer.masksToBounds = YES;
     self.profilePhotoImageView.layer.borderWidth = 0;
     
-    [self.repository postById:self.postId
-              completionBlock:^(CoreDataPost *post) {
-                  UIImage *image = [UIImage imageWithData:post.photo];
-                  [self.photoImageView setImage:image];
-                  self.photoImageView.userInteractionEnabled = YES;
-                  [self.activityIndicator setHidesWhenStopped:YES];
-                  [self.activityIndicator stopAnimating];
-              }];
+    [self.repository imageByPostId:self.postId completionBlock:^(UIImage *image) {
+        [self.photoImageView setImage:image];
+        self.photoImageView.userInteractionEnabled = YES;
+        [self.activityIndicator setHidesWhenStopped:YES];
+        [self.activityIndicator stopAnimating];
+    }];
     
-    [self.services postById:self.postId
-            completionBlock:^(KinveyPost *post) {
-                self.post = post;
-                
-                [self.likesContainer setHidden:NO];
-                [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
-                [self setPostedOnDate];
-                
-                if ([post.likers containsObject:[KCSUser activeUser].username]) {
-                    [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
-                }
-            }];
+    [self.services postById:self.postId completionBlock:^(KinveyPost *post) {
+        self.post = post;
+        
+        [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
+        [self setDate:post.postedOn];
+        
+        [self.likesContainer setHidden:NO];
+        
+        if ([post.likers containsObject:[KCSUser activeUser].username]) {
+            [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
+        }
+    }];
 }
 
 - (IBAction)likeUnlikePhoto:(id)sender {
@@ -101,10 +100,9 @@
     
     self.post.likers = likers;
     
-    [self.services savePost:self.post
-            completionBlock:^(KinveyPost *savedPost) {
-                [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[savedPost.likers count]]];
-            }];
+    [self.services savePost:self.post completionBlock:^(KinveyPost *savedPost) {
+        [self.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[savedPost.likers count]]];
+    }];
 }
 
 - (IBAction)commentOnPhoto:(UIButton *)sender {
@@ -124,8 +122,8 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)setPostedOnDate {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:self.post.postedOn];
+- (void)setDate:(NSDate *)date {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:date];
     [self.postedOnLabel setText:[NSString stringWithFormat:@"%ld %@, %ld", (long)[components day], [self monthFromNumber:[components month]], (long)[components year]]];
     [self.postedOnLabel setHidden:NO];
 }

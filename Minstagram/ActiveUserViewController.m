@@ -83,7 +83,9 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ActiveUserProfileCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"reusable cell" forIndexPath:indexPath];
+    ActiveUserProfileCollectionViewCell *cell =
+    [self.collectionView dequeueReusableCellWithReuseIdentifier:@"reusable cell" forIndexPath:indexPath];
+    
     if (cell == nil) {
         cell = [[ActiveUserProfileCollectionViewCell alloc] init];
     }

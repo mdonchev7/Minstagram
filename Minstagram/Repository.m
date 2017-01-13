@@ -18,9 +18,8 @@
 
 @implementation Repository
 
-- (void)thumbnailByPostId:(NSString *)postId
-          completionBlock:(void (^)(UIImage *))completionBlock {
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+- (void)thumbnailByPostId:(NSString *)postId completionBlock:(void (^)(UIImage *))completionBlock {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [delegate managedObjectContext];
     
@@ -37,32 +36,30 @@
             UIImage *thumbnail = [UIImage imageWithData:post.thumbnail];
             completionBlock(thumbnail);
         } else if ([matches count] == 0) {
-            [self.services postById:postId
-                    completionBlock:^(KinveyPost *post) {
-                        [self.services photoById:post.thumbnailId
-                                 completionBlock:^(UIImage *image) {
-                                     CoreDataPost *coreDataPost = [NSEntityDescription
-                                                                   insertNewObjectForEntityForName:@"CoreDataPost"
-                                                                   inManagedObjectContext:context];
-                                     
-                                     coreDataPost.identifier = post.entityId;
-                                     coreDataPost.thumbnail = UIImageJPEGRepresentation(image, 1.0f);
-                                     coreDataPost.likes = [post.likers count];
-                                     coreDataPost.postedOn = post.postedOn;
-                                     coreDataPost.photoId = post.photoId;
-                                     
-                                     completionBlock(image);
-                                 }];
-                    }];
+            [self.services postById:postId completionBlock:^(KinveyPost *post) {
+                [self.services photoById:post.thumbnailId completionBlock:^(UIImage *image) {
+                    CoreDataPost *coreDataPost = [NSEntityDescription
+                                                  insertNewObjectForEntityForName:@"CoreDataPost"
+                                                  inManagedObjectContext:context];
+                    
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        coreDataPost.thumbnail = UIImageJPEGRepresentation(image, 1.0f);
+                    });
+                    
+                    coreDataPost.identifier = post.entityId;
+                    coreDataPost.photoId = post.photoId;
+                    
+                    completionBlock(image);
+                }];
+            }];
         }
     } else {
         NSLog(@"%@", error);
     }
 }
 
-- (void)postById:(NSString *)postId
-     completionBlock:(void (^)(CoreDataPost *))completionBlock {
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+- (void)imageByPostId:(NSString *)postId completionBlock:(void (^)(UIImage *))completionBlock {
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [delegate managedObjectContext];
     
@@ -79,36 +76,39 @@
             CoreDataPost *post = [matches firstObject];
             
             if (post.photo == nil) {
-                [self.services photoById:post.photoId
-                         completionBlock:^(UIImage *image) {
-                             post.photo = UIImageJPEGRepresentation(image, 1.0f);
-                             completionBlock(post);
-                         }];
+                [self.services photoById:post.photoId completionBlock:^(UIImage *image) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        post.photo = UIImageJPEGRepresentation(image, 1.0f);
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            completionBlock(image);
+                        });
+                    });
+                }];
             } else {
-                completionBlock(post);
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    UIImage *image = [UIImage imageWithData:post.photo];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(image);
+                    });
+                });
             }
         } else {
-            [self.services postById:postId
-                    completionBlock:^(KinveyPost *post) {
-                        CoreDataPost *coreDataPost =
-                        [NSEntityDescription insertNewObjectForEntityForName:@"CoreDataPost"
-                                                                                   inManagedObjectContext:context];
+            [self.services postById:postId completionBlock:^(KinveyPost *post) {
+                CoreDataPost *coreDataPost = [NSEntityDescription insertNewObjectForEntityForName:@"CoreDataPost"
+                                                                           inManagedObjectContext:context];
+                
+                [self.services photoById:post.photoId completionBlock:^(UIImage *image) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        coreDataPost.photo = UIImageJPEGRepresentation(image, 1.0f);
                         
-                        coreDataPost.identifier = post.entityId;
-                        coreDataPost.likes = [post.likers count];
-                        coreDataPost.postedOn = post.postedOn;
-                        coreDataPost.photoId = post.photoId;
-                        
-                        [self.services photoById:post.thumbnailId
-                                 completionBlock:^(UIImage *image) {
-                                     coreDataPost.thumbnail = UIImageJPEGRepresentation(image, 1.0f);
-                                 }];
-                        [self.services photoById:post.photoId
-                                 completionBlock:^(UIImage *image) {
-                                     coreDataPost.photo = UIImageJPEGRepresentation(image, 1.0f);
-                                     completionBlock(coreDataPost);
-                                 }];
-                    }];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            completionBlock(image);
+                        });
+                    });
+                }];
+            }];
         }
     } else {
         NSLog(@"%@", error);
