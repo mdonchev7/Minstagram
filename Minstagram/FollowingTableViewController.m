@@ -93,6 +93,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FollowingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reusable cell" forIndexPath:indexPath];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     KCSUser *user = self.users[indexPath.row];
     
     [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
@@ -130,6 +132,18 @@
 
 - (void)handleRightSwipe:(UISwipeGestureRecognizer *)recognizer {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    FollowingTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
+    uvc.username = cell.usernameButton.titleLabel.text;
+    
+    [self.navigationController pushViewController:uvc animated:YES];
 }
 
 #pragma mark - Lazy Instantiation

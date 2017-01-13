@@ -85,6 +85,8 @@
     PostTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"reusable cell" forIndexPath:indexPath];
     [cell awakeFromNib];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     if (cell == nil) {
         cell = [[PostTableViewCell alloc] init];
     }
@@ -99,8 +101,6 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleImageViewDoubleTap:)];
     tapRecognizer.numberOfTapsRequired = 2;
     [cell.photoImageView addGestureRecognizer:tapRecognizer];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     [self.services postById:self.postIds[indexPath.section]
             completionBlock:^(KinveyPost *post) {
@@ -187,10 +187,6 @@
         
         return cell;
     }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - Helper Methods

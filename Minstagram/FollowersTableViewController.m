@@ -62,6 +62,8 @@
     FollowerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reusable cell"
                                                                   forIndexPath:indexPath];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     KCSUser *user = self.followers[indexPath.row];
     
     [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
@@ -127,7 +129,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    FollowerTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
+    uvc.username = cell.usernameButton.titleLabel.text;
+    
+    [self.navigationController pushViewController:uvc animated:YES];
 }
 
 #pragma mark - Navigation

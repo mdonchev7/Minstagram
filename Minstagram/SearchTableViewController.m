@@ -71,6 +71,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reusable cell" forIndexPath:indexPath];
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     KCSUser *user = self.users[indexPath.row];
     [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
     [cell.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
@@ -83,10 +85,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.searchController.searchBar setHidden:YES];
     
     SearchTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
