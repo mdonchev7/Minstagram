@@ -1,3 +1,5 @@
+#Minstagram
+
 - UITabBarController based application
   * Tab #1: users can see all the people they are following posts
     * UITableView with custom UITableviewcell layout
