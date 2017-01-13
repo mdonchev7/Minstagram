@@ -21,7 +21,7 @@
 - Core Data to cache posts after they are being retrieved from the server
     * Post entity
   
-- NSSstring and UIImage categories (Font Awesome)
+- NSString and UIImage categories (Font Awesome)
     * Font Awesome predefined icons
 
 - UISwipeGestureRecognizer
