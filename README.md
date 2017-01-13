@@ -25,4 +25,4 @@
     * Font Awesome predefined icons
 
 - UISwipeGestureRecognizer
-    * Swiping right on any non top level UIViewController will pop it out of its UINavigationController's stack
+    * Swiping right on any non top level UIViewController will dismiss it
