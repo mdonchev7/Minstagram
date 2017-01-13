@@ -1,4 +1,4 @@
-- UITabBarController based application
+UITabBarController based application
   Tab #1: users can see all the people they are following posts
     UITableView with custom UITableviewcell layout
   Tab #2: users can search for other users by their username
@@ -10,17 +10,17 @@
     A custom view for user's profile photo, number of posts, people that are following them, people they are following
     UICollectionView for user's posts
     
-- Consumes Kinvey's backend services (through their iOS API)
+Consumes Kinvey's backend services (through their iOS API)
     User entity
     Post entity
     Relation entity
     Photo data
   
-- Core Data to cache posts after they are being retrieved from the server
+Core Data to cache posts after they are being retrieved from the server
     Post entity
   
-- NSSstring and UIImage categories (Font Awesome)
+NSSstring and UIImage categories (Font Awesome)
     Font Awesome predefined icons
 
-- UISwipeGestureRecognizer
+UISwipeGestureRecognizer
     Swiping right on any non top level UIViewController will pop it out of its UINavigationController's stack
