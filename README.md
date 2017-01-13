@@ -1,6 +1,6 @@
 #Minstagram
 
-- UITabBarController based application
+- <h3>UITabBarController based application<h3>
   * Tab #1: users can see all the people they are following posts
     * UITableView with custom UITableviewcell layout
   * Tab #2: users can search for other users by their username
@@ -12,17 +12,17 @@
     * A custom view for user's profile photo, number of posts, people that are following them, people they are following
     * UICollectionView for user's posts
     
-- Consumes Kinvey's backend services (through their iOS API)
+- <h3>Consumes Kinvey's backend services (through their iOS API)<h3>
     * User entity
     * Post entity
     * Relation entity
     * Photo data
   
-- Core Data to cache posts after they are being retrieved from the server
+- <h3>Core Data to cache posts after they are being retrieved from the server<h3>
     * Post entity
   
-- NSSstring and UIImage categories (Font Awesome)
+- <h3>NSSstring and UIImage categories (Font Awesome)<h3>
     * Font Awesome predefined icons
 
-- UISwipeGestureRecognizer
+- <h3>UISwipeGestureRecognizer<h3>
     * Swiping right on any non top level UIViewController will pop it out of its UINavigationController's stack
