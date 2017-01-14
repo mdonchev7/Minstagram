@@ -46,6 +46,10 @@
     }
 }
 
+- (IBAction)navigateToLoginViewController:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma Mark - Lazy Instantiation
 
 - (BackendServices *)services {

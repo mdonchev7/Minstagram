@@ -16,7 +16,7 @@
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
-          completionBlock:(void (^)(KCSUser *user, KCSUserActionResult result))completionBlock;
+          completionBlock:(void (^)(KCSUser *user, NSError *error))completionBlock;
 
 - (void)userByEmail:(NSString *)email
      completionBlock:(void (^)(KCSUser *user))completionBlock;

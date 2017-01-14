@@ -56,15 +56,11 @@
 
 - (void)loginWithUsername:(NSString *)username
                  password:(NSString *)password
-          completionBlock:(void (^)(KCSUser *, KCSUserActionResult))completionBlock {
+          completionBlock:(void (^)(KCSUser *, NSError *))completionBlock {
     [KCSUser loginWithUsername:username
                       password:password
            withCompletionBlock:^(KCSUser *user, NSError *error, KCSUserActionResult result) {
-               if (error == nil) {
-                   completionBlock(user, result);
-               } else {
-                   NSLog(@"user login error: %@", error);
-               }
+               completionBlock(user, error);
            }];
 }
 

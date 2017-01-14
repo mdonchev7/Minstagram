@@ -27,7 +27,7 @@
     
     KCSUser *activeUser = [KCSUser activeUser];
     if (!activeUser || [activeUser.username isEqualToString:@"prelogin"]) {
-        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"Login View Controller"];
+        UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"Login View Controller Parent View Controller"];
         
         self.window.rootViewController = vc;
         [self.window makeKeyAndVisible];

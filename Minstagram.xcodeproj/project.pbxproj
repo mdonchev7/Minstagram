@@ -78,6 +78,7 @@
 		49DE12B51DABC1AA007EEF94 /* ActiveUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DE12B41DABC1AA007EEF94 /* ActiveUserViewController.m */; };
 		49E749EA1DCDF87800D42D7A /* KinveyPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E749E91DCDF87800D42D7A /* KinveyPost.m */; };
 		49F728211DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */; };
+		49F7C4891E2A7D88005A451E /* LoginSceneLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7C4881E2A7D88005A451E /* LoginSceneLineView.m */; };
 		49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FD7E191DEF2A0A00194103 /* FilterViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -195,6 +196,8 @@
 		49E749E91DCDF87800D42D7A /* KinveyPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KinveyPost.m; sourceTree = "<group>"; };
 		49F7281F1DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveUserProfileCollectionViewCell.h; sourceTree = "<group>"; };
 		49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveUserProfileCollectionViewCell.m; sourceTree = "<group>"; };
+		49F7C4871E2A7D88005A451E /* LoginSceneLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSceneLineView.h; sourceTree = "<group>"; };
+		49F7C4881E2A7D88005A451E /* LoginSceneLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSceneLineView.m; sourceTree = "<group>"; };
 		49FD7E181DEF2A0A00194103 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
 		49FD7E191DEF2A0A00194103 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -529,6 +532,8 @@
 				4982A5C61E02FDD100C09557 /* Post */,
 				4994B8221DE37229004D5B73 /* LineView.h */,
 				4994B8231DE37229004D5B73 /* LineView.m */,
+				49F7C4871E2A7D88005A451E /* LoginSceneLineView.h */,
+				49F7C4881E2A7D88005A451E /* LoginSceneLineView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -657,6 +662,7 @@
 				4986C1B51DE5D7F3000A2796 /* SearchTableViewController.m in Sources */,
 				4986C1BE1DE60213000A2796 /* UserViewController.m in Sources */,
 				4911D7FB1E258A54002FC03D /* Model.xcdatamodeld in Sources */,
+				49F7C4891E2A7D88005A451E /* LoginSceneLineView.m in Sources */,
 				4982A5B81E02FA7800C09557 /* PostHeaderTableViewCell.m in Sources */,
 				4997FE571DEF6A5F009A5C26 /* FSCameraView.swift in Sources */,
 				49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */,
