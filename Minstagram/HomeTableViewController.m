@@ -26,7 +26,6 @@
 
 @property (nonatomic) BackendServices *services;
 @property (nonatomic) Repository *repository;
-@property (nonatomic) NSMutableArray *requestedImages;
 
 @end
 
@@ -151,9 +150,7 @@
             NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
             if ([profilePhotoId isEqualToString:@""]) {
                 [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-            } else if (![self.requestedImages containsObject:profilePhotoId]) {
-                [self.requestedImages addObject:profilePhotoId];
-                
+            } else {
                 [self.services photoById:profilePhotoId completionBlock:^(UIImage *image) {
                     [cell.containerView.profilePhotoImageView setImage:image];
                 }];
@@ -167,8 +164,7 @@
         tapRecognizer.numberOfTapsRequired = 1;
         [cell.containerView addGestureRecognizer:tapRecognizer];
         
-        [self.services postById:self.postIds[section]
-                completionBlock:^(KinveyPost *post) {
+        [self.services postById:self.postIds[section] completionBlock:^(KinveyPost *post) {
                     NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
                     [cell.containerView.postedTimeAgoLabel setText:postedTimeAgo];
                     
@@ -178,13 +174,10 @@
                     NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
                     if ([profilePhotoId isEqualToString:@""]) {
                         [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-                    } else if (![self.requestedImages containsObject:profilePhotoId]) {
-                        [self.requestedImages addObject:profilePhotoId];
-                        
-                        [self.services photoById:profilePhotoId
-                                 completionBlock:^(UIImage *image) {
-                                     [cell.containerView.profilePhotoImageView setImage:image];
-                                 }];
+                    } else {
+                        [self.services photoById:profilePhotoId completionBlock:^(UIImage *image) {
+                            [cell.containerView.profilePhotoImageView setImage:image];
+                        }];
                     }
                 }];
         
@@ -366,14 +359,6 @@
     }
     
     return _repository;
-}
-
-- (NSMutableArray *)requestedImages {
-    if (!_requestedImages) {
-        _requestedImages = [[NSMutableArray alloc] init];
-    }
-    
-    return _requestedImages;
 }
 
 @end

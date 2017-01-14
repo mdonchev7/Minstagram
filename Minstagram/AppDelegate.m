@@ -62,11 +62,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"CoreDataPost"];
-    NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"CoreDataPost"];
+    NSError *error = nil;
+    NSArray *matches = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
-    NSError *deleteError = nil;
-    [self.persistentStoreCoordinator executeRequest:delete withContext:self.managedObjectContext error:&deleteError];
+    if (error == nil) {
+        for (id post in matches) {
+            [self.managedObjectContext deleteObject:post];
+        }
+    }
     
     [self saveContext];
 }
