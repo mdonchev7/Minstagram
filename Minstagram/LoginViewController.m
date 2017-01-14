@@ -133,9 +133,9 @@
 - (IBAction)usernameTextFieldEditingDidBegin:(UITextField *)sender {
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
-        self.usernameTextFieldVerticalConstraintTop.constant -= 60;
+        self.usernameTextFieldVerticalConstraintTop.constant -= 65;
         self.usernameTextFieldVerticalConstraintBottom.constant -= 5;
-        self.passwordTextFieldVerticalConstraintBottom.constant -= 5;
+        self.passwordTextFieldVerticalConstraintBottom.constant -= 10;
         [self.view layoutIfNeeded];
     }];
 }
@@ -143,9 +143,9 @@
 - (IBAction)usernameTextFieldEditingDidEnd:(UITextField *)sender {
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
-        self.usernameTextFieldVerticalConstraintTop.constant += 60;
+        self.usernameTextFieldVerticalConstraintTop.constant += 65;
         self.usernameTextFieldVerticalConstraintBottom.constant += 5;
-        self.passwordTextFieldVerticalConstraintBottom.constant += 5;
+        self.passwordTextFieldVerticalConstraintBottom.constant += 10;
         
         [self.view layoutIfNeeded];
     }];
@@ -154,9 +154,9 @@
 - (IBAction)passwordTextFieldEditingDidBegin:(UITextField *)sender {
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
-        self.usernameTextFieldVerticalConstraintTop.constant -= 60;
+        self.usernameTextFieldVerticalConstraintTop.constant -= 65;
         self.usernameTextFieldVerticalConstraintBottom.constant -= 5;
-        self.passwordTextFieldVerticalConstraintBottom.constant -= 5;
+        self.passwordTextFieldVerticalConstraintBottom.constant -= 10;
         [self.view layoutIfNeeded];
     }];
 }
@@ -164,9 +164,9 @@
 - (IBAction)passwordTextFieldEditingDidEnd:(UITextField *)sender {
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
-        self.usernameTextFieldVerticalConstraintTop.constant += 60;
+        self.usernameTextFieldVerticalConstraintTop.constant += 65;
         self.usernameTextFieldVerticalConstraintBottom.constant += 5;
-        self.passwordTextFieldVerticalConstraintBottom.constant += 5;
+        self.passwordTextFieldVerticalConstraintBottom.constant += 10;
         [self.view layoutIfNeeded];
     }];
 }
