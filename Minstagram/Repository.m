@@ -13,6 +13,7 @@
 @interface Repository()
 
 @property (nonatomic) BackendServices *services;
+@property (nonatomic) NSMutableArray *requestedPosts;
 
 @end
 
@@ -31,11 +32,29 @@
     NSError *error = nil;
     NSArray *matches = [context executeFetchRequest:fetchRequest error:&error];
     if (error == nil) {
-        if ([matches count] == 1) {
-            CoreDataPost *post = [matches firstObject];
-            UIImage *thumbnail = [UIImage imageWithData:post.thumbnail];
-            completionBlock(thumbnail);
-        } else if ([matches count] == 0) {
+        CoreDataPost *post = [matches firstObject];
+        
+        if (post != nil && post.thumbnailId != nil) {
+            if (post.thumbnailData == nil && ![self.requestedPosts containsObject:postId]) {
+                [self.services photoById:post.thumbnailId completionBlock:^(UIImage *image) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        post.thumbnailData = UIImageJPEGRepresentation(image, 1.0f);
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            completionBlock(image);
+                        });
+                    });
+                }];
+            } else {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    UIImage *thumbnail = [UIImage imageWithData:post.thumbnailData];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(thumbnail);
+                    });
+                });
+            }
+        } else if (![self.requestedPosts containsObject:postId]) {
             [self.services postById:postId completionBlock:^(KinveyPost *post) {
                 [self.services photoById:post.thumbnailId completionBlock:^(UIImage *image) {
                     CoreDataPost *coreDataPost = [NSEntityDescription
@@ -43,13 +62,15 @@
                                                   inManagedObjectContext:context];
                     
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        coreDataPost.thumbnail = UIImageJPEGRepresentation(image, 1.0f);
+                        coreDataPost.thumbnailData = UIImageJPEGRepresentation(image, 1.0f);
+                        coreDataPost.identifier = post.entityId;
+                        coreDataPost.imageId = post.photoId;
+                        coreDataPost.thumbnailId = post.thumbnailId;
                     });
                     
-                    coreDataPost.identifier = post.entityId;
-                    coreDataPost.photoId = post.photoId;
-                    
-                    completionBlock(image);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(image);
+                    });
                 }];
             }];
         }
@@ -72,13 +93,15 @@
     NSArray *matches = [context executeFetchRequest:fetchRequest error:&error];
     
     if (error == nil) {
-        if ([matches count] == 1) {
-            CoreDataPost *post = [matches firstObject];
-            
-            if (post.photo == nil) {
-                [self.services photoById:post.photoId completionBlock:^(UIImage *image) {
+        CoreDataPost *post = [matches firstObject];
+        
+        if (post != nil && post.imageId != nil) {
+            if (post.imageData == nil && ![self.requestedPosts containsObject:postId]) {
+                [self.services photoById:post.imageId completionBlock:^(UIImage *image) {
+                    [self.requestedPosts addObject:postId];
+                    
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        post.photo = UIImageJPEGRepresentation(image, 1.0f);
+                        post.imageData = UIImageJPEGRepresentation(image, 1.0f);
                         
                         dispatch_async(dispatch_get_main_queue(), ^{
                             completionBlock(image);
@@ -87,21 +110,26 @@
                 }];
             } else {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    UIImage *image = [UIImage imageWithData:post.photo];
+                    UIImage *image = [UIImage imageWithData:post.imageData];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completionBlock(image);
                     });
                 });
             }
-        } else {
+        } else if (![self.requestedPosts containsObject:postId]) {
             [self.services postById:postId completionBlock:^(KinveyPost *post) {
+                [self.requestedPosts addObject:postId];
+                
                 CoreDataPost *coreDataPost = [NSEntityDescription insertNewObjectForEntityForName:@"CoreDataPost"
                                                                            inManagedObjectContext:context];
                 
                 [self.services photoById:post.photoId completionBlock:^(UIImage *image) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        coreDataPost.photo = UIImageJPEGRepresentation(image, 1.0f);
+                        coreDataPost.identifier = post.entityId;
+                        coreDataPost.imageId = post.photoId;
+                        coreDataPost.imageData = UIImageJPEGRepresentation(image, 1.0f);
+                        coreDataPost.thumbnailId = post.thumbnailId;
                         
                         dispatch_async(dispatch_get_main_queue(), ^{
                             completionBlock(image);
@@ -125,6 +153,14 @@
     }
     
     return _services;
+}
+
+- (NSMutableArray *)requestedPosts {
+    if (!_requestedPosts) {
+        _requestedPosts = [[NSMutableArray alloc] init];
+    }
+    
+    return _requestedPosts;
 }
 
 @end

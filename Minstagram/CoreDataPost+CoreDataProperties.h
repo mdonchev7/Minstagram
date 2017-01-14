@@ -2,7 +2,7 @@
 //  CoreDataPost+CoreDataProperties.h
 //  Minstagram
 //
-//  Created by Mincho Dzhagalov on 1/13/17.
+//  Created by Mincho Dzhagalov on 1/14/17.
 //  Copyright © 2017 Mincho Dzhagalov. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
@@ -17,9 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<CoreDataPost *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *identifier;
-@property (nullable, nonatomic, retain) NSData *photo;
-@property (nullable, nonatomic, copy) NSString *photoId;
-@property (nullable, nonatomic, retain) NSData *thumbnail;
+@property (nullable, nonatomic, retain) NSData *imageData;
+@property (nullable, nonatomic, copy) NSString *imageId;
+@property (nullable, nonatomic, retain) NSData *thumbnailData;
+@property (nullable, nonatomic, copy) NSString *thumbnailId;
 
 @end
 

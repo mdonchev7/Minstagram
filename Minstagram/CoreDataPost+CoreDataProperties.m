@@ -2,7 +2,7 @@
 //  CoreDataPost+CoreDataProperties.m
 //  Minstagram
 //
-//  Created by Mincho Dzhagalov on 1/13/17.
+//  Created by Mincho Dzhagalov on 1/14/17.
 //  Copyright © 2017 Mincho Dzhagalov. All rights reserved.
 //  This file was automatically generated and should not be edited.
 //
@@ -16,8 +16,9 @@
 }
 
 @dynamic identifier;
-@dynamic photo;
-@dynamic photoId;
-@dynamic thumbnail;
+@dynamic imageData;
+@dynamic imageId;
+@dynamic thumbnailData;
+@dynamic thumbnailId;
 
 @end

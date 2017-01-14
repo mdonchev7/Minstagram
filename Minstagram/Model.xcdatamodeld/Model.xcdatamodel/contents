@@ -2,11 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="CoreDataPost" representedClassName="CoreDataPost" syncable="YES" codeGenerationType="class">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photo" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="photoId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="thumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thumbnailData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="thumbnailId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CoreDataPost" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="CoreDataPost" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>

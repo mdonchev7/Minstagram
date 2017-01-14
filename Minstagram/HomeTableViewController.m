@@ -16,13 +16,17 @@
 #import "PostHeaderTableViewCell.h"
 #import "TopPostHeaderTableViewCell.h"
 #import "PostHeaderTableViewCellContainerView.h"
+#import "Repository.h"
 
 @interface HomeTableViewController ()
 
 @property (nonatomic) NSMutableArray *postIds;
 @property (nonatomic) NSMutableArray *following;
-@property (nonatomic) BackendServices *services;
 @property (nonatomic) NSMutableDictionary *userByPostId;
+
+@property (nonatomic) BackendServices *services;
+@property (nonatomic) Repository *repository;
+@property (nonatomic) NSMutableArray *requestedImages;
 
 @end
 
@@ -102,24 +106,21 @@
     tapRecognizer.numberOfTapsRequired = 2;
     [cell.photoImageView addGestureRecognizer:tapRecognizer];
     
-    [self.services postById:self.postIds[indexPath.section]
-            completionBlock:^(KinveyPost *post) {
-                [cell.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
-
-                [cell.likeButton setHidden:NO];
-                [cell.commentButton setHidden:NO];
-                [cell.likesContainer setHidden:NO];
-                
-                if ([post.likers containsObject:[KCSUser activeUser].username]) {
-                    [cell.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
-                }
-                
-                [self.services photoById:post.photoId
-                         completionBlock:^(UIImage *image) {
-                             [cell.photoImageView setImage:image];
-                             cell.photoImageView.userInteractionEnabled = YES;
-                         }];
-            }];
+    [self.repository imageByPostId:self.postIds[indexPath.section] completionBlock:^(UIImage *image) {
+        [cell.photoImageView setImage:image];
+        cell.photoImageView.userInteractionEnabled = YES;
+    }];
+    
+    [self.services postById:self.postIds[indexPath.section] completionBlock:^(KinveyPost *post) {
+        [cell.likesLabel setText:[NSString stringWithFormat:@"%lu likes", (unsigned long)[post.likers count]]];
+        [cell.likeButton setHidden:NO];
+        [cell.commentButton setHidden:NO];
+        [cell.likesContainer setHidden:NO];
+        
+        if ([post.likers containsObject:[KCSUser activeUser].username]) {
+            [cell.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
+        }
+    }];
     
     return cell;
 }
@@ -139,25 +140,25 @@
         tapRecognizer.numberOfTapsRequired = 1;
         [cell.containerView addGestureRecognizer:tapRecognizer];
         
-        [self.services postById:self.postIds[section]
-                completionBlock:^(KinveyPost *post) {
-                    NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
-                    
-                    [cell.containerView.postedTimeAgoLabel setText:postedTimeAgo];
-                    
-                    KCSUser *user = [self.userByPostId valueForKey:post.entityId];
-                    [cell.containerView.usernameLabel setText:user.username];
-                    
-                    NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
-                    if ([profilePhotoId isEqualToString:@""]) {
-                        [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-                    } else {
-                        [self.services photoById:profilePhotoId
-                                 completionBlock:^(UIImage *image) {
-                                     [cell.containerView.profilePhotoImageView setImage:image];
-                                 }];
-                    }
+        [self.services postById:self.postIds[section] completionBlock:^(KinveyPost *post) {
+            NSString *postedTimeAgo = [self formattedTimeSincePostedFromDate:post.postedOn ToDate:[NSDate date]];
+            
+            [cell.containerView.postedTimeAgoLabel setText:postedTimeAgo];
+            
+            KCSUser *user = [self.userByPostId valueForKey:post.entityId];
+            [cell.containerView.usernameLabel setText:user.username];
+            
+            NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
+            if ([profilePhotoId isEqualToString:@""]) {
+                [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+            } else if (![self.requestedImages containsObject:profilePhotoId]) {
+                [self.requestedImages addObject:profilePhotoId];
+                
+                [self.services photoById:profilePhotoId completionBlock:^(UIImage *image) {
+                    [cell.containerView.profilePhotoImageView setImage:image];
                 }];
+            }
+        }];
         
         return cell;
     } else {
@@ -177,7 +178,9 @@
                     NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
                     if ([profilePhotoId isEqualToString:@""]) {
                         [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-                    } else {
+                    } else if (![self.requestedImages containsObject:profilePhotoId]) {
+                        [self.requestedImages addObject:profilePhotoId];
+                        
                         [self.services photoById:profilePhotoId
                                  completionBlock:^(UIImage *image) {
                                      [cell.containerView.profilePhotoImageView setImage:image];
@@ -355,6 +358,22 @@
     }
     
     return _userByPostId;
+}
+
+- (Repository *)repository {
+    if (!_repository) {
+        _repository = [[Repository alloc] init];
+    }
+    
+    return _repository;
+}
+
+- (NSMutableArray *)requestedImages {
+    if (!_requestedImages) {
+        _requestedImages = [[NSMutableArray alloc] init];
+    }
+    
+    return _requestedImages;
 }
 
 @end
