@@ -37,22 +37,14 @@
         if (post != nil && post.thumbnailId != nil) {
             if (post.thumbnailData == nil && ![self.requestedPosts containsObject:postId]) {
                 [self.services photoById:post.thumbnailId completionBlock:^(UIImage *image) {
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        post.thumbnailData = UIImageJPEGRepresentation(image, 1.0f);
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            completionBlock(image);
-                        });
-                    });
+                    post.thumbnailData = UIImageJPEGRepresentation(image, 1.0f);
+                    
+                    completionBlock(image);
                 }];
             } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    UIImage *thumbnail = [UIImage imageWithData:post.thumbnailData];
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        completionBlock(thumbnail);
-                    });
-                });
+                UIImage *thumbnail = [UIImage imageWithData:post.thumbnailData];
+                
+                completionBlock(thumbnail);
             }
         } else if (![self.requestedPosts containsObject:postId]) {
             [self.services postById:postId completionBlock:^(KinveyPost *post) {
@@ -61,16 +53,12 @@
                                                   insertNewObjectForEntityForName:@"CoreDataPost"
                                                   inManagedObjectContext:context];
                     
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        coreDataPost.thumbnailData = UIImageJPEGRepresentation(image, 1.0f);
-                        coreDataPost.identifier = post.entityId;
-                        coreDataPost.imageId = post.photoId;
-                        coreDataPost.thumbnailId = post.thumbnailId;
-                    });
+                    coreDataPost.thumbnailData = UIImageJPEGRepresentation(image, 1.0f);
+                    coreDataPost.identifier = post.entityId;
+                    coreDataPost.imageId = post.photoId;
+                    coreDataPost.thumbnailId = post.thumbnailId;
                     
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        completionBlock(image);
-                    });
+                    completionBlock(image);
                 }];
             }];
         }
@@ -142,8 +130,6 @@
         NSLog(@"%@", error);
     }
 }
-
-
 
 #pragma Mark - Lazy Instantiation
 

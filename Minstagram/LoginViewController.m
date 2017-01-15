@@ -47,6 +47,21 @@
                             password:@"prelogin"
                      completionBlock:^(KCSUser *user, NSError *error) {
                      }];
+    
+    NSMutableParagraphStyle *style = [self.self.usernameTextField.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    style.minimumLineHeight = self.usernameTextField.font.lineHeight - (self.usernameTextField.font.lineHeight - [UIFont fontWithName:@"Proxima Nova" size:14.0].lineHeight) / 2.0;
+
+    self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Username"
+                                                                            attributes:@{
+                                                                                         NSForegroundColorAttributeName: [UIColor colorWithRed:79/255.0f green:79/255.0f blue:79/255.0f alpha:0.5f],
+                                                                                         NSFontAttributeName : [UIFont fontWithName:@"ProximaNova-Semibold" size:14.0],
+                                                                                         NSParagraphStyleAttributeName : style
+                                                                                         }];
+    self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{
+                                                                                                                       NSForegroundColorAttributeName: [UIColor colorWithRed:79/255.0f green:79/255.0f blue:79/255.0f alpha:0.5f],
+                                                                                                                       NSFontAttributeName : [UIFont fontWithName:@"ProximaNova-Semibold" size:14.0],
+                                                                                                                       NSParagraphStyleAttributeName : style
+                                                                                                                       }];
 }
 
 - (IBAction)login:(UIButton *)sender {
@@ -113,7 +128,7 @@
         self.actionButton.backgroundColor = [self.actionButton.backgroundColor colorWithAlphaComponent:0.8f];
         [self.actionButton setEnabled:YES];
     } else if (![self.usernameTextField hasText] || ![self.passwordTextField hasText]) {
-        self.actionButton.backgroundColor = [self.actionButton.backgroundColor colorWithAlphaComponent:0.35f];
+        self.actionButton.backgroundColor = [self.actionButton.backgroundColor colorWithAlphaComponent:0.40f];
         [self.actionButton setEnabled:NO];
     }
 }
@@ -169,6 +184,12 @@
         self.passwordTextFieldVerticalConstraintBottom.constant += 10;
         [self.view layoutIfNeeded];
     }];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 #pragma mark - Navigation
