@@ -51,17 +51,8 @@
     NSMutableParagraphStyle *style = [self.self.usernameTextField.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
     style.minimumLineHeight = self.usernameTextField.font.lineHeight - (self.usernameTextField.font.lineHeight - [UIFont fontWithName:@"Proxima Nova" size:14.0].lineHeight) / 2.0;
 
-    self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Username"
-                                                                            attributes:@{
-                                                                                         NSForegroundColorAttributeName: [UIColor colorWithRed:79/255.0f green:79/255.0f blue:79/255.0f alpha:0.5f],
-                                                                                         NSFontAttributeName : [UIFont fontWithName:@"ProximaNova-Semibold" size:14.0],
-                                                                                         NSParagraphStyleAttributeName : style
-                                                                                         }];
-    self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{
-                                                                                                                       NSForegroundColorAttributeName: [UIColor colorWithRed:79/255.0f green:79/255.0f blue:79/255.0f alpha:0.5f],
-                                                                                                                       NSFontAttributeName : [UIFont fontWithName:@"ProximaNova-Semibold" size:14.0],
-                                                                                                                       NSParagraphStyleAttributeName : style
-                                                                                                                       }];
+    [self setTextFieldPlaceholderText:@"Username" forUITextField:self.usernameTextField];
+    [self setTextFieldPlaceholderText:@"Password" forUITextField:self.passwordTextField];    
 }
 
 - (IBAction)login:(UIButton *)sender {
@@ -99,7 +90,7 @@
                      }];
 }
 
-- (IBAction)handleViewTap:(UITapGestureRecognizer *)sender {
+- (IBAction)hideKeyboard:(UITapGestureRecognizer *)sender {
     [self.view endEditing:YES];
 }
 
@@ -133,7 +124,7 @@
     }
 }
 
-- (IBAction)clearUsernameTextField:(UIButton *)sender {
+- (IBAction)clearUsernameTextField:(id)sender {
     [self.usernameTextField setText:[NSString new]];
     [self.usernameTextFieldActionButton setHidden:YES];
     [self trackTextFieldsChanges];
@@ -190,6 +181,20 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+#pragma mark - Helper Methods
+
+- (void)setTextFieldPlaceholderText:(NSString *)text forUITextField:(UITextField *)textField{
+    NSMutableParagraphStyle *style = [textField.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
+    style.minimumLineHeight = textField.font.lineHeight - (textField.font.lineHeight - [UIFont fontWithName:@"Proxima Nova" size:14.0].lineHeight) / 2.0;
+    
+    textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:text
+                                                                           attributes:@{
+                                                                                        NSForegroundColorAttributeName: [UIColor colorWithRed:79/255.0f green:79/255.0f blue:79/255.0f alpha:0.2f],
+                                                                                        NSFontAttributeName : [UIFont fontWithName:@"ProximaNova-Semibold" size:14.0],
+                                                                                        NSParagraphStyleAttributeName : style
+                                                                                        }];
 }
 
 #pragma mark - Navigation
