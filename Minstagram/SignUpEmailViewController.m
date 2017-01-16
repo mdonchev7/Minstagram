@@ -10,6 +10,7 @@
 #import "SignUpFullNameViewController.h"
 #import "BackendServices.h"
 #import "NSString+FontAwesome.h"
+#import "SignUpFullNameViewController.h"
 
 @interface SignUpEmailViewController () <UITextFieldDelegate>
 
@@ -44,14 +45,6 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UIViewController *destinationVC = [segue destinationViewController];
-    
-    if ([destinationVC isKindOfClass:[SignUpFullNameViewController class]]) {
-        ((SignUpFullNameViewController *)destinationVC).email = self.textField.text;
-    }
-}
-
 - (IBAction)nextStep:(UIButton *)sender {
     [self.actionButton setTitle:[NSString new] forState:UIControlStateNormal];
     [self.activityIndicator startAnimating];
@@ -62,11 +55,15 @@
     [self.services isEmailTaken:email completionBlock:^(NSString *email, BOOL alreadyTaken) {
         [self.activityIndicator setHidesWhenStopped:YES];
         [self.activityIndicator stopAnimating];
+        [self.actionButton setTitle:@"Next" forState:UIControlStateNormal];
         
         if (alreadyTaken) {
             NSLog(@"email is already in use by another user.");
         } else {
-            [self performSegueWithIdentifier:@"Present Full Name Verification View Controller" sender:self];
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            SignUpFullNameViewController *sufnvc = [sb instantiateViewControllerWithIdentifier:@"Sign Up Full Name View Controller"];
+            sufnvc.email = self.textField.text;
+            [self.navigationController showViewController:sufnvc sender:self];
         }
     }];
 }
@@ -105,6 +102,7 @@
     [self.phoneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.emailButton setTitleColor:[[UIColor grayColor] colorWithAlphaComponent:0.8f] forState:UIControlStateNormal];
     [self setTextFieldPlaceholderText:@"Not supported yet"];
+    [self.textField setText:[NSString new]];
     [self.textField setEnabled:NO];
 }
 

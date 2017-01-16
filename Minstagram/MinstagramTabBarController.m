@@ -6,15 +6,15 @@
 //  Copyright © 2016 Mincho Dzhagalov. All rights reserved.
 //
 
-#import "MinstagramViewController.h"
+#import "MinstagramTabBarController.h"
 #import "Minstagram-Swift.h"
 #import "FilterViewController.h"
 
-@interface MinstagramViewController () <FusumaDelegate>
+@interface MinstagramTabBarController () <FusumaDelegate>
 
 @end
 
-@implementation MinstagramViewController
+@implementation MinstagramTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

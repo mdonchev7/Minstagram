@@ -24,7 +24,7 @@
     [[KCSUser activeUser] logout];
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"Login View Controller"];
+    UIViewController *vc = [sb instantiateViewControllerWithIdentifier:@"Login Parent View Controller"];
     [self presentViewController:vc animated:YES completion:nil];
 }
 

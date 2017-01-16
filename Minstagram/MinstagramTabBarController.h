@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MinstagramViewController : UITabBarController
+@interface MinstagramTabBarController : UITabBarController
 
 @property (nonatomic) NSInteger previousTabIndex;
 

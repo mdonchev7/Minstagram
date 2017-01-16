@@ -146,7 +146,7 @@
     self.navigationItem.rightBarButtonItem = button;
 }
 
-- (IBAction)showActionSheet:(UITapGestureRecognizer *)sender {
+- (IBAction)handleProfileImageImageViewTap:(UITapGestureRecognizer *)sender {
     FusumaViewController *fvc = [[FusumaViewController alloc] init];
     fvc.delegate = self;
     fvc.hasVideo = NO;

@@ -7,7 +7,7 @@
 //
 
 #import "FilterViewController.h"
-#import "MinstagramViewController.h"
+#import "MinstagramTabBarController.h"
 #import "UIImage+Filter.h"
 #import "UIImage+Resize.h"
 #import "BackendServices.h"
@@ -98,7 +98,7 @@
 #pragma Mark - Touch Events
 
 - (IBAction)didTapClose:(id)sender {
-    [self.tabBarController setSelectedIndex:((MinstagramViewController *)self.tabBarController).previousTabIndex];
+    [self.tabBarController setSelectedIndex:((MinstagramTabBarController *)self.tabBarController).previousTabIndex];
 }
 
 - (IBAction)didTapShare:(UIButton *)sender {

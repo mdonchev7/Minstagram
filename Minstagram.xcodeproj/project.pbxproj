@@ -14,7 +14,7 @@
 		491127711DF31D8C009D0324 /* BackendServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 491127701DF31D8C009D0324 /* BackendServices.m */; };
 		4911D7FB1E258A54002FC03D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4911D7F91E258A54002FC03D /* Model.xcdatamodeld */; };
 		49203AAD1DD209FB00BF02B8 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 49203AAC1DD209FB00BF02B8 /* UIImage+FontAwesome.m */; };
-		49399B2B1DF077BF0086BD34 /* MinstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49399B2A1DF077BF0086BD34 /* MinstagramViewController.m */; };
+		49399B2B1DF077BF0086BD34 /* MinstagramTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49399B2A1DF077BF0086BD34 /* MinstagramTabBarController.m */; };
 		493F50011E046D350050B203 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 493F50001E046D350050B203 /* Proxima Nova Bold.otf */; };
 		493F50031E046E0A0050B203 /* Proxima Nova Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 493F50021E046E0A0050B203 /* Proxima Nova Light.otf */; };
 		493F50051E046E3B0050B203 /* Proxima Nova Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 493F50041E046E3B0050B203 /* Proxima Nova Regular.otf */; };
@@ -94,8 +94,8 @@
 		4911D7FA1E258A54002FC03D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		49203AAB1DD209FB00BF02B8 /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
 		49203AAC1DD209FB00BF02B8 /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
-		49399B291DF077BF0086BD34 /* MinstagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinstagramViewController.h; sourceTree = "<group>"; };
-		49399B2A1DF077BF0086BD34 /* MinstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinstagramViewController.m; sourceTree = "<group>"; };
+		49399B291DF077BF0086BD34 /* MinstagramTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinstagramTabBarController.h; sourceTree = "<group>"; };
+		49399B2A1DF077BF0086BD34 /* MinstagramTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinstagramTabBarController.m; sourceTree = "<group>"; };
 		493F50001E046D350050B203 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Bold.otf"; sourceTree = "<group>"; };
 		493F50021E046E0A0050B203 /* Proxima Nova Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Light.otf"; sourceTree = "<group>"; };
 		493F50041E046E3B0050B203 /* Proxima Nova Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Regular.otf"; sourceTree = "<group>"; };
@@ -273,8 +273,8 @@
 				4982A5BF1E02FBCB00C09557 /* Upload */,
 				4982A5C01E02FBD600C09557 /* Profile */,
 				4982A5C31E02FC4300C09557 /* Post */,
-				49399B291DF077BF0086BD34 /* MinstagramViewController.h */,
-				49399B2A1DF077BF0086BD34 /* MinstagramViewController.m */,
+				49399B291DF077BF0086BD34 /* MinstagramTabBarController.h */,
+				49399B2A1DF077BF0086BD34 /* MinstagramTabBarController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -658,7 +658,7 @@
 				495C839D1DA8F52F0095B25A /* SignUpUsernameViewController.m in Sources */,
 				495C83A01DA8F5430095B25A /* SignUpFullNameViewController.m in Sources */,
 				49993FCD1D70981A00033616 /* main.m in Sources */,
-				49399B2B1DF077BF0086BD34 /* MinstagramViewController.m in Sources */,
+				49399B2B1DF077BF0086BD34 /* MinstagramTabBarController.m in Sources */,
 				4982A5BB1E02FA8300C09557 /* TopPostHeaderTableViewCell.m in Sources */,
 				4997FE531DEF6A5F009A5C26 /* FSAlbumView.swift in Sources */,
 				4941AE971DFD9EBB003051FB /* FollowingTableViewController.m in Sources */,
@@ -795,6 +795,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CODE_SIGN_ENTITLEMENTS = Minstagram/Minstagram.entitlements;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Minstagram/KinveyKit-1.41.1",
@@ -818,6 +819,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_X86_VECTOR_INSTRUCTIONS = default;
 				CODE_SIGN_ENTITLEMENTS = Minstagram/Minstagram.entitlements;
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Minstagram/KinveyKit-1.41.1",

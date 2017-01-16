@@ -10,6 +10,7 @@
 #import "BackendServices.h"
 #import "NSString+FontAwesome.h"
 #import "SignUpEmailViewController.h"
+#import "MinstagramTabBarController.h"
 
 @interface LoginViewController () <UITextFieldDelegate>
 
@@ -71,7 +72,9 @@
                          [self.actionButton setTitle:@"Login" forState:UIControlStateNormal];
                          
                          if (error == nil) {
-                             [self performSegueWithIdentifier:@"Present Tab Bar Controller From Login" sender:self];
+                             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                             MinstagramTabBarController *mtbc = [sb instantiateViewControllerWithIdentifier:@"Tab Bar Controller"];
+                             [self.navigationController showViewController:mtbc sender:self];
                          } else {
                              UIAlertController * alert = [UIAlertController
                                                           alertControllerWithTitle:@"Invalid credentials"
@@ -139,7 +142,7 @@
 - (IBAction)usernameTextFieldEditingDidBegin:(UITextField *)sender {
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
-        self.usernameTextFieldVerticalConstraintTop.constant -= 65;
+        self.usernameTextFieldVerticalConstraintTop.constant -= 70;
         self.usernameTextFieldVerticalConstraintBottom.constant -= 5;
         self.passwordTextFieldVerticalConstraintBottom.constant -= 10;
         [self.view layoutIfNeeded];
@@ -149,7 +152,7 @@
 - (IBAction)usernameTextFieldEditingDidEnd:(UITextField *)sender {
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
-        self.usernameTextFieldVerticalConstraintTop.constant += 65;
+        self.usernameTextFieldVerticalConstraintTop.constant += 70;
         self.usernameTextFieldVerticalConstraintBottom.constant += 5;
         self.passwordTextFieldVerticalConstraintBottom.constant += 10;
         
@@ -160,7 +163,7 @@
 - (IBAction)passwordTextFieldEditingDidBegin:(UITextField *)sender {
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
-        self.usernameTextFieldVerticalConstraintTop.constant -= 65;
+        self.usernameTextFieldVerticalConstraintTop.constant -= 70;
         self.usernameTextFieldVerticalConstraintBottom.constant -= 5;
         self.passwordTextFieldVerticalConstraintBottom.constant -= 10;
         [self.view layoutIfNeeded];
@@ -170,7 +173,7 @@
 - (IBAction)passwordTextFieldEditingDidEnd:(UITextField *)sender {
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3 animations:^{
-        self.usernameTextFieldVerticalConstraintTop.constant += 65;
+        self.usernameTextFieldVerticalConstraintTop.constant += 70;
         self.usernameTextFieldVerticalConstraintBottom.constant += 5;
         self.passwordTextFieldVerticalConstraintBottom.constant += 10;
         [self.view layoutIfNeeded];
@@ -201,7 +204,9 @@
 
 - (IBAction)navigateToSignUpViewController:(UIButton *)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    SignUpEmailViewController *suevc = [sb instantiateViewControllerWithIdentifier:@"Email Verification View Controller"];
+    SignUpEmailViewController *suevc = [sb instantiateViewControllerWithIdentifier:@"Sign Up Email View Controller"];
+    NSLog(@"nav controller -> %@", self.navigationController);
+    NSLog(@"sign up email vc -> %@", suevc);
     [self.navigationController showViewController:suevc sender:self];
 }
 

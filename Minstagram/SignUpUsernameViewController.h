@@ -13,5 +13,6 @@
 @property (nonatomic) NSString *email;
 @property (nonatomic) NSString *fullName;
 @property (nonatomic) NSString *password;
+@property (nonatomic) UIImage *profileImage;
 
 @end
