@@ -26,6 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipe:)];
+    [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:gestureRecognizer];
+    
     for (NSString *username in self.post.likers) {
         [self.services userByUsername:username
                       completionBlock:^(KCSUser *user) {
@@ -83,8 +87,16 @@
     KCSUser *user = self.likers[indexPath.row];
     [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
     [cell.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
-    [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-    cell.profilePhotoImageView.image = [UIImage imageNamed:@"user-default"];
+    
+    if (![[user getValueForAttribute:@"profile photo"] isEqualToString:@""]) {
+        [self.services photoById:[user getValueForAttribute:@"profile photo"]
+                 completionBlock:^(UIImage *image) {
+                     [cell.profilePhotoImageView setImage:image];
+                 }];
+    } else {
+        [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+    }
+    
     cell.profilePhotoImageView.layer.cornerRadius = cell.profilePhotoImageView.frame.size.height / 2;
     cell.profilePhotoImageView.layer.masksToBounds = YES;
     cell.profilePhotoImageView.layer.borderWidth = 0;
@@ -107,6 +119,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Navigation
+
+- (IBAction)navigateToUserViewController:(UIButton *)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
+    uvc.username = sender.titleLabel.text;
+    
+    [self.navigationController pushViewController:uvc animated:YES];
+}
+
+- (void)handleRightSwipe:(UISwipeGestureRecognizer *)recognizer {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Helper Methods
@@ -145,15 +171,6 @@
     }
     
     return _services;
-}
-
-#pragma mark - Navigation
-- (IBAction)navigateToUserViewController:(UIButton *)sender {
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];
-    uvc.username = sender.titleLabel.text;
-    
-    [self.navigationController pushViewController:uvc animated:YES];
 }
 
 @end

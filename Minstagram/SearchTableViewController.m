@@ -76,7 +76,16 @@
     KCSUser *user = self.users[indexPath.row];
     [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
     [cell.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
-    [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+    
+    if (![[user getValueForAttribute:@"profile photo"] isEqualToString:@""]) {
+        [self.services photoById:[user getValueForAttribute:@"profile photo"]
+                 completionBlock:^(UIImage *image) {
+                     [cell.profilePhotoImageView setImage:image];
+                 }];
+    } else {
+        [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+    }
+    
     cell.profilePhotoImageView.layer.cornerRadius = cell.profilePhotoImageView.frame.size.height / 2;
     cell.profilePhotoImageView.layer.masksToBounds = YES;
     cell.profilePhotoImageView.layer.borderWidth = 0;

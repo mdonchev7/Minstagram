@@ -29,10 +29,10 @@
 @property (nonatomic) IBOutlet NSLayoutConstraint *fullNameTextFieldVerticalTopAddPhotoContainerViewConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *fullNameTextFieldVerticalConstraintBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *passwordTextFieldVerticalConstraintBottom;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic) UIImage *profileImage;
 
 @property (nonatomic) BackendServices *services;
-@property (nonatomic) UIImageView *imageView;
 
 @end
 
@@ -193,7 +193,7 @@
     return YES;
 }
 
-- (IBAction)handleAddPhotoViewTap:(UITapGestureRecognizer *)sender {
+- (IBAction)addProfileImage:(UITapGestureRecognizer *)sender {
     FusumaViewController *fvc = [[FusumaViewController alloc] init];
     fvc.delegate = self;
     fvc.hasVideo = NO;
@@ -218,22 +218,20 @@
 - (void)fusumaImageSelected:(UIImage *)image {
     CGSize size = CGSizeMake(80.0f, 80.0f);
     UIImage *resizedImage = [UIImage imageWithImage:image scaledToSize:size];
+    
+    [self.imageView setImage:resizedImage];
     self.profileImage = resizedImage;
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:resizedImage];
-    [self.view addSubview:imageView];
-    imageView.frame = self.addPhotoContainerVIew.frame;
     [self.addPhotoContainerVIew setHidden:YES];
+    [self.imageView setHidden:NO];
     
-    imageView.clipsToBounds = YES;
+    self.imageView.clipsToBounds = YES;
     
-    CGPoint saveCenter = imageView.center;
-    CGRect newFrame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y, imageView.frame.size.width, imageView.frame.size.height);
-    imageView.frame = newFrame;
-    imageView.layer.cornerRadius = imageView.frame.size.width / 2.0;
-    imageView.center = saveCenter;
-    
-    self.imageView = imageView;
+    CGPoint saveCenter = self.imageView.center;
+    CGRect newFrame = CGRectMake(self.imageView.frame.origin.x, self.imageView.frame.origin.y, self.imageView.frame.size.width, self.imageView.frame.size.height);
+    self.imageView.frame = newFrame;
+    self.imageView.layer.cornerRadius = self.imageView.frame.size.width / 2.0;
+    self.imageView.center = saveCenter;
 }
 
 - (void)fusumaDismissedWithImage:(UIImage *)image {

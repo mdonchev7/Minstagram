@@ -78,6 +78,8 @@
                  completionBlock:^(UIImage *image) {
                      [cell.profilePhotoImageView setImage:image];
                  }];
+    } else {
+        [cell.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
     }
     
     if ([user.username isEqualToString:[KCSUser activeUser].username]) {
