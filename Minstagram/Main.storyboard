@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minstagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Soc-KQ-4wt">
-                                        <rect key="frame" x="0.0" y="19.5" width="375" height="62"/>
+                                        <rect key="frame" x="0.0" y="19" width="375" height="62"/>
                                         <color key="backgroundColor" red="0.52716529190000005" green="0.22027549960000001" blue="0.52250364930000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="50"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1860,7 +1860,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minstagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAA-Dw-0cn">
-                                        <rect key="frame" x="0.0" y="19.5" width="375" height="62"/>
+                                        <rect key="frame" x="0.0" y="19" width="375" height="62"/>
                                         <color key="backgroundColor" red="0.52716529190000005" green="0.22027549961394624" blue="0.52250364928022319" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="50"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -2208,7 +2208,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23S-rG-N3f">
-                                        <rect key="frame" x="381.5" y="96" width="38" height="16"/>
+                                        <rect key="frame" x="381" y="96" width="38" height="16"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
                                         <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2220,7 +2220,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Process" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3r-PX-duz">
-                                        <rect key="frame" x="553.5" y="96" width="45.5" height="16"/>
+                                        <rect key="frame" x="554" y="96" width="45.5" height="16"/>
                                         <fontDescription key="fontDescription" name="ProximaNova-Regular" family="Proxima Nova" pointSize="13"/>
                                         <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2601,6 +2601,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ujp-5J-Q24"/>
-        <segue reference="LHb-66-dwq"/>
+        <segue reference="dXM-aL-QK9"/>
     </inferredMetricsTieBreakers>
 </document>

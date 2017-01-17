@@ -32,6 +32,7 @@
 @property (nonatomic) UIImage *profileImage;
 
 @property (nonatomic) BackendServices *services;
+@property (nonatomic) UIImageView *imageView;
 
 @end
 
@@ -120,6 +121,7 @@
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3f animations:^{
         [self.addPhotoContainerVIew setHidden:YES];
+        [self.imageView setHidden:YES];
         self.fullNameTextFieldVerticalTopAddPhotoContainerViewConstraint.active = NO;
         self.fullNameTextFieldVerticalTopTitleContainerViewConstraint.active = YES;
         self.fullNameTextFieldVerticalConstraintBottom.constant -= 5;
@@ -139,6 +141,7 @@
     } completion:^(BOOL finished) {
         if (!self.fullNameTextField.isFirstResponder && !self.passwordTextField.isFirstResponder) {
             [self.addPhotoContainerVIew setHidden:NO];
+            [self.imageView setHidden:NO];
         }
     }];
 }
@@ -147,6 +150,7 @@
     [self.view layoutIfNeeded];
     [UIView animateWithDuration:0.3f animations:^{
         [self.addPhotoContainerVIew setHidden:YES];
+        [self.imageView setHidden:YES];
         self.fullNameTextFieldVerticalTopAddPhotoContainerViewConstraint.active = NO;
         self.fullNameTextFieldVerticalTopTitleContainerViewConstraint.active = YES;
         self.fullNameTextFieldVerticalConstraintBottom.constant -= 5;
@@ -166,6 +170,7 @@
     } completion:^(BOOL finished) {
         if (!self.fullNameTextField.isFirstResponder && !self.passwordTextField.isFirstResponder) {
             [self.addPhotoContainerVIew setHidden:NO];
+            [self.imageView setHidden:NO];
         }
     }];
 }
@@ -192,6 +197,7 @@
     FusumaViewController *fvc = [[FusumaViewController alloc] init];
     fvc.delegate = self;
     fvc.hasVideo = NO;
+    
     [self presentViewController:fvc animated:YES completion:nil];
 }
 
@@ -210,9 +216,24 @@
 }
 
 - (void)fusumaImageSelected:(UIImage *)image {
-    CGSize size = CGSizeMake(70, 70);
+    CGSize size = CGSizeMake(80.0f, 80.0f);
     UIImage *resizedImage = [UIImage imageWithImage:image scaledToSize:size];
     self.profileImage = resizedImage;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:resizedImage];
+    [self.view addSubview:imageView];
+    imageView.frame = self.addPhotoContainerVIew.frame;
+    [self.addPhotoContainerVIew setHidden:YES];
+    
+    imageView.clipsToBounds = YES;
+    
+    CGPoint saveCenter = imageView.center;
+    CGRect newFrame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y, imageView.frame.size.width, imageView.frame.size.height);
+    imageView.frame = newFrame;
+    imageView.layer.cornerRadius = imageView.frame.size.width / 2.0;
+    imageView.center = saveCenter;
+    
+    self.imageView = imageView;
 }
 
 - (void)fusumaDismissedWithImage:(UIImage *)image {

@@ -205,8 +205,6 @@
 - (IBAction)navigateToSignUpViewController:(UIButton *)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     SignUpEmailViewController *suevc = [sb instantiateViewControllerWithIdentifier:@"Sign Up Email View Controller"];
-    NSLog(@"nav controller -> %@", self.navigationController);
-    NSLog(@"sign up email vc -> %@", suevc);
     [self.navigationController showViewController:suevc sender:self];
 }
 

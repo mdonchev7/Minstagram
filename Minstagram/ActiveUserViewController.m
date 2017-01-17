@@ -168,7 +168,7 @@
 }
 
 - (void)fusumaImageSelected:(UIImage *)image {
-    CGSize size = CGSizeMake(70, 70);
+    CGSize size = CGSizeMake(80.0f, 80.0f);
     UIImage *resizedImage = [UIImage imageWithImage:image scaledToSize:size];
     
     KCSMetadata *metaData = [[KCSMetadata alloc] init];
