@@ -147,13 +147,13 @@
             KCSUser *user = [self.userByPostId valueForKey:post.entityId];
             [cell.containerView.usernameLabel setText:user.username];
             
-            NSString *profilePhotoId = [user getValueForAttribute:@"profile photo"];
-            if ([profilePhotoId isEqualToString:@""]) {
-                [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-            } else {
-                [self.services photoById:profilePhotoId completionBlock:^(UIImage *image) {
+            NSString *profileImageId = [user getValueForAttribute:@"profile photo"];
+            if (profileImageId) {
+                [self.services photoById:profileImageId completionBlock:^(UIImage *image) {
                     [cell.containerView.profilePhotoImageView setImage:image];
                 }];
+            } else {
+                [cell.containerView.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
             }
         }];
         

@@ -42,6 +42,7 @@
                     password:(NSString *)password
              fieldsAndValues:(NSDictionary *)fieldsAndValues
              completionBlock:(void (^)(KCSUser *, KCSUserActionResult))completionBlock {
+    NSLog(@"register called");
     [KCSUser userWithUsername:username
                      password:password
               fieldsAndValues:fieldsAndValues

@@ -65,14 +65,14 @@
                       [self.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
                       [self.collectionView reloadData];
                       
-                      NSString *photoId = [user getValueForAttribute:@"profile photo"];
-                      if ([photoId isEqualToString:@""]) {
-                          [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-                      } else {
-                          [self.services photoById:photoId
+                      NSString *profileImageId = [user getValueForAttribute:@"profile photo"];
+                      if (profileImageId) {
+                          [self.services photoById:profileImageId
                                    completionBlock:^(UIImage *image) {
                                        [self.profilePhotoImageView setImage:image];
                                    }];
+                      } else {
+                          [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
                       }
                   }];
 }

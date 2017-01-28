@@ -71,14 +71,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"reusable cell" forIndexPath:indexPath];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     KCSUser *user = self.users[indexPath.row];
     [cell.usernameButton setTitle:user.username forState:UIControlStateNormal];
     [cell.fullNameLabel setText:[user getValueForAttribute:@"full name"]];
     
-    if (![[user getValueForAttribute:@"profile photo"] isEqualToString:@""]) {
-        [self.services photoById:[user getValueForAttribute:@"profile photo"]
+    NSString *profileImageId = [user getValueForAttribute:@"profile photo"];
+    if (profileImageId) {
+        [self.services photoById:profileImageId
                  completionBlock:^(UIImage *image) {
                      [cell.profilePhotoImageView setImage:image];
                  }];
@@ -95,10 +94,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.searchController.searchBar setHidden:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     SearchTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UserViewController *uvc = [sb instantiateViewControllerWithIdentifier:@"User View Controller"];

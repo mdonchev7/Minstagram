@@ -47,32 +47,53 @@
     NSString *username = self.usernameTextField.text;
     
     [self.services isUsernameTaken:username completionBlock:^(NSString *username, BOOL alreadyTaken) {
-        [self.actionButton setTitle:@"Next" forState:UIControlStateNormal];
-        [self.activityIndicator setHidesWhenStopped:YES];
-        [self.activityIndicator stopAnimating];
-        
         if (alreadyTaken) {
             NSLog(@"Username is already taken, choose another one.");
         } else {
             KCSMetadata *metaData = [[KCSMetadata alloc] init];
             [metaData setGloballyReadable:YES];
             
-            [self.services uploadPhoto:self.profileImage
-                           withOptions:@{KCSFileACL: metaData}
-                       completionBlock:^(KCSFile *uploadInfo) {
-                           [self.services registerWithUsername:username
-                                                      password:self.password
-                                               fieldsAndValues:@{@"email": self.email,
-                                                                 @"full name": self.fullName,
-                                                                 @"posts": @[],
-                                                                 @"liked posts": @[],
-                                                                 @"profile photo": uploadInfo.fileId }
-                                               completionBlock:^(KCSUser *user, KCSUserActionResult result) {
-                                                   UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-                                                   MinstagramTabBarController *mtbc = [sb instantiateViewControllerWithIdentifier:@"Tab Bar Controller"];
-                                                   [self.navigationController showViewController:mtbc sender:self];
-                                               }];
-                       }];
+            if (self.profileImage) {
+                [self.services uploadPhoto:self.profileImage
+                               withOptions:@{KCSFileACL: metaData}
+                           completionBlock:^(KCSFile *uploadInfo) {
+                               [self.services registerWithUsername:username
+                                                          password:self.password
+                                                   fieldsAndValues:@{@"email": self.email,
+                                                                     @"full name": self.fullName,
+                                                                     @"posts": @[],
+                                                                     @"liked posts": @[],
+                                                                     @"profile photo": uploadInfo.fileId }
+                                                   completionBlock:^(KCSUser *user, KCSUserActionResult result) {
+                                                       [self.actionButton setTitle:@"Next" forState:UIControlStateNormal];
+                                                       [self.activityIndicator setHidesWhenStopped:YES];
+                                                       [self.activityIndicator stopAnimating];
+                                                       
+                                                       UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                                       MinstagramTabBarController *mtbc = [sb instantiateViewControllerWithIdentifier:@"Tab Bar Controller"];
+                                                       [self.navigationController showViewController:mtbc sender:self];
+                                                   }];
+                           }];
+                
+            } else {
+                [self.services registerWithUsername:username
+                                           password:self.password
+                                    fieldsAndValues:@{@"email": self.email,
+                                                      @"full name": self.fullName,
+                                                      @"posts": @[],
+                                                      @"liked posts": @[] }
+                                    completionBlock:^(KCSUser *user, KCSUserActionResult result) {
+                                        [self.actionButton setTitle:@"Next" forState:UIControlStateNormal];
+                                        [self.activityIndicator setHidesWhenStopped:YES];
+                                        [self.activityIndicator stopAnimating];
+                                        
+                                        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                        MinstagramTabBarController *mtbc = [sb instantiateViewControllerWithIdentifier:@"Tab Bar Controller"];
+                                        [self.navigationController showViewController:mtbc sender:self];
+                                    }];
+                
+            }
+            
         }
     }];
 }

@@ -94,9 +94,8 @@
     
     cell.imageView.image = nil;
     
-    [self.repository thumbnailByPostId:self.postIds[indexPath.row]
-                       completionBlock:^(UIImage *thumbnail) {
-                           [cell.imageView setImage:thumbnail];
+    [self.repository thumbnailByPostId:self.postIds[indexPath.row] completionBlock:^(UIImage *thumbnail) {
+        [cell.imageView setImage:thumbnail];
     }];
     
     return cell;
@@ -120,17 +119,15 @@
 }
 
 - (void)updateProfilePhotoImageView {
-    [[KCSUser activeUser] refreshFromServer:^(NSArray *objects, NSError *error) {
-        NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
-        if ([photoId isEqualToString:@""]) {
-            [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
-        } else {
-            [self.services photoById:photoId
-                     completionBlock:^(UIImage *image) {
-                         [self.profilePhotoImageView setImage:image];
-                     }];
-        }
-    }];
+    NSString *photoId = [[KCSUser activeUser] getValueForAttribute:@"profile photo"];
+    if (photoId) {
+        [self.services photoById:photoId
+                 completionBlock:^(UIImage *image) {
+                     [self.profilePhotoImageView setImage:image];
+                 }];
+    } else {
+        [self.profilePhotoImageView setImage:[UIImage imageNamed:@"user-default"]];
+    }
 }
 
 - (void)setRightBarButtonItemIcon {
@@ -164,7 +161,7 @@
 }
 
 - (void)fusumaClosed {
-
+    
 }
 
 - (void)fusumaImageSelected:(UIImage *)image {
