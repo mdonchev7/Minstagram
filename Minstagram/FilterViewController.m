@@ -85,6 +85,15 @@
         [self.imageView setImage:self.mediumQualityImage];
         
         [self setButtonImages];
+        
+        [self.normalFilterButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.sepiaToneFilterButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.fadeFilterButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.monoFilterButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.instantFilterButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.tonalFilterButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.processFilterButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.chromeFilterButton setBackgroundImage:nil forState:UIControlStateNormal];
     }
 }
 
