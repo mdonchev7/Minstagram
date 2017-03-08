@@ -15,7 +15,6 @@
 
 @property (strong, nonatomic) UISearchController *searchController;
 @property (nonatomic) NSMutableArray *users;
-
 @property (nonatomic) BackendServices *services;
 
 @end

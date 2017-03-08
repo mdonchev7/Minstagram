@@ -51,7 +51,6 @@
         withOptions:(NSDictionary *)options
     completionBlock:(void (^)(KCSFile *uploadInfo))completionBlock;
 
-
 - (void)uploadPostWithUploadInfo:(KCSFile *)uploadInfo
              thumbnailUploadInfo:(KCSFile *)thumbnailInfo
                  completionBlock:(void (^)(void))completionBlock;
@@ -70,13 +69,3 @@
        completionBlock:(void (^)(void))completionBlock;
 
 @end
-
-
-
-
-
-
-
-
-
-

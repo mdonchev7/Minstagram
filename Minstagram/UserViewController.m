@@ -8,7 +8,7 @@
 
 #import "UserViewController.h"
 #import "Relation.h"
-#import "UserProfileCollectionViewCell.h"
+#import "PostCollectionViewCell.h"
 #import "DetailedPhotoViewController.h"
 #import "FollowersTableViewController.h"
 #import "FollowingTableViewController.h"
@@ -109,12 +109,33 @@
                                               [self updateFollowersCount];
                                           }];
                                       } else {
-                                          [self.services deleteRelation:relation
-                                                        completionBlock:^{
-                                                            [self.following removeObject:relation];
-                                                            [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
-                                                            [self updateFollowersCount];
-                                                        }];
+                                          UIAlertController * alert = [UIAlertController
+                                                                       alertControllerWithTitle:[NSString stringWithFormat:@"Are you sure you want to stop following %@?", relation.beingFollowed]
+                                                                       message:nil
+                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+                                          
+                                          UIAlertAction *unfollowButton = [UIAlertAction
+                                                                      actionWithTitle:@"Unfollow"
+                                                                      style:UIAlertActionStyleDestructive
+                                                                      handler:^(UIAlertAction * action) {
+                                                                          [self.services deleteRelation:relation
+                                                                                        completionBlock:^{
+                                                                                            [self.following removeObject:relation];
+                                                                                            [self.actionButton setTitle:@"Follow" forState:UIControlStateNormal];
+                                                                                            [self updateFollowersCount];
+                                                                                        }];
+                                                                      }];
+                                          
+                                          UIAlertAction *cancelButton = [UIAlertAction
+                                                                           actionWithTitle:@"Cancel"
+                                                                           style:UIAlertActionStyleCancel
+                                                                           handler:^(UIAlertAction * action) {
+                                                                           }];
+                                          
+                                          [alert addAction:unfollowButton];
+                                          [alert addAction:cancelButton];
+                                          
+                                          [self presentViewController:alert animated:YES completion:nil];
                                       }
                                   }];
     }
@@ -130,7 +151,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UserProfileCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"reusable cell" forIndexPath:indexPath];
+    PostCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"reusable cell" forIndexPath:indexPath];
     
     cell.postId = self.postIds[indexPath.row];
     
@@ -190,7 +211,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Navigate To Detailed Photo View Controller From User View Controller"]) {
         DetailedPhotoViewController *dpvc = [segue destinationViewController];
-        dpvc.postId = ((UserProfileCollectionViewCell *)sender).postId;
+        dpvc.postId = ((PostCollectionViewCell *)sender).postId;
         dpvc.username = self.username;
     }
 }

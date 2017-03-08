@@ -284,14 +284,26 @@
     
     [self.services postById:cell.postId completionBlock:^(KinveyPost *post) {
         NSMutableArray *likers = [NSMutableArray arrayWithArray:post.likers];
+        NSMutableArray *likedPosts = [activeUser getValueForAttribute:@"liked posts"];
         
         if ([likers containsObject:activeUser.username]) {
             [likers removeObject:activeUser.username];
+            [likedPosts removeObject:cell.postId];
             [cell.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart-o"] forState:UIControlStateNormal];
         } else {
             [likers addObject:activeUser.username];
+            [likedPosts addObject:cell.postId];
             [cell.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
         }
+        
+        [activeUser setValue:likedPosts forAttribute:@"liked posts"];
+        [activeUser saveWithCompletionBlock:^(NSArray *objects, NSError *error) {
+            if (error == nil) {
+                
+            } else {
+                NSLog(@"user save error: %@", error);
+            }
+        }];
         
         post.likers = likers;
         

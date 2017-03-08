@@ -89,14 +89,26 @@
     KCSUser *activeUser = [KCSUser activeUser];
     
     NSMutableArray *likers = [NSMutableArray arrayWithArray:self.post.likers];
+    NSMutableArray *likedPosts = [activeUser getValueForAttribute:@"liked posts"];
     
     if ([likers containsObject:activeUser.username]) {
         [likers removeObject:activeUser.username];
+        [likedPosts removeObject:self.postId];
         [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart-o"] forState:UIControlStateNormal];
     } else {
         [likers addObject:activeUser.username];
+        [likedPosts addObject:self.postId];
         [self.likeButton setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-heart"] forState:UIControlStateNormal];
     }
+    
+    [activeUser setValue:likedPosts forAttribute:@"liked posts"];
+    [activeUser saveWithCompletionBlock:^(NSArray *objects, NSError *error) {
+        if (error == nil) {
+            
+        } else {
+            NSLog(@"user save error: %@", error);
+        }
+    }];
     
     self.post.likers = likers;
     

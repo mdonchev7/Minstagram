@@ -33,7 +33,6 @@
 		4982A5BB1E02FA8300C09557 /* TopPostHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4982A5BA1E02FA8300C09557 /* TopPostHeaderTableViewCell.m */; };
 		4986C1B51DE5D7F3000A2796 /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4986C1B41DE5D7F3000A2796 /* SearchTableViewController.m */; };
 		4986C1B81DE5E2EF000A2796 /* SearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4986C1B71DE5E2EF000A2796 /* SearchTableViewCell.m */; };
-		4986C1BB1DE601CC000A2796 /* UserProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4986C1BA1DE601CC000A2796 /* UserProfileCollectionViewCell.m */; };
 		4986C1BE1DE60213000A2796 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4986C1BD1DE60213000A2796 /* UserViewController.m */; };
 		4994352A1DA507920086DDC8 /* com.kinvey.KinveyKit.docset in Resources */ = {isa = PBXBuildFile; fileRef = 499435251DA507920086DDC8 /* com.kinvey.KinveyKit.docset */; };
 		4994352B1DA507920086DDC8 /* KinveyKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 499435261DA507920086DDC8 /* KinveyKit.framework */; };
@@ -71,6 +70,7 @@
 		499CDF061E26577D00C34D43 /* Repository.m in Sources */ = {isa = PBXBuildFile; fileRef = 499CDF051E26577D00C34D43 /* Repository.m */; };
 		49B84D131DF1F9B500091C59 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B84D121DF1F9B500091C59 /* UIImage+Resize.m */; };
 		49BE4D231DAA7410008ADFF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49BE4D221DAA7410008ADFF2 /* Main.storyboard */; };
+		49CB3A421E6FF621001EC821 /* LikedPostsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB3A411E6FF621001EC821 /* LikedPostsCollectionViewController.m */; };
 		49D2AA0F1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D2AA0E1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m */; };
 		49D735BF1DD372600056A082 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D735BE1DD372600056A082 /* PostTableViewCell.m */; };
 		49D846BA1DA66AB300E1BDBC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D846B91DA66AB300E1BDBC /* LoginViewController.m */; };
@@ -78,7 +78,7 @@
 		49DE12AD1DABA79B007EEF94 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DE12AC1DABA79B007EEF94 /* HomeTableViewController.m */; };
 		49DE12B51DABC1AA007EEF94 /* ActiveUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DE12B41DABC1AA007EEF94 /* ActiveUserViewController.m */; };
 		49E749EA1DCDF87800D42D7A /* KinveyPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E749E91DCDF87800D42D7A /* KinveyPost.m */; };
-		49F728211DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */; };
+		49F728211DCF7C2E00F89B5E /* PostCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F728201DCF7C2E00F89B5E /* PostCollectionViewCell.m */; };
 		49F7C4891E2A7D88005A451E /* LoginSceneLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7C4881E2A7D88005A451E /* LoginSceneLineView.m */; };
 		49FD7E1A1DEF2A0A00194103 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FD7E191DEF2A0A00194103 /* FilterViewController.m */; };
 /* End PBXBuildFile section */
@@ -129,8 +129,6 @@
 		4986C1B41DE5D7F3000A2796 /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		4986C1B61DE5E2EF000A2796 /* SearchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewCell.h; sourceTree = "<group>"; };
 		4986C1B71DE5E2EF000A2796 /* SearchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewCell.m; sourceTree = "<group>"; };
-		4986C1B91DE601CC000A2796 /* UserProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileCollectionViewCell.h; sourceTree = "<group>"; };
-		4986C1BA1DE601CC000A2796 /* UserProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileCollectionViewCell.m; sourceTree = "<group>"; };
 		4986C1BC1DE60213000A2796 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
 		4986C1BD1DE60213000A2796 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		499435251DA507920086DDC8 /* com.kinvey.KinveyKit.docset */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = com.kinvey.KinveyKit.docset; sourceTree = "<group>"; };
@@ -184,6 +182,8 @@
 		49B84D111DF1F9B500091C59 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		49B84D121DF1F9B500091C59 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49BE4D221DAA7410008ADFF2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		49CB3A401E6FF621001EC821 /* LikedPostsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikedPostsCollectionViewController.h; sourceTree = "<group>"; };
+		49CB3A411E6FF621001EC821 /* LikedPostsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikedPostsCollectionViewController.m; sourceTree = "<group>"; };
 		49D2AA0D1E23E16B0075932E /* PostHeaderTableViewCellContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostHeaderTableViewCellContainerView.h; sourceTree = "<group>"; };
 		49D2AA0E1E23E16B0075932E /* PostHeaderTableViewCellContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostHeaderTableViewCellContainerView.m; sourceTree = "<group>"; };
 		49D735BD1DD372600056A082 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
@@ -197,8 +197,8 @@
 		49DE12B41DABC1AA007EEF94 /* ActiveUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveUserViewController.m; sourceTree = "<group>"; };
 		49E749E81DCDF87800D42D7A /* KinveyPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KinveyPost.h; sourceTree = "<group>"; };
 		49E749E91DCDF87800D42D7A /* KinveyPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KinveyPost.m; sourceTree = "<group>"; };
-		49F7281F1DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveUserProfileCollectionViewCell.h; sourceTree = "<group>"; };
-		49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveUserProfileCollectionViewCell.m; sourceTree = "<group>"; };
+		49F7281F1DCF7C2E00F89B5E /* PostCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCollectionViewCell.h; sourceTree = "<group>"; };
+		49F728201DCF7C2E00F89B5E /* PostCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCollectionViewCell.m; sourceTree = "<group>"; };
 		49F7C4871E2A7D88005A451E /* LoginSceneLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSceneLineView.h; sourceTree = "<group>"; };
 		49F7C4881E2A7D88005A451E /* LoginSceneLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSceneLineView.m; sourceTree = "<group>"; };
 		49FD7E181DEF2A0A00194103 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
@@ -246,17 +246,11 @@
 		495446191DE0903B005F54B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				49CB3A451E705406001EC821 /* Kinvey Entities */,
+				49CB3A441E7053FE001EC821 /* Core Data Entities */,
 				4911D7F91E258A54002FC03D /* Model.xcdatamodeld */,
-				499CDF071E26579700C34D43 /* CoreDataPost+CoreDataClass.h */,
-				499CDF081E26579700C34D43 /* CoreDataPost+CoreDataClass.m */,
-				499CDF091E26579700C34D43 /* CoreDataPost+CoreDataProperties.h */,
-				499CDF0A1E26579700C34D43 /* CoreDataPost+CoreDataProperties.m */,
 				4911276F1DF31D8C009D0324 /* BackendServices.h */,
 				491127701DF31D8C009D0324 /* BackendServices.m */,
-				49E749E81DCDF87800D42D7A /* KinveyPost.h */,
-				49E749E91DCDF87800D42D7A /* KinveyPost.m */,
-				4954461A1DE09053005F54B7 /* Relation.h */,
-				4954461B1DE09053005F54B7 /* Relation.m */,
 				499CDF041E26577D00C34D43 /* Repository.h */,
 				499CDF051E26577D00C34D43 /* Repository.m */,
 			);
@@ -319,6 +313,8 @@
 				4941AE931DFD9EA8003051FB /* FollowersTableViewController.m */,
 				4941AE951DFD9EBB003051FB /* FollowingTableViewController.h */,
 				4941AE961DFD9EBB003051FB /* FollowingTableViewController.m */,
+				49CB3A401E6FF621001EC821 /* LikedPostsCollectionViewController.h */,
+				49CB3A411E6FF621001EC821 /* LikedPostsCollectionViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -392,14 +388,12 @@
 		4982A5C71E02FDD900C09557 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				4986C1B91DE601CC000A2796 /* UserProfileCollectionViewCell.h */,
-				4986C1BA1DE601CC000A2796 /* UserProfileCollectionViewCell.m */,
 				4941AE981DFDA730003051FB /* FollowerTableViewCell.h */,
 				4941AE991DFDA730003051FB /* FollowerTableViewCell.m */,
 				4941AE9B1DFDA738003051FB /* FollowingTableViewCell.h */,
 				4941AE9C1DFDA738003051FB /* FollowingTableViewCell.m */,
-				49F7281F1DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.h */,
-				49F728201DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m */,
+				49F7281F1DCF7C2E00F89B5E /* PostCollectionViewCell.h */,
+				49F728201DCF7C2E00F89B5E /* PostCollectionViewCell.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -526,6 +520,28 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		49CB3A441E7053FE001EC821 /* Core Data Entities */ = {
+			isa = PBXGroup;
+			children = (
+				499CDF071E26579700C34D43 /* CoreDataPost+CoreDataClass.h */,
+				499CDF081E26579700C34D43 /* CoreDataPost+CoreDataClass.m */,
+				499CDF091E26579700C34D43 /* CoreDataPost+CoreDataProperties.h */,
+				499CDF0A1E26579700C34D43 /* CoreDataPost+CoreDataProperties.m */,
+			);
+			name = "Core Data Entities";
+			sourceTree = "<group>";
+		};
+		49CB3A451E705406001EC821 /* Kinvey Entities */ = {
+			isa = PBXGroup;
+			children = (
+				49E749E81DCDF87800D42D7A /* KinveyPost.h */,
+				49E749E91DCDF87800D42D7A /* KinveyPost.m */,
+				4954461A1DE09053005F54B7 /* Relation.h */,
+				4954461B1DE09053005F54B7 /* Relation.m */,
+			);
+			name = "Kinvey Entities";
+			sourceTree = "<group>";
+		};
 		49F7281E1DCF7BE700F89B5E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,7 +656,6 @@
 				496014AC1DF2080600A6C449 /* UIImage+Filter.m in Sources */,
 				49D735BF1DD372600056A082 /* PostTableViewCell.m in Sources */,
 				49977C3F1DE4CEFB001B678E /* LikersTableViewController.m in Sources */,
-				4986C1BB1DE601CC000A2796 /* UserProfileCollectionViewCell.m in Sources */,
 				4941AE941DFD9EA8003051FB /* FollowersTableViewController.m in Sources */,
 				4941AE9D1DFDA738003051FB /* FollowingTableViewCell.m in Sources */,
 				49993FD01D70981A00033616 /* AppDelegate.m in Sources */,
@@ -662,6 +677,7 @@
 				4982A5BB1E02FA8300C09557 /* TopPostHeaderTableViewCell.m in Sources */,
 				4997FE531DEF6A5F009A5C26 /* FSAlbumView.swift in Sources */,
 				4941AE971DFD9EBB003051FB /* FollowingTableViewController.m in Sources */,
+				49CB3A421E6FF621001EC821 /* LikedPostsCollectionViewController.m in Sources */,
 				49203AAD1DD209FB00BF02B8 /* UIImage+FontAwesome.m in Sources */,
 				49977C421DE4D29C001B678E /* LikerTableViewCell.m in Sources */,
 				491127711DF31D8C009D0324 /* BackendServices.m in Sources */,
@@ -678,7 +694,7 @@
 				4997FE5D1DEF6A5F009A5C26 /* FusumaViewController.swift in Sources */,
 				4954461C1DE09053005F54B7 /* Relation.m in Sources */,
 				4904403E1DAD352F00D54588 /* NSString+FontAwesome.m in Sources */,
-				49F728211DCF7C2E00F89B5E /* ActiveUserProfileCollectionViewCell.m in Sources */,
+				49F728211DCF7C2E00F89B5E /* PostCollectionViewCell.m in Sources */,
 				49E749EA1DCDF87800D42D7A /* KinveyPost.m in Sources */,
 				4997FE591DEF6A5F009A5C26 /* FSConstants.swift in Sources */,
 			);

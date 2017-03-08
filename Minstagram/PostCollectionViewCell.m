@@ -6,8 +6,8 @@
 //  Copyright © 2016 Mincho Dzhagalov. All rights reserved.
 //
 
-#import "ActiveUserProfileCollectionViewCell.h"
+#import "PostCollectionViewCell.h"
 
-@implementation ActiveUserProfileCollectionViewCell
+@implementation PostCollectionViewCell
 
 @end

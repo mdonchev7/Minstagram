@@ -8,7 +8,7 @@
 
 #import "ActiveUserViewController.h"
 #import "NSString+FontAwesome.h"
-#import "ActiveUserProfileCollectionViewCell.h"
+#import "PostCollectionViewCell.h"
 #import "Relation.h"
 #import "DetailedPhotoViewController.h"
 #import "FollowersTableViewController.h"
@@ -83,11 +83,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ActiveUserProfileCollectionViewCell *cell =
+    PostCollectionViewCell *cell =
     [self.collectionView dequeueReusableCellWithReuseIdentifier:@"reusable cell" forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[ActiveUserProfileCollectionViewCell alloc] init];
+        cell = [[PostCollectionViewCell alloc] init];
     }
     
     cell.postId = self.postIds[indexPath.row];
@@ -147,6 +147,7 @@
     FusumaViewController *fvc = [[FusumaViewController alloc] init];
     fvc.delegate = self;
     fvc.hasVideo = NO;
+    
     [self presentViewController:fvc animated:YES completion:nil];
 }
 
@@ -194,7 +195,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Navigate To Detailed Photo View Controller From Active User View Controller"]) {
         DetailedPhotoViewController *dpvc = [segue destinationViewController];
-        dpvc.postId = ((ActiveUserProfileCollectionViewCell *)sender).postId;
+        dpvc.postId = ((PostCollectionViewCell *)sender).postId;
         dpvc.username = [KCSUser activeUser].username;
     }
 }
